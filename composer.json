@@ -1,0 +1,19 @@
+{
+    "name": "joeymckenzie/openbrewerydb-php-api",
+    "description": "An Open Brewery DB API for PHP.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Joeymckenzie\\OpenbrewerydbPhpApi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Joey McKenzie",
+            "email": "joey.mckenzie27@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
