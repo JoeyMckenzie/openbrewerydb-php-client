@@ -24,8 +24,20 @@
 |
 */
 
-expect()->extend('toBeOne', function () {
-    // return $this->toBe(1);
+use OpenBrewery\OpenBrewery\Brewery;
+
+expect()->extend('toBeMinimallyValidBrewery', function () {
+    /** @var Brewery $brewery */
+    $brewery = $this->value;
+
+    return $this->not()->toBeNull()
+        ->and($brewery->breweryType)->not()->toBeNull()
+        ->and($brewery->state)->not()->toBeNull()
+        ->and($brewery->stateProvince)->not()->toBeNull()
+        ->and($brewery->postalCode)->not()->toBeNull()
+        ->and($brewery->country)->not()->toBeNull()
+        ->and($brewery->city)->not()->toBeNull()
+        ->and($brewery->name)->not()->toBeNull();
 });
 
 /*
@@ -39,7 +51,19 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-// function something()
-// {
-//     // ..
-// }
+/**
+ * A test helper for asserting all breweries within a collection include all the expected/required properties.
+ *
+ * @param  Brewery[]  $breweries
+ */
+function expectAllBreweriesToBeValid(array $breweries): void
+{
+    collect($breweries)->each(fn (Brewery $brewery) => expect($brewery->id)->not()->toBeNull()
+        ->and($brewery->breweryType)->not()->toBeNull()
+        ->and($brewery->state)->not()->toBeNull()
+        ->and($brewery->stateProvince)->not()->toBeNull()
+        ->and($brewery->postalCode)->not()->toBeNull()
+        ->and($brewery->country)->not()->toBeNull()
+        ->and($brewery->city)->not()->toBeNull()
+        ->and($brewery->name)->not()->toBeNull());
+}
