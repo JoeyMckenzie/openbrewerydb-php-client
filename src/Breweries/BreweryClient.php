@@ -102,7 +102,7 @@ final readonly class BreweryClient
     public function random(int $size = 1): array
     {
         /** @var Brewery[] $response */
-        $response = $this->client->sendAndDeserialize('random', '\OpenBrewery\OpenBrewery\Brewery[]', [
+        $response = $this->client->sendAndDeserialize('random', '\OpenBrewery\OpenBrewery\Breweries\Brewery[]', [
             'size' => $size,
         ]);
 
