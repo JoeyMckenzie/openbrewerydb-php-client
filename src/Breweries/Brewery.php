@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OpenBrewery\OpenBrewery;
+namespace OpenBrewery\OpenBrewery\Breweries;
 
 use Symfony\Component\Serializer\Annotation\SerializedName;
 

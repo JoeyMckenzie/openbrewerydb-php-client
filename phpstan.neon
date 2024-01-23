@@ -7,6 +7,6 @@ parameters:
         -
             message: '#Undefined variable: \$this#'
             path: tests/Pest.php
-        -
-            message: '#Call to an undefined method [a-zA-Z0-9\\_<>]+::toBeMinimallyValidBrewery\(\)#'
-            path: tests/Feature/BreweryClientTest.php
+        # -
+        #     message: '#Call to an undefined method [a-zA-Z0-9\\_<>]+::toBeMinimallyValidBrewery\(\)#'
+        #     path: tests/Feature/BreweryClientTest.php

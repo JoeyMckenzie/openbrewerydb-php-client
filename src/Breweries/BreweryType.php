@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OpenBrewery\OpenBrewery;
+namespace OpenBrewery\OpenBrewery\Breweries;
 
 /**
  * Backed enum for various brewery types, useful during deserialization.

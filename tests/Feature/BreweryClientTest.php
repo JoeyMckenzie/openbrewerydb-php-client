@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-use OpenBrewery\OpenBrewery\BreweryType;
+use OpenBrewery\OpenBrewery\Breweries\BreweryType;
+use OpenBrewery\OpenBrewery\Breweries\SortBy;
+use OpenBrewery\OpenBrewery\Breweries\SortOrder;
 use OpenBrewery\OpenBrewery\OpenBreweryClient;
 
 describe('Brewery Client', function () {
@@ -14,21 +16,14 @@ describe('Brewery Client', function () {
         $brewery = $client->breweries()->find('b54b16e1-ac3b-4bff-a11f-f7ae9ddc27e0');
 
         // Assert
+        expectBreweryToBeValid($brewery);
         expect($brewery)->not()->toBeNull()
-            ->and($brewery?->id)->not()->toBeNull()
-            ->and($brewery?->name)->not()->toBeNull()
             ->and($brewery?->addressOne)->not()->toBeNull()
-            ->and($brewery?->city)->not()->toBeNull()
-            ->and($brewery?->country)->not()->toBeNull()
             ->and($brewery?->latitude)->not()->toBeNull()
             ->and($brewery?->longitude)->not()->toBeNull()
             ->and($brewery?->phone)->not()->toBeNull()
-            ->and($brewery?->postalCode)->not()->toBeNull()
-            ->and($brewery?->state)->not()->toBeNull()
-            ->and($brewery?->stateProvince)->not()->toBeNull()
             ->and($brewery?->street)->not()->toBeNull()
             ->and($brewery?->websiteUrl)->not()->toBeNull()
-            ->and($brewery?->breweryType)->not()->toBeNull()
             ->and($brewery?->breweryType)->toBe(BreweryType::REGIONAL);
     });
 
@@ -55,6 +50,18 @@ describe('Brewery Client', function () {
         expectAllBreweriesToBeValid($breweries);
     });
 
+    it('retrieves a list of breweries when passed query options', function () {
+        // Arrange
+        $client = new OpenBreweryClient();
+
+        // Act
+        $breweries = $client->breweries()->list(name: 'asdf', city: 'asdf', sortBy: [SortBy::ADDRESS_ONE, SortBy::CITY], sortOrder: SortOrder::DESC);
+
+        // Assert
+        expect($breweries)->not()->toBeNull();
+        expectAllBreweriesToBeValid($breweries);
+    });
+
     it('retrieves a list of random breweries', function () {
         // Arrange
         $client = new OpenBreweryClient();
@@ -65,8 +72,8 @@ describe('Brewery Client', function () {
 
         // Assert
         expect($breweries)->not()->toBeNull()
-            ->and(count($breweries))->toBe(1)
-            ->and($brewery)->toBeMinimallyValidBrewery();
+            ->and(count($breweries))->toBe(1);
+        expectBreweryToBeValid($brewery);
     });
 
     it('retrieves multiple random breweries when given a size', function () {
