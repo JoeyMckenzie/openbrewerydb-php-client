@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Joeymckenzie\\OpenbrewerydbPhpApi\\": "src/"
+            "OpenBrewery\\OpenBrewery\\": "src/"
         }
     },
     "authors": [
@@ -15,5 +15,35 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {}
+    "require": {
+        "php": ">=8.3",
+        "guzzlehttp/guzzle": "^7.8",
+        "league/oauth2-client": "^2.7",
+        "symfony/serializer": "^6.3 || ^7.0",
+        "symfony/property-access": "^6.3 || ^7.0",
+        "doctrine/annotations": "^2.0",
+        "nesbot/carbon": "^2.72",
+        "illuminate/collections": "^10.37"
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.32",
+        "laravel/pint": "^1.13",
+        "pestphp/pest-plugin-type-coverage": "^2.8",
+        "pestphp/pest-plugin-watch": "^2.0",
+        "phpstan/phpstan": "^1.10"
+    },
+    "scripts": {
+        "test": "./vendor/bin/pest",
+        "test:watch": "./vendor/bin/pest --watch",
+        "lint": "./vendor/bin/phpstan analyse src tests",
+        "fmt": "./vendor/bin/pint",
+        "prepare": "git config core.hookspath .githooks",
+        "types": "./vendor/bin/pest --type-coverage --min=100",
+        "ci": "composer run lint && composer run types && composer run test"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
 }
