@@ -75,7 +75,7 @@ final readonly class BreweryClient
         ];
 
         /** @var Brewery[] $response */
-        $response = $this->client->sendAndDeserialize('', '\OpenBrewery\OpenBrewery\Brewery[]', $queryParams);
+        $response = $this->client->sendAndDeserialize('', '\OpenBrewery\OpenBrewery\Breweries\Brewery[]', $queryParams);
 
         return $response;
     }
