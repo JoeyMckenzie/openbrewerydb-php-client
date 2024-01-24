@@ -83,7 +83,7 @@ final readonly class BreweryClient
         return $response;
     }
 
-    private static function getLatLongQueryStringValue(?int $latitude, ?int $longitude): ?string
+    private static function getLatLongQueryStringValue(?float $latitude, ?float $longitude): ?string
     {
         if (is_null($latitude) || is_null($longitude)) {
             return null;
