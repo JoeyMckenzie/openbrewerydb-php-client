@@ -119,6 +119,7 @@ final readonly class OpenBreweryClient
     {
         $requestOptions = [
             'headers' => [
+                'user-agent' => 'openbrewerydb-php-api',
             ],
         ];
 

@@ -16,6 +16,15 @@ final readonly class BreweryClient
     {
     }
 
+    private static function getLatLongQueryStringValue(?int $latitude, ?int $longitude): ?string
+    {
+        if (is_null($latitude) || is_null($longitude)) {
+            return null;
+        }
+
+        return "$latitude,$longitude";
+    }
+
     /**
      * Finds a single brewery based on the UUID.
      *
@@ -69,10 +78,13 @@ final readonly class BreweryClient
             'by_state' => $state,
             'by_postal' => $postalCode,
             'by_type' => $type?->value,
+            'by_dist' => self::getSortString($sortBy, $sortOrder),
             'page' => $page,
             'per_page' => $perPage,
-            'sort' => self::buildSortString($sortBy, $sortOrder),
+            'sort' => self::getSortString($sortBy, $sortOrder),
         ];
+
+        $queryParams = array_filter($queryParams);
 
         /** @var Brewery[] $response */
         $response = $this->client->sendAndDeserialize('', '\OpenBrewery\OpenBrewery\Breweries\Brewery[]', $queryParams);
@@ -83,13 +95,17 @@ final readonly class BreweryClient
     /**
      * @param  SortBy|SortBy[]|null  $sortBy
      */
-    private static function buildSortString(SortBy|array|null $sortBy, SortOrder $sortOrder): ?string
+    private static function getSortString(SortBy|array|null $sortBy, SortOrder $sortOrder): ?string
     {
         if (is_null($sortBy)) {
             return null;
         }
 
-        return '';
+        $sortByValues = is_array($sortBy)
+            ? collect($sortBy)->map(fn (SortBy $sortBy) => $sortBy->value)->join(',')
+            : $sortBy->value;
+
+        return "$sortByValues:$sortOrder->value";
     }
 
     /**

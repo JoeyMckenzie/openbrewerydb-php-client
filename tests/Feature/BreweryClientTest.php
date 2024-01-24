@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
+use OpenBrewery\OpenBrewery\Breweries\Brewery;
 use OpenBrewery\OpenBrewery\Breweries\BreweryType;
-use OpenBrewery\OpenBrewery\Breweries\SortBy;
-use OpenBrewery\OpenBrewery\Breweries\SortOrder;
 use OpenBrewery\OpenBrewery\OpenBreweryClient;
 
 describe('Brewery Client', function () {
@@ -50,16 +49,48 @@ describe('Brewery Client', function () {
         expectAllBreweriesToBeValid($breweries);
     });
 
-    it('retrieves a list of breweries when passed query options', function () {
+    it('retrieves a list of breweries by name', function () {
         // Arrange
         $client = new OpenBreweryClient();
 
         // Act
-        $breweries = $client->breweries()->list(name: 'asdf', city: 'asdf', sortBy: [SortBy::ADDRESS_ONE, SortBy::CITY], sortOrder: SortOrder::DESC);
+        $breweries = $client->breweries()->list(name: 'dog');
 
-        // Assert
-        expect($breweries)->not()->toBeNull();
+        // Assert by name
+        expect($breweries)->not()->toBeNull()
+            ->and(count($breweries))->toBeGreaterThan(1);
         expectAllBreweriesToBeValid($breweries);
+        expect(collect($breweries)->every(fn (Brewery $brewery) => str_contains(strtolower($brewery->name), 'dog')))->toBeTrue();
+    });
+
+    it('retrieves a list of breweries by state', function () {
+        // Arrange
+        $client = new OpenBreweryClient();
+
+        // Act
+        $breweries = $client->breweries()->list(state: 'California');
+
+        // Assert by name
+        expect($breweries)->not()->toBeNull()
+            ->and(count($breweries))->toBeGreaterThan(1);
+        expectAllBreweriesToBeValid($breweries);
+        collect($breweries)->each(fn (Brewery $brewery) => expect($brewery->state)->toBe('California')
+            ->and($brewery->stateProvince)->toBe('California'));
+    });
+
+    it('retrieves a list of breweries by multiple state names', function () {
+        // Arrange
+        $client = new OpenBreweryClient();
+
+        // Act
+        $breweries = $client->breweries()->list(state: 'New York');
+
+        // Assert by name
+        expect($breweries)->not()->toBeNull()
+            ->and(count($breweries))->toBeGreaterThan(1);
+        expectAllBreweriesToBeValid($breweries);
+        collect($breweries)->each(fn (Brewery $brewery) => expect($brewery->state)->toBe('New York')
+            ->and($brewery->stateProvince)->toBe('New York'));
     });
 
     it('retrieves a list of random breweries', function () {
