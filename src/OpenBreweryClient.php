@@ -24,7 +24,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
 /**
- * A top-level Open Brewery DB client.
+ * A top-level Open Brewery DB client encompassing child API connectors and an internal HTTP client.
  */
 final readonly class OpenBreweryClient
 {
@@ -76,12 +76,12 @@ final readonly class OpenBreweryClient
     }
 
     /**
-     * Sends a request to Blizzard and attempts to
-     * deserialize the response into the target type.
+     * Sends a request to Open Brewery DP and attempts to deserialize the response into the target type.
      *
-     * @param  string  $uri  target Game Data API URI.
-     * @param  string  $type  target type to deserialize into.
-     * @param  array<string, string|int>|null  $query  optional query parameters.
+     * @param  string  $uri  Target Game Data API URI.
+     * @param  string  $type  Target type to deserialize into.
+     * @param  array<string, string|int>|null  $query  Optional query parameters.
+     * @param  bool  $allowNullable  Flag indicating if the retrieval should capture not found information as null.
      *
      * @throws GuzzleException
      */
@@ -104,11 +104,7 @@ final readonly class OpenBreweryClient
     }
 
     /**
-     * Sends a request to Blizzard, used by all child client connectors.
-     * Requests can include optional query parameters in which, if they
-     * are included, will be merged with the default locale included on
-     * each request. Internally, we'll point to the correct subdomain
-     * based on the account region, so adapters need only to pass the endpoint.
+     * Sends a request to Open Brewery DB, including optional query parameters.
      *
      * @param  string  $uri  target Game Data API URI.
      * @param  array<string, string|int>|null  $query  optional query parameters.
@@ -132,6 +128,9 @@ final readonly class OpenBreweryClient
         return $this->client->get($url, $requestOptions);
     }
 
+    /**
+     * Constructs a new brewery client API instance.
+     */
     public function breweries(): BreweryClient
     {
         return new BreweryClient($this);

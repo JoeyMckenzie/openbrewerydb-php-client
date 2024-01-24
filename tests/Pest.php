@@ -26,21 +26,6 @@
 
 use OpenBrewery\OpenBrewery\Breweries\Brewery;
 
-expect()->extend('toBeMinimallyValidBrewery', function () {
-    /** @var Brewery $brewery */
-    $brewery = $this->value;
-
-    return $this->not()->toBeNull()
-        ->and($brewery->id)->not()->toBeNull()
-        ->and($brewery->breweryType)->not()->toBeNull()
-        ->and($brewery->state)->not()->toBeNull()
-        ->and($brewery->stateProvince)->not()->toBeNull()
-        ->and($brewery->postalCode)->not()->toBeNull()
-        ->and($brewery->country)->not()->toBeNull()
-        ->and($brewery->city)->not()->toBeNull()
-        ->and($brewery->name)->not()->toBeNull();
-});
-
 /*
 |--------------------------------------------------------------------------
 | Functions
