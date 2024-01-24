@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 /**
  * Represents the various location, type, and metadata associated to a brewery returned by Open Brewery DB.
  */
-class Brewery
+final class Brewery
 {
     /**
      * @var string UUID of the brewery.

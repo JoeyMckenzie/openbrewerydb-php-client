@@ -33,17 +33,20 @@ final readonly class BreweryClient
     }
 
     /**
-     * @param  string[]|null  $ids  asdf
-     * @param  string|null  $name  asdf
-     * @param  string|null  $state  asdf
-     * @param  string|null  $city  asdf
-     * @param  string|null  $postalCode  asdf
-     * @param  BreweryType|null  $type  asdf
-     * @param  SortBy|SortBy[]|null  $sortBy  asdf
-     * @param  SortOrder  $sortOrder  asdf
-     * @param  int  $page  asdf
-     * @param  int  $perPage  asdf
-     * @return Brewery[]
+     * Retrieves a list of breweries based on optional search criteria.
+     * Breweries are paginated, with a maximum page value of 50.
+     *
+     * @param  string[]|null  $ids  List of brewery UUIDs.
+     * @param  string|null  $name  Name of the brewery, acting as a needle in the haystack.
+     * @param  string|null  $state  State breweries are located in.
+     * @param  string|null  $city  City breweries are located in.
+     * @param  string|null  $postalCode  Zip code breweries are located in.
+     * @param  BreweryType|null  $type  Brewery type, based on the allowed available types.
+     * @param  SortBy|SortBy[]|null  $sortBy  Field(s) to sort by for the listed breweries.
+     * @param  SortOrder  $sortOrder  Sort order for the selected fields, defaults to ascending order.
+     * @param  int  $page  Page of the list results.
+     * @param  int  $perPage  Number of breweries to include per page.
+     * @return Brewery[] List of breweries, if any satisfied the list search criteria.
      *
      * @throws GuzzleException
      */
@@ -69,12 +72,13 @@ final readonly class BreweryClient
             'by_state' => $state,
             'by_postal' => $postalCode,
             'by_type' => $type?->value,
-            'by_dist' => self::getLatLongQueryStringValue($latitude, $longitude),
+            'by_dist' => self::getDistanceQueryStringValue($latitude, $longitude),
             'page' => $page,
             'per_page' => $perPage,
-            'sort' => self::getSortByQueryStringvalue($sortBy, $sortOrder),
+            'sort' => self::getSortByQueryStringValue($sortBy, $sortOrder),
         ];
 
+        // We'll purge any null-valued query params
         $queryParams = array_filter($queryParams);
 
         /** @var Brewery[] $response */
@@ -83,7 +87,11 @@ final readonly class BreweryClient
         return $response;
     }
 
-    private static function getLatLongQueryStringValue(?float $latitude, ?float $longitude): ?string
+    /**
+     * Constructs the distance query parameter field as a concatenated pair containing the
+     * latitude and longitude, if both values are validly provided.
+     */
+    private static function getDistanceQueryStringValue(?float $latitude, ?float $longitude): ?string
     {
         if (is_null($latitude) || is_null($longitude)) {
             return null;
@@ -93,9 +101,13 @@ final readonly class BreweryClient
     }
 
     /**
+     * Constructs the sort by field query parameter, which may contain one or many sort fields.
+     * The constructed query parameter will be a concatenated list of the sort fields
+     * followed by the sort precedence, defaulting to ascending sorting.
+     *
      * @param  SortBy|SortBy[]|null  $sortBy
      */
-    private static function getSortByQueryStringvalue(SortBy|array|null $sortBy, SortOrder $sortOrder): ?string
+    private static function getSortByQueryStringValue(SortBy|array|null $sortBy, SortOrder $sortOrder): ?string
     {
         if (is_null($sortBy)) {
             return null;
