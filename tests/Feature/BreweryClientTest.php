@@ -93,6 +93,20 @@ describe('Brewery Client', function () {
             ->and($brewery->stateProvince)->toBe('New York'));
     });
 
+    it('retrieves a list of breweries by type', function () {
+        // Arrange
+        $client = new OpenBreweryClient();
+
+        // Act
+        $breweries = $client->breweries()->list(type: BreweryType::MICRO);
+
+        // Assert by name
+        expect($breweries)->not()->toBeNull()
+            ->and(count($breweries))->toBeGreaterThan(1);
+        expectAllBreweriesToBeValid($breweries);
+        collect($breweries)->each(fn (Brewery $brewery) => expect($brewery->breweryType)->toBe(BreweryType::MICRO));
+    });
+
     it('retrieves a list of random breweries', function () {
         // Arrange
         $client = new OpenBreweryClient();

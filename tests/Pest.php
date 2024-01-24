@@ -44,14 +44,7 @@ use OpenBrewery\OpenBrewery\Breweries\Brewery;
  */
 function expectAllBreweriesToBeValid(array $breweries): void
 {
-    collect($breweries)->each(fn (Brewery $brewery) => expect($brewery->id)->not()->toBeNull()
-        ->and($brewery->breweryType)->not()->toBeNull()
-        ->and($brewery->state)->not()->toBeNull()
-        ->and($brewery->stateProvince)->not()->toBeNull()
-        ->and($brewery->postalCode)->not()->toBeNull()
-        ->and($brewery->country)->not()->toBeNull()
-        ->and($brewery->city)->not()->toBeNull()
-        ->and($brewery->name)->not()->toBeNull());
+    collect($breweries)->each(fn (Brewery $brewery) => expectBreweryToBeValid($brewery));
 }
 
 /**

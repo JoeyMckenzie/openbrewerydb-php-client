@@ -36,10 +36,11 @@
         "test": "./vendor/bin/pest",
         "test:watch": "./vendor/bin/pest --watch",
         "lint": "./vendor/bin/phpstan analyse src tests",
-        "fmt": "./vendor/bin/pint",
+        "fmt": "./vendor/bin/pint -v",
+        "check": "./vendor/bin/pint --test",
         "prepare": "git config core.hookspath .githooks",
         "types": "./vendor/bin/pest --type-coverage --min=100",
-        "ci": "composer run lint && composer run types && composer run test"
+        "ci": "composer run check && composer run lint && composer run types && composer run test"
     },
     "config": {
         "allow-plugins": {
