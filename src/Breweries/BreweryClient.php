@@ -16,15 +16,6 @@ final readonly class BreweryClient
     {
     }
 
-    private static function getLatLongQueryStringValue(?int $latitude, ?int $longitude): ?string
-    {
-        if (is_null($latitude) || is_null($longitude)) {
-            return null;
-        }
-
-        return "$latitude,$longitude";
-    }
-
     /**
      * Finds a single brewery based on the UUID.
      *
@@ -78,10 +69,10 @@ final readonly class BreweryClient
             'by_state' => $state,
             'by_postal' => $postalCode,
             'by_type' => $type?->value,
-            'by_dist' => self::getSortString($sortBy, $sortOrder),
+            'by_dist' => self::getLatLongQueryStringValue($latitude, $longitude),
             'page' => $page,
             'per_page' => $perPage,
-            'sort' => self::getSortString($sortBy, $sortOrder),
+            'sort' => self::getSortByQueryStringvalue($sortBy, $sortOrder),
         ];
 
         $queryParams = array_filter($queryParams);
@@ -92,10 +83,19 @@ final readonly class BreweryClient
         return $response;
     }
 
+    private static function getLatLongQueryStringValue(?int $latitude, ?int $longitude): ?string
+    {
+        if (is_null($latitude) || is_null($longitude)) {
+            return null;
+        }
+
+        return "$latitude,$longitude";
+    }
+
     /**
      * @param  SortBy|SortBy[]|null  $sortBy
      */
-    private static function getSortString(SortBy|array|null $sortBy, SortOrder $sortOrder): ?string
+    private static function getSortByQueryStringvalue(SortBy|array|null $sortBy, SortOrder $sortOrder): ?string
     {
         if (is_null($sortBy)) {
             return null;
