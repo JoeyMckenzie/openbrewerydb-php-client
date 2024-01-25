@@ -66,6 +66,7 @@ final readonly class BreweryClient
         int $page = 1,
         int $perPage = self::DEFAULT_PER_PAGE,
     ): array {
+        /** @var array<string, string|int> $queryParams */
         $queryParams = [
             'by_city' => $city,
             'by_ids' => $ids,
