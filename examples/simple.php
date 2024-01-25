@@ -16,3 +16,7 @@ var_dump($breweries);
 // Retrieve various metadata about breweries from the API
 $metadata = $client->breweries()->meta();
 var_dump($metadata);
+
+// Get a random brewery with a specified page size
+$randomBrewery = $client->breweries()->random(5);
+var_dump($randomBrewery);

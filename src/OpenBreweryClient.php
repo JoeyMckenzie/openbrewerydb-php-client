@@ -26,7 +26,7 @@ use Symfony\Component\Serializer\Serializer;
 /**
  * A top-level Open Brewery DB client encompassing child API connectors and an internal HTTP client.
  */
-final readonly class OpenBreweryClient
+final class OpenBreweryClient
 {
     protected const int DEFAULT_TIMEOUT_SECONDS = 5;
 
@@ -35,12 +35,17 @@ final readonly class OpenBreweryClient
     /**
      * @var Client Internal Guzzle HTTP client instance, configurable based on options.
      */
-    private Client $client;
+    private readonly Client $client;
 
     /**
      * @var Serializer Internal serializer for marshalling responses from the Blizzard API.
      */
-    private Serializer $serializer;
+    private readonly Serializer $serializer;
+
+    /**
+     * @var BreweryClient|null Internal brewery client, accessed through the public API;
+     */
+    private ?BreweryClient $breweryClient;
 
     public function __construct(int $timeout = self::DEFAULT_TIMEOUT_SECONDS)
     {
@@ -137,6 +142,8 @@ final readonly class OpenBreweryClient
      */
     public function breweries(): BreweryClient
     {
-        return new BreweryClient($this);
+        $this->breweryClient ??= new BreweryClient($this);
+
+        return $this->breweryClient;
     }
 }
