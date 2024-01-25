@@ -12,9 +12,9 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 final class Brewery extends AutocompleteBrewery
 {
     /**
-     * @var BreweryType Type of brewery, constrained.
+     * @var BreweryType|null Type of brewery, constrained.
      */
-    public BreweryType $breweryType;
+    public ?BreweryType $breweryType;
 
     /**
      * @var string|null Address of the brewery, optional.
