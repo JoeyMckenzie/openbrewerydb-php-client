@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require_once __DIR__.'/../src/OpenBreweryClient.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
 use OpenBrewery\OpenBrewery\Breweries\BreweryType;
 use OpenBrewery\OpenBrewery\OpenBreweryClient;
