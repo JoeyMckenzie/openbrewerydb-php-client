@@ -12,6 +12,8 @@ use OpenBrewery\OpenBrewery\OpenBreweryClient;
  */
 final readonly class BreweryClient
 {
+    private const int DEFAULT_PER_PAGE = 50;
+
     public function __construct(private OpenBreweryClient $client)
     {
     }
@@ -62,9 +64,8 @@ final readonly class BreweryClient
         SortBy|array|null $sortBy = null,
         SortOrder $sortOrder = SortOrder::ASC,
         int $page = 1,
-        int $perPage = 50,
+        int $perPage = self::DEFAULT_PER_PAGE,
     ): array {
-        /** @var array<string, string|int> $queryParams */
         $queryParams = [
             'by_city' => $city,
             'by_ids' => $ids,
@@ -133,6 +134,72 @@ final readonly class BreweryClient
         $response = $this->client->sendAndDeserialize('random', '\OpenBrewery\OpenBrewery\Breweries\Brewery[]', [
             'size' => $size,
         ]);
+
+        return $response;
+    }
+
+    /**
+     * Searches for breweries by name.
+     *
+     * @param  string  $name  Name of the brewery, used as the haystack needle.
+     * @param  int  $perPage  Optional number of results per page.
+     * @return Brewery[] List of breweries containing the name search term.
+     *
+     * @throws GuzzleException
+     */
+    public function search(string $name, int $perPage = self::DEFAULT_PER_PAGE): array
+    {
+        $queryParams = [
+            'query' => $name,
+            'per_page' => $perPage,
+        ];
+
+        /** @var Brewery[] $response */
+        $response = $this->client->sendAndDeserialize('search', '\OpenBrewery\OpenBrewery\Breweries\Brewery[]', $queryParams);
+
+        return $response;
+    }
+
+    /**
+     * Searches for breweries by name, though only returning the ID and name of the brewery.
+     *
+     * @param  string  $name  Name of the brewery, used as the haystack needle.
+     * @return AutocompleteBrewery[] List of breweries containing the name search term.
+     *
+     * @throws GuzzleException
+     */
+    public function autocomplete(string $name): array
+    {
+        $queryParams = [
+            'query' => $name,
+        ];
+
+        /** @var Brewery[] $response */
+        $response = $this->client->sendAndDeserialize('autocomplete', '\OpenBrewery\OpenBrewery\Breweries\AutocompleteBrewery[]', $queryParams);
+
+        return $response;
+    }
+
+    /**
+     * Retrieves metadata containing the number of breweries and default API values.
+     *
+     * @param  string|null  $country  Optional country to retrieve metadata.
+     * @param  BreweryType|null  $type  Optional brewery type.
+     * @return BreweriesMeta Metadata about breweries.
+     *
+     * @throws GuzzleException
+     */
+    public function meta(?string $country = null, ?BreweryType $type = null): BreweriesMeta
+    {
+        $queryParams = [
+            'by_country' => $country,
+            'by_type' => $type?->value,
+        ];
+
+        $queryParams = array_filter($queryParams);
+
+        /** @var BreweriesMeta $response */
+        $response = $this->client->sendAndDeserialize('meta', BreweriesMeta::class, $queryParams);
 
         return $response;
     }

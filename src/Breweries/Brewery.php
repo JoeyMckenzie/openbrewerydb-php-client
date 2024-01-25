@@ -9,18 +9,8 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 /**
  * Represents the various location, type, and metadata associated to a brewery returned by Open Brewery DB.
  */
-final class Brewery
+final class Brewery extends AutocompleteBrewery
 {
-    /**
-     * @var string UUID of the brewery.
-     */
-    public string $id;
-
-    /**
-     * @var string Name of the brewery.
-     */
-    public string $name;
-
     /**
      * @var BreweryType Type of brewery, constrained.
      */
