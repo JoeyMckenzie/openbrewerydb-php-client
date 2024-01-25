@@ -8,6 +8,11 @@ use OpenBrewery\OpenBrewery\Breweries\BreweryType;
 use OpenBrewery\OpenBrewery\OpenBreweryClient;
 
 $client = new OpenBreweryClient();
-$breweries = $client->breweries()->list(type: BreweryType::BREWPUB);
 
+// Get a list of breweries, based on all types of different search criteria
+$breweries = $client->breweries()->list(type: BreweryType::BREWPUB);
 var_dump($breweries);
+
+// Retrieve various metadata about breweries from the API
+$metadata = $client->breweries()->meta();
+var_dump($metadata);
