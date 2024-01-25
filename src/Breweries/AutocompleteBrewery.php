@@ -7,7 +7,7 @@ namespace OpenBrewery\OpenBrewery\Breweries;
 /**
  * A slim brewery model returning only priority values on the brewery model, useful for dropdowns.
  */
-final class AutocompleteBrewery
+class AutocompleteBrewery
 {
     /**
      * @var string UUID of the brewery.
