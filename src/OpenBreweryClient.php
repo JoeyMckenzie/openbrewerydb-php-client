@@ -106,14 +106,14 @@ final readonly class OpenBreweryClient
     }
 
     /**
+     * Sends a request to Open Brewery DB, including optional query parameters.
+     *
      * @param  string  $uri  target Game Data API URI.
      * @param  array<string, string|int>|null  $query  optional query parameters.
      *
      * @throws GuzzleException
      *
      * @internal Only used by internally, do not use outside of library context as these methods are subject to change.
-     *
-     * Sends a request to Open Brewery DB, including optional query parameters.
      */
     public function sendRequest(string $uri, ?array $query = null): ResponseInterface
     {
