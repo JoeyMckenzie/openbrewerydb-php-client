@@ -20,11 +20,8 @@
     "require": {
         "php": ">=8.3",
         "guzzlehttp/guzzle": "^7.8",
-        "league/oauth2-client": "^2.7",
         "symfony/serializer": "^6.3 || ^7.0",
         "symfony/property-access": "^6.3 || ^7.0",
-        "doctrine/annotations": "^2.0",
-        "nesbot/carbon": "^2.72",
         "illuminate/collections": "^10.37"
     },
     "require-dev": {

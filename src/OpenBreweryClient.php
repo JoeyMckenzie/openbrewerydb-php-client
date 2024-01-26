@@ -38,7 +38,7 @@ final class OpenBreweryClient
     private readonly Client $client;
 
     /**
-     * @var Serializer Internal serializer for marshalling responses from the Blizzard API.
+     * @var Serializer Internal serializer for marshalling responses.
      */
     private readonly Serializer $serializer;
 
@@ -57,9 +57,7 @@ final class OpenBreweryClient
     }
 
     /**
-     * Initializes a new Symfony serializer to marshal responses from the Game Data APIs.
-     *
-     * @return Serializer Symfony serializer.
+     * Initializes a new Symfony serializer.
      */
     private function initializeSerializer(): Serializer
     {
@@ -83,7 +81,7 @@ final class OpenBreweryClient
     /**
      * Sends a request to Open Brewery DP and attempts to deserialize the response into the target type.
      *
-     * @param  string  $uri  Target Game Data API URI.
+     * @param  string  $uri  Target URI.
      * @param  string  $type  Target type to deserialize into.
      * @param  array<string, string|int>|null  $query  Optional query parameters.
      * @param  bool  $allowNullable  Flag indicating if the retrieval should capture not found information as null.
@@ -113,7 +111,7 @@ final class OpenBreweryClient
     /**
      * Sends a request to Open Brewery DB, including optional query parameters.
      *
-     * @param  string  $uri  target Game Data API URI.
+     * @param  string  $uri  target URI.
      * @param  array<string, string|int>|null  $query  optional query parameters.
      *
      * @throws GuzzleException
