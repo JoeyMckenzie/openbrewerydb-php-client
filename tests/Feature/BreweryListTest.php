@@ -76,4 +76,24 @@ describe('Listing breweries', function () {
         expectAllBreweriesToBeValid($breweries);
         collect($breweries)->each(fn (Brewery $brewery) => expect($brewery->breweryType)->toBe(BreweryType::MICRO));
     });
+
+    it('retrieves a list of breweries by multiple search criteria', function () {
+        // Arrange
+        $client = new OpenBreweryClient();
+
+        // Act
+        $breweries = $client->breweries()->list(
+            name: 'dog',
+            state: 'California',
+            type: BreweryType::MICRO
+        );
+
+        // Assert by name
+        expect($breweries)->not()->toBeNull()
+            ->and(count($breweries))->toBeGreaterThan(1);
+        expectAllBreweriesToBeValid($breweries);
+        collect($breweries)->each(fn (Brewery $brewery) => expect($brewery->breweryType)->toBe(BreweryType::MICRO)
+            ->and(strtolower($brewery->name))->toContain('dog')
+            ->and($brewery->state)->toBe('California'));
+    });
 });
