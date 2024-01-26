@@ -33,7 +33,7 @@
     },
     "scripts": {
         "test": "./vendor/bin/pest --parallel",
-        "test:watch": "./vendor/bin/pest --watch",
+        "test:watch": "./vendor/bin/pest --watch --parallel",
         "lint": "./vendor/bin/phpstan analyse src tests",
         "fmt": "./vendor/bin/pint -v",
         "check": "./vendor/bin/pint --test",
