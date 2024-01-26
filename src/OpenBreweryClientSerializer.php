@@ -18,9 +18,16 @@ use Symfony\Component\Serializer\Normalizer\BackedEnumNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
-final class OpenBreweryClientSerializer
+final readonly class OpenBreweryClientSerializer
 {
-    public static function initializeSerializer(): Serializer
+    public Serializer $serializer;
+
+    public function __construct()
+    {
+        $this->serializer = self::initializeSerializer();
+    }
+
+    private static function initializeSerializer(): Serializer
     {
         $classMetadataFactory = new ClassMetadataFactory(new AttributeLoader);
         $metadataAwareNameConverter = new MetadataAwareNameConverter($classMetadataFactory, new CamelCaseToSnakeCaseNameConverter);

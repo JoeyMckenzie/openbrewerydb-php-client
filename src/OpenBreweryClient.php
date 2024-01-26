@@ -37,7 +37,8 @@ final class OpenBreweryClient
 
     public function __construct(int $timeout = self::DEFAULT_TIMEOUT_SECONDS)
     {
-        $this->serializer = OpenBreweryClientSerializer::initializeSerializer();
+        $clientSerializer = new OpenBreweryClientSerializer;
+        $this->serializer = $clientSerializer->serializer;
         $this->client = new Client([
             'base_uri' => self::API_BASE_URL,
             'timeout' => $timeout,
