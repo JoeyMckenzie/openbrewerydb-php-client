@@ -16,6 +16,7 @@ Next, instantiate the client from you code. Note, you should aim to only instant
 under the hood:
 
 ```php
+use GuzzleHttp\Exception\ConnectException;
 use OpenBrewery\OpenBrewery\Breweries\BreweryType;
 use OpenBrewery\OpenBrewery\OpenBreweryClient;
 
@@ -32,6 +33,16 @@ var_dump($metadata);
 // Get a random brewery with a specified page size
 $randomBrewery = $client->breweries()->random(5);
 var_dump($randomBrewery);
+
+// Optionally, provide a default timeout for all requests
+$anotherClient = new OpenBreweryClient(1.0);
+
+try {
+    $breweries = $anotherClient->breweries()->autocomplete('dog');
+} catch (ConnectException $e) {
+    // Handle retries, logging, events, etc.
+    echo 'Request timed out';
+}
 ```
 
 For the entire set of APIs offered by Open Brewery DB, check out the docs on
