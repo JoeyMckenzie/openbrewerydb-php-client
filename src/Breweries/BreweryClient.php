@@ -8,7 +8,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use OpenBrewery\OpenBrewery\OpenBreweryClient;
 
 /**
- * An client instance for collecting data from the various brewery endpoints.
+ * A client instance for collecting data from the various brewery endpoints.
  */
 final readonly class BreweryClient
 {
