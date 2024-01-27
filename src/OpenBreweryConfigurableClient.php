@@ -12,10 +12,7 @@ use OpenBrewery\OpenBrewery\Contracts\ClientConnector;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\Serializer\Serializer;
 
-/**
- * A top-level Open Brewery DB client encompassing child API connectors and an internal HTTP client.
- */
-final class OpenBreweryClient implements ClientConnector
+class OpenBreweryConfigurableClient implements ClientConnector
 {
     /**
      * @var Client Internal Guzzle HTTP client instance, configurable based on options.

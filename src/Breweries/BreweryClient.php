@@ -5,16 +5,15 @@ declare(strict_types=1);
 namespace OpenBrewery\OpenBrewery\Breweries;
 
 use GuzzleHttp\Exception\GuzzleException;
-use OpenBrewery\OpenBrewery\OpenBreweryClient;
+use OpenBrewery\OpenBrewery\Contracts\ClientConnector;
+use OpenBrewery\OpenBrewery\OpenBrewery;
 
 /**
  * A client instance for collecting data from the various brewery endpoints.
  */
 final readonly class BreweryClient
 {
-    private const int DEFAULT_PER_PAGE = 50;
-
-    public function __construct(private OpenBreweryClient $client)
+    public function __construct(private ClientConnector $client)
     {
     }
 
@@ -64,7 +63,7 @@ final readonly class BreweryClient
         SortBy|array|null $sortBy = null,
         SortOrder $sortOrder = SortOrder::ASC,
         int $page = 1,
-        int $perPage = self::DEFAULT_PER_PAGE,
+        int $perPage = OpenBrewery::DEFAULT_PER_PAGE,
     ): array {
         /** @var array<string, string|int> $queryParams */
         $queryParams = [
@@ -148,7 +147,7 @@ final readonly class BreweryClient
      *
      * @throws GuzzleException
      */
-    public function search(string $name, int $perPage = self::DEFAULT_PER_PAGE): array
+    public function search(string $name, int $perPage = OpenBrewery::DEFAULT_PER_PAGE): array
     {
         $queryParams = [
             'query' => $name,
