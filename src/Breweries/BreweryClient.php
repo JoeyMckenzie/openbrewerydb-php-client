@@ -4,27 +4,16 @@ declare(strict_types=1);
 
 namespace OpenBrewery\OpenBrewery\Breweries;
 
-use GuzzleHttp\Exception\GuzzleException;
-use OpenBrewery\OpenBrewery\Contracts\ClientConnector;
+use OpenBrewery\OpenBrewery\Contracts\BreweryConnector;
+use OpenBrewery\OpenBrewery\Contracts\OpenBreweryClientConnector;
 use OpenBrewery\OpenBrewery\OpenBrewery;
 
-/**
- * A client instance for collecting data from the various brewery endpoints.
- */
-final readonly class BreweryClient
+final readonly class BreweryClient implements BreweryConnector
 {
-    public function __construct(private ClientConnector $client)
+    public function __construct(private OpenBreweryClientConnector $client)
     {
     }
 
-    /**
-     * Finds a single brewery based on the UUID.
-     *
-     * @param  string  $uuid  Open Brewery DB generated UUID.
-     * @return Brewery|null Mapped brewery if one is found, else null.
-     *
-     * @throws GuzzleException
-     */
     public function find(string $uuid): ?Brewery
     {
         /** @var Brewery $response */
@@ -33,24 +22,6 @@ final readonly class BreweryClient
         return $response;
     }
 
-    /**
-     * Retrieves a list of breweries based on optional search criteria.
-     * Breweries are paginated, with a maximum page value of 50.
-     *
-     * @param  string[]|null  $ids  List of brewery UUIDs.
-     * @param  string|null  $name  Name of the brewery, acting as a needle in the haystack.
-     * @param  string|null  $state  State breweries are located in.
-     * @param  string|null  $city  City breweries are located in.
-     * @param  string|null  $postalCode  Zip code breweries are located in.
-     * @param  BreweryType|null  $type  Brewery type, based on the allowed available types.
-     * @param  SortBy|SortBy[]|null  $sortBy  Field(s) to sort by for the listed breweries.
-     * @param  SortOrder  $sortOrder  Sort order for the selected fields, defaults to ascending order.
-     * @param  int  $page  Page of the list results.
-     * @param  int  $perPage  Number of breweries to include per page.
-     * @return Brewery[] List of breweries, if any satisfied the list search criteria.
-     *
-     * @throws GuzzleException
-     */
     public function list(
         ?array $ids = null,
         ?string $name = null,
@@ -121,13 +92,6 @@ final readonly class BreweryClient
         return "$sortByValues:$sortOrder->value";
     }
 
-    /**
-     * Retrieves one or more randomly selected breweries.
-     *
-     * @return Brewery[] Mapped breweries.
-     *
-     * @throws GuzzleException
-     */
     public function random(int $size = 1): array
     {
         /** @var Brewery[] $response */
@@ -138,15 +102,6 @@ final readonly class BreweryClient
         return $response;
     }
 
-    /**
-     * Searches for breweries by name.
-     *
-     * @param  string  $name  Name of the brewery, used as the haystack needle.
-     * @param  int  $perPage  Optional number of results per page.
-     * @return Brewery[] List of breweries containing the name search term.
-     *
-     * @throws GuzzleException
-     */
     public function search(string $name, int $perPage = OpenBrewery::DEFAULT_PER_PAGE): array
     {
         $queryParams = [
@@ -160,14 +115,6 @@ final readonly class BreweryClient
         return $response;
     }
 
-    /**
-     * Searches for breweries by name, though only returning the ID and name of the brewery.
-     *
-     * @param  string  $name  Name of the brewery, used as the haystack needle.
-     * @return AutocompleteBrewery[] List of breweries containing the name search term.
-     *
-     * @throws GuzzleException
-     */
     public function autocomplete(string $name): array
     {
         $queryParams = [
@@ -180,15 +127,6 @@ final readonly class BreweryClient
         return $response;
     }
 
-    /**
-     * Retrieves metadata containing the number of breweries and default API values.
-     *
-     * @param  string|null  $country  Optional country to retrieve metadata.
-     * @param  BreweryType|null  $type  Optional brewery type.
-     * @return BreweriesMeta Metadata about breweries.
-     *
-     * @throws GuzzleException
-     */
     public function meta(?string $country = null, ?BreweryType $type = null): BreweriesMeta
     {
         $queryParams = [

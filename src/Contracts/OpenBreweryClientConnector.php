@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace OpenBrewery\OpenBrewery\Contracts;
 
-use GuzzleHttp\Exception\GuzzleException;
-use OpenBrewery\OpenBrewery\Breweries\BreweryClient;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 
-interface ClientConnector
+/**
+ * @internal Client connectors are internal implementations of both the default and configurable client, not meant to be used outside the scope of the library.
+ */
+interface OpenBreweryClientConnector
 {
     /**
      * Sends a request to Open Brewery DP and attempts to deserialize the response into the target type.
@@ -18,9 +20,7 @@ interface ClientConnector
      * @param  array<string, string|int>|null  $query  Optional query parameters.
      * @param  bool  $allowNullable  Flag indicating if the retrieval should capture not found information as null.
      *
-     * @throws GuzzleException
-     *
-     * @internal Only used by internally, do not use outside of library context as these methods are subject to change.
+     * @throws ClientExceptionInterface
      */
     public function sendAndDeserialize(string $uri, string $type, ?array $query = null, bool $allowNullable = false): mixed;
 
@@ -30,14 +30,7 @@ interface ClientConnector
      * @param  string  $uri  target URI.
      * @param  array<string, string|int>|null  $query  optional query parameters.
      *
-     * @throws GuzzleException
-     *
-     * @internal Only used by internally, do not use outside of library context as these methods are subject to change.
+     * @throws ClientExceptionInterface
      */
     public function sendRequest(string $uri, ?array $query = null): ResponseInterface;
-
-    /**
-     * Constructs a new brewery client API instance.
-     */
-    public function breweries(): BreweryClient;
 }

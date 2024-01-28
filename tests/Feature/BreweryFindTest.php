@@ -5,7 +5,7 @@ declare(strict_types=1);
 use OpenBrewery\OpenBrewery\Breweries\BreweryType;
 use OpenBrewery\OpenBrewery\OpenBreweryClient;
 
-describe('Brewery Client', function () {
+describe('Brewery ScopedDataConnector', function () {
     it('retrieves a brewery when given an ID', function () {
         // Arrange
         $client = new OpenBreweryClient();
