@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 use OpenBrewery\OpenBrewery\Breweries\Brewery;
-use OpenBrewery\OpenBrewery\OpenBreweryClient;
+use OpenBrewery\OpenBrewery\OpenBreweryClientClient;
 
 describe('Searching breweries', function () {
     it('retrieves a list of breweries including the search term', function () {
         // Arrange
-        $client = new OpenBreweryClient();
+        $client = new OpenBreweryClientClient();
 
         // Act
         $breweries = $client->breweries()->search('barrel');
@@ -21,7 +21,7 @@ describe('Searching breweries', function () {
 
     it('retrieves a list of breweries including the search term with a specified number of page results', function () {
         // Arrange
-        $client = new OpenBreweryClient();
+        $client = new OpenBreweryClientClient();
 
         // Act
         $breweries = $client->breweries()->search('barrel', 10);
@@ -35,7 +35,7 @@ describe('Searching breweries', function () {
 
     it('retrieves no breweries when a match isn\'t found', function () {
         // Arrange
-        $client = new OpenBreweryClient();
+        $client = new OpenBreweryClientClient();
 
         // Act... yes, it's a real word
         $breweries = $client->breweries()->search('pneumonoultramicroscopicsilicovolcanoconiosis');

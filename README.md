@@ -18,9 +18,9 @@ under the hood:
 ```php
 use GuzzleHttp\Exception\ConnectException;
 use OpenBrewery\OpenBrewery\Breweries\BreweryType;
-use OpenBrewery\OpenBrewery\OpenBreweryClient;
+use OpenBrewery\OpenBrewery\OpenBreweryClientClient;
 
-$client = new OpenBreweryClient();
+$client = new OpenBreweryClientClient();
 
 // Get a list of breweries, based on all types of different search criteria
 $breweries = $client->breweries()->list(type: BreweryType::BREWPUB);
@@ -35,7 +35,7 @@ $randomBrewery = $client->breweries()->random(5);
 var_dump($randomBrewery);
 
 // Optionally, provide a default timeout for all requests
-$anotherClient = new OpenBreweryClient(1.0);
+$anotherClient = new OpenBreweryClientClient(1.0);
 
 try {
     $breweries = $anotherClient->breweries()->autocomplete('dog');

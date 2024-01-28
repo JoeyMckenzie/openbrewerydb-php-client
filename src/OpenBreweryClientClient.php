@@ -8,13 +8,15 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use OpenBrewery\OpenBrewery\Breweries\BreweryClient;
+use OpenBrewery\OpenBrewery\Contracts\OpenBreweryClientConnector;
+use OpenBrewery\OpenBrewery\Contracts\ScopedApiConnector;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\Serializer\Serializer;
 
 /**
  * A top-level Open Brewery DB client encompassing child API connectors and an internal HTTP client.
  */
-final class OpenBreweryClient
+final class OpenBreweryClientClient implements OpenBreweryClientConnector, ScopedApiConnector
 {
     /**
      * @var Client Internal Guzzle HTTP client instance, configurable based on options.
