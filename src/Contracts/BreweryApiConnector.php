@@ -13,6 +13,9 @@ use OpenBrewery\OpenBrewery\Breweries\SortBy;
 use OpenBrewery\OpenBrewery\Breweries\SortOrder;
 use OpenBrewery\OpenBrewery\OpenBrewery;
 
+/**
+ * Contains all API operations available for retrieving brewery data.
+ */
 interface BreweryApiConnector
 {
     /**
