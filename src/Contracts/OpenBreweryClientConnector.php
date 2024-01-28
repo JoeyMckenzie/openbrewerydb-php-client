@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace OpenBrewery\OpenBrewery\Contracts;
 
-use Psr\Http\Client\ClientExceptionInterface;
+use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -20,7 +20,7 @@ interface OpenBreweryClientConnector
      * @param  array<string, string|int>|null  $query  Optional query parameters.
      * @param  bool  $allowNullable  Flag indicating if the retrieval should capture not found information as null.
      *
-     * @throws ClientExceptionInterface
+     * @throws GuzzleException
      */
     public function sendAndDeserialize(string $uri, string $type, ?array $query = null, bool $allowNullable = false): mixed;
 
@@ -30,7 +30,7 @@ interface OpenBreweryClientConnector
      * @param  string  $uri  target URI.
      * @param  array<string, string|int>|null  $query  optional query parameters.
      *
-     * @throws ClientExceptionInterface
+     * @throws GuzzleException
      */
     public function sendRequest(string $uri, ?array $query = null): ResponseInterface;
 }

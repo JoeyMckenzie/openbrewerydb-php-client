@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OpenBrewery\OpenBrewery\Contracts;
 
+use GuzzleHttp\Exception\GuzzleException;
 use OpenBrewery\OpenBrewery\Breweries\AutocompleteBrewery;
 use OpenBrewery\OpenBrewery\Breweries\BreweriesMeta;
 use OpenBrewery\OpenBrewery\Breweries\Brewery;
@@ -11,7 +12,6 @@ use OpenBrewery\OpenBrewery\Breweries\BreweryType;
 use OpenBrewery\OpenBrewery\Breweries\SortBy;
 use OpenBrewery\OpenBrewery\Breweries\SortOrder;
 use OpenBrewery\OpenBrewery\OpenBrewery;
-use Psr\Http\Client\ClientExceptionInterface;
 
 /**
  * Defines the API contract between the calling client and the Open Brewery DB REST API.
@@ -24,7 +24,7 @@ interface BreweryConnector
      * @param  string  $uuid  Open Brewery DB generated UUID.
      * @return Brewery|null Mapped brewery if one is found, else null.
      *
-     * @throws ClientExceptionInterface
+     * @throws GuzzleException
      */
     public function find(string $uuid): ?Brewery;
 
@@ -44,7 +44,7 @@ interface BreweryConnector
      * @param  int  $perPage  Number of breweries to include per page.
      * @return Brewery[] List of breweries, if any satisfied the list search criteria.
      *
-     * @throws ClientExceptionInterface
+     * @throws GuzzleException
      */
     public function list(
         ?array $ids = null,
@@ -66,7 +66,7 @@ interface BreweryConnector
      *
      * @return Brewery[] Mapped breweries.
      *
-     * @throws ClientExceptionInterface
+     * @throws GuzzleException
      */
     public function random(int $size = 1): array;
 
@@ -77,7 +77,7 @@ interface BreweryConnector
      * @param  int  $perPage  Optional number of results per page.
      * @return Brewery[] List of breweries containing the name search term.
      *
-     * @throws ClientExceptionInterface
+     * @throws GuzzleException
      */
     public function search(string $name, int $perPage = OpenBrewery::DEFAULT_PER_PAGE): array;
 
@@ -87,7 +87,7 @@ interface BreweryConnector
      * @param  string  $name  Name of the brewery, used as the haystack needle.
      * @return AutocompleteBrewery[] List of breweries containing the name search term.
      *
-     * @throws ClientExceptionInterface
+     * @throws GuzzleException
      */
     public function autocomplete(string $name): array;
 
@@ -98,7 +98,7 @@ interface BreweryConnector
      * @param  BreweryType|null  $type  Optional brewery type.
      * @return BreweriesMeta Metadata about breweries.
      *
-     * @throws ClientExceptionInterface
+     * @throws GuzzleException
      */
     public function meta(?string $country = null, ?BreweryType $type = null): BreweriesMeta;
 }

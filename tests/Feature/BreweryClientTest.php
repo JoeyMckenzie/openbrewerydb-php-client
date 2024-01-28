@@ -1,6 +1,6 @@
 <?php
 
-use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\GuzzleException;
 use OpenBrewery\OpenBrewery\Breweries\BreweryType;
 use OpenBrewery\OpenBrewery\OpenBreweryClient;
 
@@ -11,5 +11,5 @@ describe('Brewery client', function () {
 
         // Act
         $client->breweries()->list(type: BreweryType::MICRO);
-    })->throws(ConnectException::class);
+    })->throws(GuzzleException::class);
 });
