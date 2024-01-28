@@ -16,10 +16,6 @@ use Symfony\Component\Serializer\Serializer;
  */
 final class OpenBreweryClient
 {
-    private const float DEFAULT_TIMEOUT_SECONDS = 5.0;
-
-    private const string API_BASE_URL = 'https://api.openbrewerydb.org';
-
     /**
      * @var Client Internal Guzzle HTTP client instance, configurable based on options.
      */
@@ -35,12 +31,12 @@ final class OpenBreweryClient
      */
     private ?BreweryClient $breweryClient;
 
-    public function __construct(float $timeout = self::DEFAULT_TIMEOUT_SECONDS)
+    public function __construct(float $timeout = OpenBrewery::DEFAULT_TIMEOUT_SECONDS)
     {
         $clientSerializer = new OpenBreweryClientSerializer;
         $this->serializer = $clientSerializer->serializer;
         $this->client = new Client([
-            'base_uri' => self::API_BASE_URL,
+            'base_uri' => OpenBrewery::API_BASE_URL,
             'timeout' => $timeout,
         ]);
     }
