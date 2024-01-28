@@ -22,7 +22,7 @@ interface OpenBreweryClientConnector
      *
      * @throws GuzzleException
      *
-     * @internal Only used by internally, do not use outside of library context as these methods are subject to change.
+     * @internal Only used internally, do not use outside of library context as these methods are subject to change.
      */
     public function sendAndDeserialize(string $uri, string $type, ?array $query = null, bool $allowNullable = false): mixed;
 
@@ -34,7 +34,7 @@ interface OpenBreweryClientConnector
      *
      * @throws GuzzleException
      *
-     * @internal Only used by internally, do not use outside of library context as these methods are subject to change.
+     * @internal Only used internally, do not use outside of library context as these methods are subject to change.
      */
     public function sendRequest(string $uri, ?array $query = null): ResponseInterface;
 }
