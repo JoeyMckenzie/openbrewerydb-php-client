@@ -30,7 +30,7 @@ describe('Listing breweries', function () {
         expect($breweries)->not()->toBeNull()
             ->and(count($breweries))->toBeGreaterThan(1);
         expectAllBreweriesToBeValid($breweries);
-        expect(collect($breweries)->every(fn(Brewery $brewery) => str_contains(strtolower($brewery->name), 'dog')))->toBeTrue();
+        expect(collect($breweries)->every(fn (Brewery $brewery) => str_contains(strtolower($brewery->name), 'dog')))->toBeTrue();
     });
 
     it('retrieves a list of breweries by state', function () {
@@ -44,7 +44,7 @@ describe('Listing breweries', function () {
         expect($breweries)->not()->toBeNull()
             ->and(count($breweries))->toBeGreaterThan(1);
         expectAllBreweriesToBeValid($breweries);
-        collect($breweries)->each(fn(Brewery $brewery) => expect($brewery->state)->toBe('California')
+        collect($breweries)->each(fn (Brewery $brewery) => expect($brewery->state)->toBe('California')
             ->and($brewery->stateProvince)->toBe('California'));
     });
 
@@ -59,7 +59,7 @@ describe('Listing breweries', function () {
         expect($breweries)->not()->toBeNull()
             ->and(count($breweries))->toBeGreaterThan(1);
         expectAllBreweriesToBeValid($breweries);
-        collect($breweries)->each(fn(Brewery $brewery) => expect($brewery->state)->toBe('New York')
+        collect($breweries)->each(fn (Brewery $brewery) => expect($brewery->state)->toBe('New York')
             ->and($brewery->stateProvince)->toBe('New York'));
     });
 
@@ -74,7 +74,7 @@ describe('Listing breweries', function () {
         expect($breweries)->not()->toBeNull()
             ->and(count($breweries))->toBeGreaterThan(1);
         expectAllBreweriesToBeValid($breweries);
-        collect($breweries)->each(fn(Brewery $brewery) => expect($brewery->breweryType)->toBe(BreweryType::MICRO));
+        collect($breweries)->each(fn (Brewery $brewery) => expect($brewery->breweryType)->toBe(BreweryType::MICRO));
     });
 
     it('retrieves a list of breweries by multiple search criteria', function () {
@@ -92,7 +92,7 @@ describe('Listing breweries', function () {
         expect($breweries)->not()->toBeNull()
             ->and(count($breweries))->toBeGreaterThan(1);
         expectAllBreweriesToBeValid($breweries);
-        collect($breweries)->each(fn(Brewery $brewery) => expect($brewery->breweryType)->toBe(BreweryType::MICRO)
+        collect($breweries)->each(fn (Brewery $brewery) => expect($brewery->breweryType)->toBe(BreweryType::MICRO)
             ->and(strtolower($brewery->name))->toContain('dog')
             ->and($brewery->state)->toBe('California'));
     });

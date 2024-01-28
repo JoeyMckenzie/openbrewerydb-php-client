@@ -16,7 +16,7 @@ describe('Autocomplete breweries', function () {
         // Assert
         expect($breweries)->not()->toBeNull()
             ->and(count($breweries))->toBe(15);
-        collect($breweries)->each(fn(AutocompleteBrewery $brewery) => expect(str_contains($brewery->name, 'barrel'))
+        collect($breweries)->each(fn (AutocompleteBrewery $brewery) => expect(str_contains($brewery->name, 'barrel'))
             ->and($brewery->id)->not()->toBeNull());
     });
 
