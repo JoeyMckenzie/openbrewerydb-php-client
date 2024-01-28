@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 use OpenBrewery\OpenBrewery\Breweries\Brewery;
-use OpenBrewery\OpenBrewery\OpenBreweryClientClient;
+use OpenBrewery\OpenBrewery\OpenBreweryClient;
 
 describe('Searching breweries', function () {
     it('retrieves a list of breweries including the search term', function () {
         // Arrange
-        $client = new OpenBreweryClientClient();
+        $client = new OpenBreweryClient();
 
         // Act
         $breweries = $client->breweries()->search('barrel');
@@ -16,12 +16,12 @@ describe('Searching breweries', function () {
         // Assert
         expect($breweries)->not()->toBeNull();
         expectAllBreweriesToBeValid($breweries);
-        collect($breweries)->each(fn (Brewery $brewery) => expect(str_contains($brewery->name, 'barrel')));
+        collect($breweries)->each(fn(Brewery $brewery) => expect(str_contains($brewery->name, 'barrel')));
     });
 
     it('retrieves a list of breweries including the search term with a specified number of page results', function () {
         // Arrange
-        $client = new OpenBreweryClientClient();
+        $client = new OpenBreweryClient();
 
         // Act
         $breweries = $client->breweries()->search('barrel', 10);
@@ -30,12 +30,12 @@ describe('Searching breweries', function () {
         expect($breweries)->not()->toBeNull()
             ->and(count($breweries))->toBe(10);
         expectAllBreweriesToBeValid($breweries);
-        collect($breweries)->each(fn (Brewery $brewery) => expect(str_contains($brewery->name, 'barrel')));
+        collect($breweries)->each(fn(Brewery $brewery) => expect(str_contains($brewery->name, 'barrel')));
     });
 
     it('retrieves no breweries when a match isn\'t found', function () {
         // Arrange
-        $client = new OpenBreweryClientClient();
+        $client = new OpenBreweryClient();
 
         // Act... yes, it's a real word
         $breweries = $client->breweries()->search('pneumonoultramicroscopicsilicovolcanoconiosis');

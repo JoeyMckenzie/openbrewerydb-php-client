@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 use OpenBrewery\OpenBrewery\Breweries\BreweryType;
-use OpenBrewery\OpenBrewery\OpenBreweryClientClient;
+use OpenBrewery\OpenBrewery\OpenBreweryClient;
 
 describe('Breweries meta', function () {
     it('retrieves metadata for U.S. breweries by default', function () {
         // Arrange
-        $client = new OpenBreweryClientClient();
+        $client = new OpenBreweryClient();
 
         // Act
         $metadata = $client->breweries()->meta();
@@ -22,7 +22,7 @@ describe('Breweries meta', function () {
 
     it('retrieves metadata for other countries', function () {
         // Arrange
-        $client = new OpenBreweryClientClient();
+        $client = new OpenBreweryClient();
 
         // Act
         $metadata = $client->breweries()->meta('South Korea');
@@ -36,7 +36,7 @@ describe('Breweries meta', function () {
 
     it('retrieves metadata for brewery types', function () {
         // Arrange
-        $client = new OpenBreweryClientClient();
+        $client = new OpenBreweryClient();
 
         // Act
         $metadata = $client->breweries()->meta(type: BreweryType::MICRO);

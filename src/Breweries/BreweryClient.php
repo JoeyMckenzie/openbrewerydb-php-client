@@ -5,15 +5,16 @@ declare(strict_types=1);
 namespace OpenBrewery\OpenBrewery\Breweries;
 
 use GuzzleHttp\Exception\GuzzleException;
+use OpenBrewery\OpenBrewery\Contracts\BreweryApiConnector;
+use OpenBrewery\OpenBrewery\Contracts\OpenBreweryClientConnector;
 use OpenBrewery\OpenBrewery\OpenBrewery;
-use OpenBrewery\OpenBrewery\OpenBreweryClientClient;
 
 /**
  * A client instance for collecting data from the various brewery endpoints.
  */
-final readonly class BreweryClient
+final readonly class BreweryClient implements BreweryApiConnector
 {
-    public function __construct(private OpenBreweryClientClient $client)
+    public function __construct(private OpenBreweryClientConnector $client)
     {
     }
 

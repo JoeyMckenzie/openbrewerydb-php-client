@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-use OpenBrewery\OpenBrewery\OpenBreweryClientClient;
+use OpenBrewery\OpenBrewery\OpenBreweryClient;
 
 describe('Random breweries', function () {
 
     it('retrieves a list of random breweries', function () {
         // Arrange
-        $client = new OpenBreweryClientClient();
+        $client = new OpenBreweryClient();
 
         // Act
         $breweries = $client->breweries()->random();
@@ -22,7 +22,7 @@ describe('Random breweries', function () {
 
     it('retrieves multiple random breweries when given a size', function () {
         // Arrange
-        $client = new OpenBreweryClientClient();
+        $client = new OpenBreweryClient();
         $numberOfBreweries = rand(2, 50);
 
         // Act

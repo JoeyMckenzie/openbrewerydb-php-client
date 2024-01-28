@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Serializer;
 /**
  * A top-level Open Brewery DB client encompassing child API connectors and an internal HTTP client.
  */
-final class OpenBreweryClientClient implements OpenBreweryClientConnector, ScopedApiConnector
+final class OpenBreweryClient implements OpenBreweryClientConnector, ScopedApiConnector
 {
     /**
      * @var Client Internal Guzzle HTTP client instance, configurable based on options.

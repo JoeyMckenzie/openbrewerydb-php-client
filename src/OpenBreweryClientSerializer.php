@@ -18,6 +18,9 @@ use Symfony\Component\Serializer\Normalizer\BackedEnumNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
+/**
+ * @internal Used only for deserializing Open Brewery DB models in a type-safe manner, not meant for use outside of that context.
+ */
 final readonly class OpenBreweryClientSerializer
 {
     public Serializer $serializer;

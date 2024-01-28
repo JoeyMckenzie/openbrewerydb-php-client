@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 use OpenBrewery\OpenBrewery\Breweries\BreweryType;
-use OpenBrewery\OpenBrewery\OpenBreweryClientClient;
+use OpenBrewery\OpenBrewery\OpenBreweryClient;
 
 describe('Brewery Client', function () {
     it('retrieves a brewery when given an ID', function () {
         // Arrange
-        $client = new OpenBreweryClientClient();
+        $client = new OpenBreweryClient();
 
         // Act
         $brewery = $client->breweries()->find('b54b16e1-ac3b-4bff-a11f-f7ae9ddc27e0');
@@ -27,7 +27,7 @@ describe('Brewery Client', function () {
 
     it('retrieves no breweries for an invalid ID', function () {
         // Arrange
-        $client = new OpenBreweryClientClient();
+        $client = new OpenBreweryClient();
 
         // Act
         $brewery = $client->breweries()->find('not-a-brewery');

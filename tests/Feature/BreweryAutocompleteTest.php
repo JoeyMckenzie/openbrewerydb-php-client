@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 use OpenBrewery\OpenBrewery\Breweries\AutocompleteBrewery;
-use OpenBrewery\OpenBrewery\OpenBreweryClientClient;
+use OpenBrewery\OpenBrewery\OpenBreweryClient;
 
 describe('Autocomplete breweries', function () {
     it('retrieves a list of breweries including the search term', function () {
         // Arrange
-        $client = new OpenBreweryClientClient();
+        $client = new OpenBreweryClient();
 
         // Act
         $breweries = $client->breweries()->autocomplete('barrel');
@@ -22,7 +22,7 @@ describe('Autocomplete breweries', function () {
 
     it('retrieves no breweries when a match isn\'t found', function () {
         // Arrange
-        $client = new OpenBreweryClientClient();
+        $client = new OpenBreweryClient();
 
         // Act... yes, it's a real word
         $breweries = $client->breweries()->autocomplete('pneumonoultramicroscopicsilicovolcanoconiosis');
