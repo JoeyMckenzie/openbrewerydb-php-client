@@ -11,7 +11,7 @@ use OpenBrewery\OpenBrewery\Contracts\ScopedApiConnector;
 /**
  * A top-level Open Brewery DB client encompassing child API connectors and an internal HTTP client.
  */
-final class OpenBreweryClient implements ScopedApiConnector
+final class ClientConnector implements ScopedApiConnector
 {
     /**
      * @var BreweryClient|null Internal brewery client, accessed through the public API;
@@ -22,12 +22,11 @@ final class OpenBreweryClient implements ScopedApiConnector
 
     public function __construct(float $timeout = OpenBrewery::DEFAULT_TIMEOUT_SECONDS)
     {
-        $serializer = new OpenBreweryClientSerializer();
         $client = new Client([
             'base_uri' => OpenBrewery::API_BASE_URL,
             'timeout' => $timeout,
         ]);
-        $this->httpClient = new InternalHttpClient($serializer->serializer, $client);
+        $this->httpClient = new InternalHttpClient($client);
     }
 
     /**

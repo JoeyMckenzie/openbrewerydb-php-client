@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * @internal Internal for now, may change contract implementation when generic HTTP clients are supported.
  */
-interface OpenBreweryClientConnector
+interface HttpClientConnector
 {
     /**
      * Sends a request to Open Brewery DP and attempts to deserialize the response into the target type.

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 use OpenBrewery\OpenBrewery\Breweries\Brewery;
 use OpenBrewery\OpenBrewery\Breweries\BreweryType;
-use OpenBrewery\OpenBrewery\OpenBreweryClient;
+use OpenBrewery\OpenBrewery\ClientConnector;
 
 describe('Listing breweries', function () {
     it('retrieves a list of breweries', function () {
         // Arrange
-        $client = new OpenBreweryClient();
+        $client = new ClientConnector();
 
         // Act
         $breweries = $client->breweries()->list();
@@ -21,7 +21,7 @@ describe('Listing breweries', function () {
 
     it('retrieves a list of breweries by name', function () {
         // Arrange
-        $client = new OpenBreweryClient();
+        $client = new ClientConnector();
 
         // Act
         $breweries = $client->breweries()->list(name: 'dog');
@@ -35,7 +35,7 @@ describe('Listing breweries', function () {
 
     it('retrieves a list of breweries by state', function () {
         // Arrange
-        $client = new OpenBreweryClient();
+        $client = new ClientConnector();
 
         // Act
         $breweries = $client->breweries()->list(state: 'California');
@@ -50,7 +50,7 @@ describe('Listing breweries', function () {
 
     it('retrieves a list of breweries by multiple state names', function () {
         // Arrange
-        $client = new OpenBreweryClient();
+        $client = new ClientConnector();
 
         // Act
         $breweries = $client->breweries()->list(state: 'New York');
@@ -65,7 +65,7 @@ describe('Listing breweries', function () {
 
     it('retrieves a list of breweries by type', function () {
         // Arrange
-        $client = new OpenBreweryClient();
+        $client = new ClientConnector();
 
         // Act
         $breweries = $client->breweries()->list(type: BreweryType::MICRO);
@@ -79,7 +79,7 @@ describe('Listing breweries', function () {
 
     it('retrieves a list of breweries by multiple search criteria', function () {
         // Arrange
-        $client = new OpenBreweryClient();
+        $client = new ClientConnector();
 
         // Act
         $breweries = $client->breweries()->list(
