@@ -1,10 +1,10 @@
 <?php
 
-namespace OpenBrewery\Tests;
-
 declare(strict_types=1);
 
-test('all files should be strictly typed', fn () => expect('OpenBrewery\OpenBrewery')
+namespace Tests;
+
+test('all files should be strictly typed', fn() => expect('OpenBrewery')
     ->toUseStrictTypes()
     ->and('OpenBrewery\OpenBrewery')
     ->classes()

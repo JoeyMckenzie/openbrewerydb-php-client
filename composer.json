@@ -8,7 +8,10 @@
     "autoload": {
         "psr-4": {
             "OpenBreweryDb\\": "src/"
-        }
+        },
+        "files": [
+            "src/OpenBreweryDb.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -39,16 +42,16 @@
         "pestphp/pest-plugin-type-coverage": "^2.8",
         "pestphp/pest-plugin-watch": "^2.0",
         "phpstan/phpstan": "^1.10",
-        "phpstan/phpstan-strict-rules": "^1.5",
+        "phpstan/phpstan-strict-rules": "^1.5"
     },
     "scripts": {
         "test": "./vendor/bin/pest --parallel",
         "test:watch": "./vendor/bin/pest --watch --parallel",
+        "test:types": "./vendor/bin/pest --type-coverage --min=100",
         "lint": "./vendor/bin/phpstan analyze src tests",
         "fmt": "./vendor/bin/pint -v",
         "check": "./vendor/bin/pint --test",
         "prepare": "git config core.hookspath .githooks",
-        "types": "./vendor/bin/pest --type-coverage --min=100",
         "ci": "composer run check && composer run lint && composer run types && composer run test"
     },
     "config": {

@@ -1,5 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
+namespace OpenBreweryDb;
+
 use Closure;
 use Exception;
 use Http\Discovery\Psr18ClientDiscovery;
@@ -34,7 +38,8 @@ final class Factory
     private array $queryParams = [];
 
     /**
-     * Sets the HTTP client for the requests. If no client is provided the factory will try to find one using PSR-18 HTTP Client Discovery.
+     * Sets the HTTP client for the requests. If no client is provided the
+     * factory will try to find one using PSR-18 HTTP Client Discovery.
      */
     public function withHttpClient(ClientInterface $client): self
     {
@@ -46,9 +51,9 @@ final class Factory
     /**
      * Sets the base URI for the requests.
      */
-    public function withBaseUri(string $baseUri): self
+    public function withBaseUrl(string $baseUrl): self
     {
-        $this->baseUri = $baseUri;
+        $this->baseUri = $baseUrl;
 
         return $this;
     }
@@ -74,25 +79,17 @@ final class Factory
     }
 
     /**
-     * Creates a new Open AI Client.
+     * Creates a new Open Brewery DB Client.
      */
     public function make(): Client
     {
         $headers = Headers::create();
 
-        if ($this->apiKey !== null) {
-            $headers = Headers::withAuthorization(ApiKey::from($this->apiKey));
-        }
-
-        if ($this->organization !== null) {
-            $headers = $headers->withOrganization($this->organization);
-        }
-
         foreach ($this->headers as $name => $value) {
             $headers = $headers->withCustomHeader($name, $value);
         }
 
-        $baseUri = BaseUri::from($this->baseUri ?: 'api.openai.com/v1');
+        $baseUri = BaseUri::from($this->baseUri);
 
         $queryParams = QueryParams::create();
         foreach ($this->queryParams as $name => $value) {
@@ -113,20 +110,20 @@ final class Factory
      */
     private function makeStreamHandler(ClientInterface $client): Closure
     {
-        if (! is_null($this->streamHandler)) {
+        if (!is_null($this->streamHandler)) {
             return $this->streamHandler;
         }
 
         if ($client instanceof GuzzleClient) {
-            return fn (RequestInterface $request): ResponseInterface => $client->send($request, ['stream' => true]);
+            return fn(RequestInterface $request): ResponseInterface => $client->send($request, ['stream' => true]);
         }
 
         if ($client instanceof Psr18Client) { // @phpstan-ignore-line
-            return fn (RequestInterface $request): ResponseInterface => $client->sendRequest($request); // @phpstan-ignore-line
+            return fn(RequestInterface $request): ResponseInterface => $client->sendRequest($request); // @phpstan-ignore-line
         }
 
         return function (RequestInterface $_): never {
-            throw new Exception('To use stream requests you must provide an stream handler closure via the OpenAI factory.');
+            throw new Exception('To use stream requests you must provide an stream handler closure via the factory.');
         };
     }
 }

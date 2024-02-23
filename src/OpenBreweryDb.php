@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
+namespace OpenBreweryDb;
+
 final class OpenBreweryDb
 {
     /**
      * Creates a new Open AI Client with the given API token.
      */
-    public static function client(string $apiKey, ?string $organization = null): Client
+    public static function client(): Client
     {
         return self::factory()
-            ->withApiKey($apiKey)
-            ->withOrganization($organization)
-            ->withHttpHeader('OpenAI-Beta', 'assistants=v1')
+            ->withHttpHeader('User-Agent', 'assistants=v1')
             ->make();
     }
 
