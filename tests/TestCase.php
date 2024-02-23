@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace OpenBrewery\Tests;
 
 use PHPUnit\Framework\TestCase as BaseTestCase;
 

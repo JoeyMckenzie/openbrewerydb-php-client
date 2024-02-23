@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+namespace OpenBrewery\Tests;
 
 use OpenBrewery\OpenBrewery\Breweries\BreweryType;
 use OpenBrewery\OpenBrewery\ClientConnector;

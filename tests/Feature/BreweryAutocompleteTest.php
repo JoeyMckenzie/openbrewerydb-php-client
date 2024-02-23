@@ -1,5 +1,7 @@
 <?php
 
+namespace OpenBrewery\Tests;
+
 declare(strict_types=1);
 
 use OpenBrewery\OpenBrewery\Breweries\AutocompleteBrewery;
