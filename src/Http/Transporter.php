@@ -77,8 +77,7 @@ final readonly class Transporter implements TransporterContract
     }
 
     /**
-     * @throws ErrorException
-     * @throws UnserializableResponseException
+     * @throws ErrorException|UnserializableResponseException
      */
     private function throwIfJsonError(ResponseInterface $response, string|ResponseInterface $contents): void
     {

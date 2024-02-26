@@ -2,10 +2,11 @@
 
 namespace Tests\Resources;
 
+use OpenBreweryDb\Client;
 use OpenBreweryDb\OpenBreweryDb;
 
 describe('Listing breweries', function () {
-    it('returns a valid list of breweries with properties', function () {
+    it('returns a valid list of breweries with properties set to the default pagination limit', function () {
         // Arrange
         $client = OpenBreweryDb::client();
 
@@ -13,6 +14,32 @@ describe('Listing breweries', function () {
         $breweries = $client->breweries()->list();
 
         // Assert
+        expect(count($breweries->toArray()))->toBe(Client::PER_PAGE);
+        foreach ($breweries->toArray() as $brewery) {
+            expect($brewery)->not()->toBeNull()
+                ->and($brewery['id'])->not()->toBeNull()
+                ->and($brewery['brewery_type'])->not()->toBeNull()
+                ->and($brewery['state'])->not()->toBeNull()
+                ->and($brewery['state_province'])->not()->toBeNull()
+                ->and($brewery['postal_code'])->not()->toBeNull()
+                ->and($brewery['country'])->not()->toBeNull()
+                ->and($brewery['city'])->not()->toBeNull()
+                ->and($brewery['name'])->not()->toBeNull();
+        }
+    });
+
+    it('returns a valid list of breweries with properties set to the number of paginated results', function () {
+        // Arrange
+        $client = OpenBreweryDb::client();
+        $pagedResults = rand(50, 200);
+
+        // Act
+        $breweries = $client->breweries()->list([
+            'per_page' => $pagedResults,
+        ]);
+
+        // Assert
+        expect(count($breweries->toArray()))->toBe($pagedResults);
         foreach ($breweries->toArray() as $brewery) {
             expect($brewery)->not()->toBeNull()
                 ->and($brewery['id'])->not()->toBeNull()

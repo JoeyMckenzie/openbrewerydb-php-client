@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace OpenBreweryDb\Contracts\Resources;
 
+use OpenBreweryDb\Client;
+use OpenBreweryDb\Responses\Breweries\AutocompleteResponse;
 use OpenBreweryDb\Responses\Breweries\FindResponse;
 use OpenBreweryDb\Responses\Breweries\ListResponse;
 
@@ -21,7 +23,7 @@ interface BreweriesContract
      *
      * @param  array<string, string|int|float>  $parameters
      *
-     * @see https://openbrewerydb.org/documentation#list-breweries
+     * @see https://openbrewerydb.org/documentation#search-breweries
      */
     public function list(array $parameters = []): ListResponse;
 
@@ -31,4 +33,18 @@ interface BreweriesContract
      * @see https://openbrewerydb.org/documentation#random
      */
     public function random(int $size = 1): ListResponse;
+
+    /**
+     * Searches for breweries that meet the query criteria.
+     *
+     * @see https://openbrewerydb.org/documentation#list-breweries
+     */
+    public function search(string $query, int $perPage = Client::PER_PAGE): ListResponse;
+
+    /**
+     * Lists breweries with only ID and name based on the query criteria, useful for drop down lists and the like.
+     *
+     * @see https://openbrewerydb.org/documentation#autocomplete
+     */
+    public function autocomplete(string $query): AutocompleteResponse;
 }

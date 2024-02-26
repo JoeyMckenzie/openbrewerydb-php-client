@@ -23,7 +23,7 @@ final readonly class Payload
      * @param  array<string, mixed>  $parameters
      */
     private function __construct(
-        private MediaType $contentType,
+        private MediaType $accept,
         private HttpMethod $method,
         private ResourceUri $uri,
         private array $parameters = [],
@@ -37,11 +37,11 @@ final readonly class Payload
      */
     public static function list(string $resource, array $parameters = [], ?string $suffix = null): self
     {
-        $contentType = MediaType::JSON;
+        $accept = MediaType::JSON;
         $method = HttpMethod::GET;
         $uri = ResourceUri::list($resource, $suffix);
 
-        return new self($contentType, $method, $uri, $parameters);
+        return new self($accept, $method, $uri, $parameters);
     }
 
     /**
@@ -51,11 +51,11 @@ final readonly class Payload
      */
     public static function retrieve(string $resource, string $id, array $parameters = []): self
     {
-        $contentType = MediaType::JSON;
+        $accept = MediaType::JSON;
         $method = HttpMethod::GET;
         $uri = ResourceUri::retrieve($resource, $id);
 
-        return new self($contentType, $method, $uri, $parameters);
+        return new self($accept, $method, $uri, $parameters);
     }
 
     /**
@@ -71,7 +71,7 @@ final readonly class Payload
             $uri .= '?'.http_build_query($queryParams);
         }
 
-        $headers = $headers->withAccept($this->contentType);
+        $headers = $headers->withAccept($this->accept);
         $request = $psr17Factory->createRequest($this->method->value, $uri);
 
         foreach ($headers->toArray() as $name => $value) {
