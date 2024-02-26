@@ -2,6 +2,7 @@
 
 namespace Tests\Resources;
 
+use OpenBreweryDb\Exceptions\ErrorException;
 use OpenBreweryDb\OpenBreweryDb;
 
 describe('Finding breweries', function () {
@@ -28,10 +29,7 @@ describe('Finding breweries', function () {
         // Arrange
         $client = OpenBreweryDb::client();
 
-        // Act
-        $brewery = $client->breweries()->find('b54b16e1-ac3b-4bff-a11f-f7ae9ddc27e0');
-
-        // Assert
-        expect($brewery)->toBeNull();
+        // Act/Assert
+        expect(fn() => $client->breweries()->find('not-a-brewery'))->toThrow(ErrorException::class, 'Couldn\'t find Brewery');
     });
 });

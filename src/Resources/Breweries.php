@@ -29,7 +29,7 @@ final readonly class Breweries implements BreweriesContract
     #[Override]
     public function find(string $id): FindResponse
     {
-        $payload = Payload::retrieve('brewery', $id);
+        $payload = Payload::retrieve('breweries', $id);
 
         /**
          * @var Response<array{
