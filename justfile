@@ -1,7 +1,7 @@
-default: check
+default: lint
 
 # check types on any file change
-check:
+lint:
     find src/ tests/ | entr -s 'composer run lint'
 
 # run tests in parallel

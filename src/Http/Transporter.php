@@ -60,9 +60,7 @@ final readonly class Transporter implements TransporterContract
     }
 
     /**
-     * @throws TransporterException
-     * @throws ErrorException
-     * @throws UnserializableResponseException
+     * @throws TransporterException|ErrorException|UnserializableResponseException
      */
     private function sendRequest(Closure $callable): ResponseInterface
     {
@@ -105,19 +103,5 @@ final readonly class Transporter implements TransporterContract
         } catch (JsonException $jsonException) {
             throw new UnserializableResponseException($jsonException);
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function requestContent(Payload $payload): string
-    {
-        $request = $payload->toRequest($this->baseUri, $this->headers, $this->queryParams);
-        $response = $this->sendRequest(fn (): ResponseInterface => $this->client->sendRequest($request));
-        $contents = $response->getBody()->getContents();
-
-        $this->throwIfJsonError($response, $contents);
-
-        return $contents;
     }
 }
