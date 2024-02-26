@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-use Rector\Config\RectorConfig;
-use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
 use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
+use Rector\Config\RectorConfig;
 use Rector\Set\ValueObject\SetList;
+use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
 
 return RectorConfig::configure()
     ->withPaths([
-        __DIR__ . '/src',
+        __DIR__.'/src',
     ])
     ->withPhpSets(php83: true)
     ->withRules([
         AddVoidReturnTypeWhereNoReturnRector::class,
-        InlineConstructorDefaultToPropertyRector::class
+        InlineConstructorDefaultToPropertyRector::class,
     ])
     ->withSets([
         SetList::CODE_QUALITY,

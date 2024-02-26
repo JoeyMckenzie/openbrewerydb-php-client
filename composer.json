@@ -46,14 +46,22 @@
         "rector/rector": "^1.0"
     },
     "scripts": {
-        "test": "./vendor/bin/pest --parallel",
+        "test:unit": "./vendor/bin/pest --parallel --colors=always",
         "test:watch": "./vendor/bin/pest --watch --parallel",
         "test:types": "./vendor/bin/pest --type-coverage --min=100",
-        "lint": "./vendor/bin/phpstan analyze src",
+        "test": [
+            "@test:types",
+            "@test:unit"
+        ],
+        "lint": "./vendor/bin/phpstan analyze",
         "fmt": "./vendor/bin/pint -v",
         "check": "./vendor/bin/pint --test",
         "prepare": "git config core.hookspath .githooks",
-        "ci": "composer run check && composer run lint && composer run types && composer run test",
+        "ci": [
+            "@lint",
+            "@check",
+            "@test"
+        ],
         "rector": "vendor/bin/rector process",
         "rector:dry": "vendor/bin/rector process --dry-run"
     },

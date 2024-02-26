@@ -52,21 +52,21 @@ final readonly class FindResponse implements ResponseContract
     use ArrayAccessible;
 
     private function __construct(
-        public string  $id,
-        public string  $name,
+        public string $id,
+        public string $name,
         public ?string $brewery_type,
         public ?string $address_1,
         public ?string $address_2,
         public ?string $address_3,
-        public string  $city,
-        public string  $state_province,
-        public string  $postal_code,
-        public string  $country,
+        public string $city,
+        public string $state_province,
+        public string $postal_code,
+        public string $country,
         public ?string $longitude,
         public ?string $latitude,
         public ?string $phone,
         public ?string $website_url,
-        public string  $state,
+        public string $state,
         public ?string $street,
     ) {
     }

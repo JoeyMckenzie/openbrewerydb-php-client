@@ -2,8 +2,8 @@
 
 namespace Tests\Resources;
 
-use OpenBreweryDb\OpenBreweryDb;
 use OpenBreweryDb\Client;
+use OpenBreweryDb\OpenBreweryDb;
 
 describe('Random breweries', function () {
     it('returns one valid brewery with properties when no size given', function () {
@@ -15,7 +15,7 @@ describe('Random breweries', function () {
         $brewery = $breweries[0];
 
         // Assert
-        expect(sizeof($breweries->toArray()))->toBe(1);
+        expect(count($breweries->toArray()))->toBe(1);
         expect($brewery)->not()->toBeNull()
             ->and($brewery['id'])->not()->toBeNull()
             ->and($brewery['brewery_type'])->not()->toBeNull()
@@ -36,7 +36,7 @@ describe('Random breweries', function () {
         $breweries = $client->breweries()->random($randomBreweries);
 
         // Assert
-        expect(sizeof($breweries->toArray()))->toBe($randomBreweries);
+        expect(count($breweries->toArray()))->toBe($randomBreweries);
         foreach ($breweries->toArray() as $brewery) {
             expect($brewery)->not()->toBeNull()
                 ->and($brewery['id'])->not()->toBeNull()

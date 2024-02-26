@@ -30,9 +30,9 @@ final readonly class Transporter implements TransporterContract
      */
     public function __construct(
         private ClientInterface $client,
-        private BaseUri         $baseUri,
-        private Headers         $headers,
-        private QueryParams     $queryParams,
+        private BaseUri $baseUri,
+        private Headers $headers,
+        private QueryParams $queryParams,
     ) {
     }
 
@@ -86,7 +86,7 @@ final readonly class Transporter implements TransporterContract
             return;
         }
 
-        if (!str_contains($response->getHeaderLine('Content-Type'), MediaType::JSON->value)) {
+        if (! str_contains($response->getHeaderLine('Content-Type'), MediaType::JSON->value)) {
             return;
         }
 

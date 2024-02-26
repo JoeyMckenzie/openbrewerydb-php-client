@@ -69,7 +69,7 @@ final readonly class Breweries implements BreweriesContract
     public function random(int $size = 1): ListResponse
     {
         $parameters = [
-            'size' => $size
+            'size' => $size,
         ];
 
         $payload = Payload::list('breweries', $parameters, 'random');
