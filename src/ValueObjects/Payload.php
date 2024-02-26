@@ -35,11 +35,11 @@ final readonly class Payload
      *
      * @param array<string, mixed> $parameters
      */
-    public static function list(string $resource, array $parameters = []): self
+    public static function list(string $resource, array $parameters = [], ?string $suffix = null): self
     {
         $contentType = MediaType::JSON;
         $method = HttpMethod::GET;
-        $uri = ResourceUri::list($resource);
+        $uri = ResourceUri::list($resource, $suffix);
 
         return new self($contentType, $method, $uri, $parameters);
     }

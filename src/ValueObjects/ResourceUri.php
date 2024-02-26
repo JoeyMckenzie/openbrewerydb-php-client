@@ -19,9 +19,9 @@ final readonly class ResourceUri
     /**
      * Creates a new ResourceUri value object that lists the given resource.
      */
-    public static function list(string $resource): self
+    public static function list(string $resource, ?string $suffix = null): self
     {
-        return new self($resource);
+        return new self("$resource/$suffix");
     }
 
     /**

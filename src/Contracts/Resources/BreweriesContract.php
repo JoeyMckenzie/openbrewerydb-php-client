@@ -19,9 +19,16 @@ interface BreweriesContract
     /**
      * Retrieves a list of currently documented breweries.
      *
-     * @see https://openbrewerydb.org/documentation#list-breweries
      * @param array<string, string|int|float> $parameters
-     * @return ListResponse
+     *
+     * @see https://openbrewerydb.org/documentation#list-breweries
      */
     public function list(array $parameters = []): ListResponse;
+
+    /**
+     * Retrieves one or more random breweries.
+     *
+     * @see https://openbrewerydb.org/documentation#random
+     */
+    public function random(int $size = 1): ListResponse;
 }
