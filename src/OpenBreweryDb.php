@@ -12,7 +12,8 @@ final class OpenBreweryDb
     public static function client(): Client
     {
         return self::factory()
-            ->withHttpHeader('User-Agent', 'assistants=v1')
+            ->withBaseUrl(Client::API_BASE_URL)
+            ->withHttpHeader('User-Agent', 'openbrewerydb-php-api-client/0.1.0')
             ->make();
     }
 

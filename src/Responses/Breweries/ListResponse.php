@@ -4,47 +4,89 @@ declare(strict_types=1);
 
 namespace OpenBreweryDb\Responses\Breweries;
 
+use OpenBreweryDb\Contracts\ResponseContract;
+use OpenBreweryDb\Responses\Concerns\ArrayAccessible;
+
 /**
- * @implements ResponseContract<array{object: string, data: array<int, array{id: string, object: string, created: int, owned_by: string}>}>
+ * @implements ResponseContract<array<int, array{
+ *         id: string,
+ *         name: string,
+ *         brewery_type: string,
+ *         address_1: string,
+ *         address_2: ?string,
+ *         address_3: ?string,
+ *         city: string,
+ *         state_province: string,
+ *         postal_code: string,
+ *         country: string,
+ *         longitude: ?string,
+ *         latitude: ?string,
+ *         phone: string,
+ *         website_url: ?string,
+ *         state: string,
+ *         street: string
+ *     }>
  */
-final class ListResponse implements ResponseContract, ResponseHasMetaInformationContract
+final class ListResponse implements ResponseContract
 {
     /**
-     * @use ArrayAccessible<array{object: string, data: array<int, array{id: string, object: string, created: int, owned_by: string}>}>
+     * @use ArrayAccessible<array<int, array{
+     *          id: string,
+     *          name: string,
+     *          brewery_type: string,
+     *          address_1: string,
+     *          address_2: ?string,
+     *          address_3: ?string,
+     *          city: string,
+     *          state_province: string,
+     *          postal_code: string,
+     *          country: string,
+     *          longitude: ?string,
+     *          latitude: ?string,
+     *          phone: string,
+     *          website_url: ?string,
+     *          state: string,
+     *          street: string
+     *      }>}>
      */
     use ArrayAccessible;
 
-    use Fakeable;
-    use HasMetaInformation;
-
     /**
-     * @param array<int, RetrieveResponse> $data
+     * @param FindResponse[] $data
      */
-    private function __construct(
-        public readonly string           $object,
-        public readonly array            $data,
-        private readonly MetaInformation $meta,
-    )
+    private function __construct(public readonly array $data)
     {
     }
 
     /**
      * Acts as static factory, and returns a new Response instance.
      *
-     * @param array{object: string, data: array<int, array{id: string, object: string, created: int, owned_by: string}>} $attributes
+     * @param array<int, array{
+     *          id: string,
+     *          name: string,
+     *          brewery_type: string,
+     *          address_1: string,
+     *          address_2: ?string,
+     *          address_3: ?string,
+     *          city: string,
+     *          state_province: string,
+     *          postal_code: string,
+     *          country: string,
+     *          longitude: ?string,
+     *          latitude: ?string,
+     *          phone: string,
+     *          website_url: ?string,
+     *          state: string,
+     *          street: string
+     *    }> $attributes
      */
-    public static function from(array $attributes, MetaInformation $meta): self
+    public static function from(array $attributes): self
     {
-        $data = array_map(fn(array $result): RetrieveResponse => RetrieveResponse::from(
+        $mappedData = array_map(fn(array $result): FindResponse => FindResponse::from(
             $result,
-            $meta,
-        ), $attributes['data']);
+        ), $attributes);
 
-        return new self(
-            $attributes['object'],
-            $data,
-            $meta,
-        );
+        return new self($mappedData);
     }
 
     /**
@@ -53,9 +95,8 @@ final class ListResponse implements ResponseContract, ResponseHasMetaInformation
     public function toArray(): array
     {
         return [
-            'object' => $this->object,
             'data' => array_map(
-                static fn(RetrieveResponse $response): array => $response->toArray(),
+                static fn(FindResponse $response): array => $response->toArray(),
                 $this->data,
             ),
         ];

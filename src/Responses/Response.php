@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace OpenBreweryDb\Responses;
 
 /**
- * @template-covariant TData of array|string
+ * @template-covariant TData of array
  *
  * @internal
  */
@@ -16,25 +16,20 @@ final readonly class Response
      *
      * @param TData $data
      */
-    private function __construct(
-        private array|string $data,
-    )
+    private function __construct(private mixed $data)
     {
     }
 
     /**
      * Creates a new Response value object from the given data and meta information.
      *
-     * @param TData $data
-     * @param array<string, array<int, string>> $headers
+     * @param TData $attributes
+     *
      * @return Response<TData>
      */
-    public static function from(array|string $data, array $headers): self
+    public static function from(array $attributes): self
     {
-        // @phpstan-ignore-next-line
-        $meta = MetaInformation::from($headers);
-
-        return new self($data, $meta);
+        return new self($attributes);
     }
 
     /**
@@ -42,16 +37,8 @@ final readonly class Response
      *
      * @return TData
      */
-    public function data(): array|string
+    public function data(): mixed
     {
         return $this->data;
-    }
-
-    /**
-     * Returns the meta information.
-     */
-    public function meta(): MetaInformation
-    {
-        return $this->meta;
     }
 }

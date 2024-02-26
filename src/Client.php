@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OpenBreweryDb;
 
 use OpenBreweryDb\Contracts\Resources\BreweriesContract;
+use OpenBreweryDb\Contracts\TransporterContract;
 use OpenBreweryDb\Resources\Breweries;
 
 final class Client
@@ -26,7 +27,6 @@ final class Client
      */
     public function __construct(private readonly TransporterContract $transporter)
     {
-        // ..
     }
 
     /**

@@ -23,14 +23,14 @@ interface ResponseContract extends ArrayAccess
     public function toArray(): array;
 
     /**
-     * @param key-of<TArray> $offset
+     * @param  key-of<TArray>  $offset
      */
     public function offsetExists(mixed $offset): bool;
 
     /**
      * @template TOffsetKey of key-of<TArray>
      *
-     * @param TOffsetKey $offset
+     * @param  TOffsetKey  $offset
      * @return TArray[TOffsetKey]
      */
     public function offsetGet(mixed $offset): mixed;
@@ -38,7 +38,7 @@ interface ResponseContract extends ArrayAccess
     /**
      * @template TOffsetKey of key-of<TArray>
      *
-     * @param TOffsetKey $offset
+     * @param  TOffsetKey|null  $offset
      * @param TArray[TOffsetKey] $value
      */
     public function offsetSet(mixed $offset, mixed $value): never;
@@ -46,7 +46,7 @@ interface ResponseContract extends ArrayAccess
     /**
      * @template TOffsetKey of key-of<TArray>
      *
-     * @param TOffsetKey $offset
+     * @param  TOffsetKey  $offset
      */
     public function offsetUnset(mixed $offset): never;
 }

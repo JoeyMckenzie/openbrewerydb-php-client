@@ -4,7 +4,6 @@ namespace OpenBrewery\Tests;
 
 declare(strict_types=1);
 
-
 use GuzzleHttp\Exception\ConnectException;
 use OpenBrewery\OpenBrewery\Breweries\BreweryType;
 use OpenBrewery\OpenBrewery\ClientConnector;

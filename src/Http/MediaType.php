@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenBreweryDb\Enums;
+namespace OpenBreweryDb\Http;
 
 /**
  * @internal

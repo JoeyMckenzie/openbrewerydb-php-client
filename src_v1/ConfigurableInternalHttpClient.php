@@ -76,7 +76,7 @@ final readonly class InternalHttpClient implements OpenBreweryClientConnector
             $requestOptions['query'] = $query;
         }
 
-        $url = '/v1/breweries/' . $uri;
+        $url = '/v1/breweries/'.$uri;
 
         return $this->client->get($url, $requestOptions);
     }

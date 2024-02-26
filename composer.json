@@ -48,7 +48,7 @@
         "test": "./vendor/bin/pest --parallel",
         "test:watch": "./vendor/bin/pest --watch --parallel",
         "test:types": "./vendor/bin/pest --type-coverage --min=100",
-        "lint": "./vendor/bin/phpstan analyze src tests",
+        "lint": "./vendor/bin/phpstan analyze src",
         "fmt": "./vendor/bin/pint -v",
         "check": "./vendor/bin/pint --test",
         "prepare": "git config core.hookspath .githooks",

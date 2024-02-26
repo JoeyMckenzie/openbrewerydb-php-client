@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace OpenBreweryDb\Contracts;
 
-use Psr\Http\Message\ResponseInterface;
+use OpenBreweryDb\Exceptions\ErrorException;
+use OpenBreweryDb\Exceptions\TransporterException;
+use OpenBreweryDb\Exceptions\UnserializableResponseException;
+use OpenBreweryDb\Http\Payload;
+use OpenBreweryDb\Responses\Response;
 
 /**
  * @internal
@@ -14,9 +18,9 @@ interface TransporterContract
     /**
      * Sends a request to a server.
      *
-     * @return Response<array<array-key, mixed>|string>
+     * @return Response<array<array-key, mixed>>
      *
-     * @throws ErrorException|UnserializableResponse|TransporterException
+     * @throws ErrorException|UnserializableResponseException|TransporterException
      */
     public function requestObject(Payload $payload): Response;
 
@@ -26,11 +30,4 @@ interface TransporterContract
      * @throws ErrorException|TransporterException
      */
     public function requestContent(Payload $payload): string;
-
-    /**
-     * Sends a stream request to a server.
-     **
-     * @throws ErrorException
-     */
-    public function requestStream(Payload $payload): ResponseInterface;
 }

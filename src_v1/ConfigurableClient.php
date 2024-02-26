@@ -14,15 +14,14 @@ use Psr\Http\Client\ClientInterface;
  */
 final class ConfigurableClient implements ScopedApiConnector
 {
+    public function __construct(ClientInterface $client)
+    {
+    }
 
-  public function __construct(ClientInterface $client)
-  {
-  }
-
-  /**
-   * Constructs a new brewery client API instance.
-   */
-  public function breweries(): BreweryClient
-  {
-  }
+    /**
+     * Constructs a new brewery client API instance.
+     */
+    public function breweries(): BreweryClient
+    {
+    }
 }
