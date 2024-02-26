@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenBrewery\Tests;
+namespace Tests;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +13,6 @@ namespace OpenBrewery\Tests;
 |
 */
 
-// uses(Tests\TestCase::class)->in('Feature');
-
 /*
 |--------------------------------------------------------------------------
 | Expectations
@@ -26,8 +24,6 @@ namespace OpenBrewery\Tests;
 |
 */
 
-use OpenBrewery\OpenBrewery\Breweries\Brewery;
-
 /*
 |--------------------------------------------------------------------------
 | Functions
@@ -38,29 +34,3 @@ use OpenBrewery\OpenBrewery\Breweries\Brewery;
 | global functions to help you to reduce the number of lines of code in your test files.
 |
 */
-
-/**
- * A test helper for asserting all breweries within a collection include all the expected/required properties.
- *
- * @param  Brewery[]  $breweries
- */
-function expectAllBreweriesToBeValid(array $breweries): void
-{
-    collect($breweries)->each(fn (Brewery $brewery) => expectBreweryToBeValid($brewery));
-}
-
-/**
- * A test helper for asserting a brewery contains the required properties.
- */
-function expectBreweryToBeValid(?Brewery $brewery): void
-{
-    expect($brewery)->not()->toBeNull()
-        ->and($brewery?->id)->not()->toBeNull()
-        ->and($brewery?->breweryType)->not()->toBeNull()
-        ->and($brewery?->state)->not()->toBeNull()
-        ->and($brewery?->stateProvince)->not()->toBeNull()
-        ->and($brewery?->postalCode)->not()->toBeNull()
-        ->and($brewery?->country)->not()->toBeNull()
-        ->and($brewery?->city)->not()->toBeNull()
-        ->and($brewery?->name)->not()->toBeNull();
-}

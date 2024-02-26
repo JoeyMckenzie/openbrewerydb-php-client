@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OpenBreweryDb\Http;
 
 use Closure;
@@ -31,8 +33,7 @@ final readonly class Transporter implements TransporterContract
         private BaseUri         $baseUri,
         private Headers         $headers,
         private QueryParams     $queryParams,
-    )
-    {
+    ) {
     }
 
     /**
@@ -43,7 +44,7 @@ final readonly class Transporter implements TransporterContract
     public function requestData(Payload $payload): Response
     {
         $request = $payload->toRequest($this->baseUri, $this->headers, $this->queryParams);
-        $response = $this->sendRequest(fn(): ResponseInterface => $this->client->sendRequest($request));
+        $response = $this->sendRequest(fn (): ResponseInterface => $this->client->sendRequest($request));
         $contents = $response->getBody()->getContents();
 
         $this->throwIfJsonError($response, $contents);
@@ -112,7 +113,7 @@ final readonly class Transporter implements TransporterContract
     public function requestContent(Payload $payload): string
     {
         $request = $payload->toRequest($this->baseUri, $this->headers, $this->queryParams);
-        $response = $this->sendRequest(fn(): ResponseInterface => $this->client->sendRequest($request));
+        $response = $this->sendRequest(fn (): ResponseInterface => $this->client->sendRequest($request));
         $contents = $response->getBody()->getContents();
 
         $this->throwIfJsonError($response, $contents);

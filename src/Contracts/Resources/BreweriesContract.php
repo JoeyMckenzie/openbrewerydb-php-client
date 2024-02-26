@@ -12,7 +12,7 @@ interface BreweriesContract
     /**
      * Retrieves a brewery based on its UUID.
      *
-     * @see https://openbrewerydb.org/documentation#single-brewery
+    * @see https://openbrewerydb.org/documentation#single-brewery
      */
     public function find(string $id): FindResponse;
 

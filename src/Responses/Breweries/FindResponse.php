@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OpenBreweryDb\Responses\Breweries;
 
 use OpenBreweryDb\Contracts\ResponseContract;
@@ -66,8 +68,7 @@ final readonly class FindResponse implements ResponseContract
         public ?string $website_url,
         public string  $state,
         public ?string $street,
-    )
-    {
+    ) {
     }
 
     /**

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace OpenBreweryDb\ValueObjects;
 
 use Http\Discovery\Psr17Factory;
-use OpenBreweryDb\Http\ContentType;
 use OpenBreweryDb\Http\HttpMethod;
 use OpenBreweryDb\Http\MediaType;
 use OpenBreweryDb\ValueObjects\Transporter\BaseUri;
@@ -28,8 +27,7 @@ final readonly class Payload
         private HttpMethod  $method,
         private ResourceUri $uri,
         private array       $parameters = [],
-    )
-    {
+    ) {
     }
 
     /**
@@ -51,11 +49,11 @@ final readonly class Payload
      *
      * @param array<string, mixed> $parameters
      */
-    public static function retrieve(string $resource, string $id, string $suffix = '', array $parameters = []): self
+    public static function retrieve(string $resource, string $id, array $parameters = []): self
     {
         $contentType = MediaType::JSON;
         $method = HttpMethod::GET;
-        $uri = ResourceUri::retrieve($resource, $id, $suffix);
+        $uri = ResourceUri::retrieve($resource, $id);
 
         return new self($contentType, $method, $uri, $parameters);
     }

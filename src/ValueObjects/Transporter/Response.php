@@ -24,6 +24,7 @@ final readonly class Response
      * Creates a new Response value object from the given data and meta information.
      *
      * @param  TData  $attributes
+     *
      * @return Response<TData>
      */
     public static function from(array $attributes): self

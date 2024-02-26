@@ -1,5 +1,8 @@
 <?php
 
+
+declare(strict_types=1);
+
 namespace OpenBreweryDb\Http;
 
 /**
@@ -8,8 +11,4 @@ namespace OpenBreweryDb\Http;
 enum MediaType: string
 {
     case JSON = 'application/json';
-
-    case MULTIPART = 'multipart/form-data';
-
-    case TEXT_PLAIN = 'text/plain';
 }

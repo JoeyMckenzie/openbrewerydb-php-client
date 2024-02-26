@@ -8,6 +8,9 @@ use OpenBreweryDb\Contracts\Resources\BreweriesContract;
 use OpenBreweryDb\Contracts\TransporterContract;
 use OpenBreweryDb\Resources\Breweries;
 
+/**
+ * The primary client for connecting to Open Brewery DB's API containing all connections to the available resources.
+ */
 final class Client
 {
     /**
@@ -20,18 +23,20 @@ final class Client
      */
     public const int PER_PAGE = 50;
 
-    public const string USER_AGENT = 'openbrewerydb-php-api-client/0.1';
+    /**
+     * The default user agent, will include the current library version.
+     */
+    public const string USER_AGENT = 'openbrewerydb-php-api-client/0.1.0';
 
     /**
-     * Creates a Client instance with the given API token.
+     * Creates a client instance with the provided client transport abstraction.
      */
     public function __construct(private readonly TransporterContract $transporter)
     {
     }
 
     /**
-     * Given a prompt, the model will return one or more predicted completions, and can also return the probabilities
-     * of alternative tokens at each position.
+     * A resource gateway to the various brewery retrieval options available on the API.
      *
      * @see https://openbrewerydb.org/documentation
      */
