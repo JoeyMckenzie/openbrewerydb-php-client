@@ -1,6 +1,6 @@
 {
     "name": "joeymckenzie/openbrewerydb-php-api",
-    "description": "An Open Brewery DB API for PHP.",
+    "description": "An Open Brewery DB API client for PHP.",
     "type": "library",
     "license": "MIT",
     "version": "0.5.0",
