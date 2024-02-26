@@ -1,20 +1,19 @@
 <?php
 
-namespace OpenBreweryDb\Http;
+namespace OpenBreweryDb\ValueObjects\Transporter;
 
 /**
  * @internal
  */
-final class QueryParams
+final readonly class QueryParams
 {
     /**
      * Creates a new Query Params value object.
      *
-     * @param  array<string, string|int>  $params
+     * @param array<string, string|int|float> $params
      */
-    private function __construct(private readonly array $params)
+    private function __construct(private array $params)
     {
-        // ..
     }
 
     /**
@@ -37,7 +36,7 @@ final class QueryParams
     }
 
     /**
-     * @return array<string, string|int>
+     * @return array<string, string|int|float>
      */
     public function toArray(): array
     {

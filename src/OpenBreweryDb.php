@@ -11,17 +11,17 @@ final class OpenBreweryDb
      */
     public static function client(): Client
     {
-        return self::factory()
+        return self::builder()
             ->withBaseUrl(Client::API_BASE_URL)
-            ->withHttpHeader('User-Agent', 'openbrewerydb-php-api-client/0.1.0')
-            ->make();
+            ->withHttpHeader('User-Agent', Client::USER_AGENT)
+            ->build();
     }
 
     /**
      * Creates a new factory instance to configure a custom Open AI Client
      */
-    public static function factory(): Factory
+    public static function builder(): Builder
     {
-        return new Factory();
+        return new Builder();
     }
 }

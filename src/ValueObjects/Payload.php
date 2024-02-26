@@ -2,9 +2,14 @@
 
 declare(strict_types=1);
 
-namespace OpenBreweryDb\Http;
+namespace OpenBreweryDb\ValueObjects;
 
 use Http\Discovery\Psr17Factory;
+use OpenBreweryDb\Http\ContentType;
+use OpenBreweryDb\Http\HttpMethod;
+use OpenBreweryDb\ValueObjects\Transporter\BaseUri;
+use OpenBreweryDb\ValueObjects\Transporter\Headers;
+use OpenBreweryDb\ValueObjects\Transporter\QueryParams;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -24,7 +29,6 @@ final readonly class Payload
         private array       $parameters = [],
     )
     {
-        // ..
     }
 
     /**
@@ -53,18 +57,6 @@ final readonly class Payload
         $uri = ResourceUri::retrieve($resource, $id, $suffix);
 
         return new self($contentType, $method, $uri, $parameters);
-    }
-
-    /**
-     * Creates a new Payload value object from the given parameters.
-     */
-    public static function retrieveResource(string $resource, string $resourceId): self
-    {
-        $contentType = ContentType::JSON;
-        $method = HttpMethod::GET;
-        $uri = ResourceUri::retrieveResource($resource, $resourceId);
-
-        return new self($contentType, $method, $uri);
     }
 
     /**

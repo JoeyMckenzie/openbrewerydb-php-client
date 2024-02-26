@@ -11,8 +11,8 @@ use OpenBreweryDb\Responses\Concerns\ArrayAccessible;
  * @implements ResponseContract<array<int, array{
  *         id: string,
  *         name: string,
- *         brewery_type: string,
- *         address_1: string,
+ *         brewery_type: ?string,
+ *         address_1: ?string,
  *         address_2: ?string,
  *         address_3: ?string,
  *         city: string,
@@ -21,11 +21,11 @@ use OpenBreweryDb\Responses\Concerns\ArrayAccessible;
  *         country: string,
  *         longitude: ?string,
  *         latitude: ?string,
- *         phone: string,
+ *         phone: ?string,
  *         website_url: ?string,
  *         state: string,
- *         street: string
- *     }>
+ *         street: ?string
+ * }>>
  */
 final class ListResponse implements ResponseContract
 {
@@ -33,8 +33,8 @@ final class ListResponse implements ResponseContract
      * @use ArrayAccessible<array<int, array{
      *          id: string,
      *          name: string,
-     *          brewery_type: string,
-     *          address_1: string,
+     *          brewery_type: ?string,
+     *          address_1: ?string,
      *          address_2: ?string,
      *          address_3: ?string,
      *          city: string,
@@ -43,11 +43,11 @@ final class ListResponse implements ResponseContract
      *          country: string,
      *          longitude: ?string,
      *          latitude: ?string,
-     *          phone: string,
+     *          phone: ?string,
      *          website_url: ?string,
      *          state: string,
-     *          street: string
-     *      }>}>
+     *          street: ?string
+     *      }>>
      */
     use ArrayAccessible;
 
@@ -64,8 +64,8 @@ final class ListResponse implements ResponseContract
      * @param array<int, array{
      *          id: string,
      *          name: string,
-     *          brewery_type: string,
-     *          address_1: string,
+     *          brewery_type: ?string,
+     *          address_1: ?string,
      *          address_2: ?string,
      *          address_3: ?string,
      *          city: string,
@@ -74,10 +74,10 @@ final class ListResponse implements ResponseContract
      *          country: string,
      *          longitude: ?string,
      *          latitude: ?string,
-     *          phone: string,
+     *          phone: ?string,
      *          website_url: ?string,
      *          state: string,
-     *          street: string
+     *          street: ?string
      *    }> $attributes
      */
     public static function from(array $attributes): self
@@ -94,11 +94,9 @@ final class ListResponse implements ResponseContract
      */
     public function toArray(): array
     {
-        return [
-            'data' => array_map(
-                static fn(FindResponse $response): array => $response->toArray(),
-                $this->data,
-            ),
-        ];
+        return array_map(
+            static fn(FindResponse $response): array => $response->toArray(),
+            $this->data,
+        );
     }
 }

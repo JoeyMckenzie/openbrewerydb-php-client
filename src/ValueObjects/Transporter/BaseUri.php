@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenBreweryDb\Http;
+namespace OpenBreweryDb\ValueObjects\Transporter;
 
 /**
  * @internal

@@ -9,7 +9,11 @@ use OpenBreweryDb\Contracts\TransporterContract;
 use OpenBreweryDb\Exceptions\ErrorException;
 use OpenBreweryDb\Exceptions\TransporterException;
 use OpenBreweryDb\Exceptions\UnserializableResponseException;
-use OpenBreweryDb\Responses\Response;
+use OpenBreweryDb\ValueObjects\Payload;
+use OpenBreweryDb\ValueObjects\Transporter\BaseUri;
+use OpenBreweryDb\ValueObjects\Transporter\Headers;
+use OpenBreweryDb\ValueObjects\Transporter\QueryParams;
+use OpenBreweryDb\ValueObjects\Transporter\Response;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -24,10 +28,11 @@ final readonly class Transporter implements TransporterContract
      */
     public function __construct(
         private ClientInterface $client,
-        private BaseUri $baseUri,
-        private Headers $headers,
-        private QueryParams $queryParams,
-    ) {
+        private BaseUri         $baseUri,
+        private Headers         $headers,
+        private QueryParams     $queryParams,
+    )
+    {
     }
 
     /**
@@ -35,21 +40,21 @@ final readonly class Transporter implements TransporterContract
      *
      * @throws ErrorException
      */
-    public function requestObject(Payload $payload): Response
+    public function requestData(Payload $payload): Response
     {
         $request = $payload->toRequest($this->baseUri, $this->headers, $this->queryParams);
-        $response = $this->sendRequest(fn (): ResponseInterface => $this->client->sendRequest($request));
+        $response = $this->sendRequest(fn(): ResponseInterface => $this->client->sendRequest($request));
         $contents = $response->getBody()->getContents();
 
         $this->throwIfJsonError($response, $contents);
 
         try {
-            /** @var array{error?: array{message: string, type: string, code: string}} $data */
             $data = json_decode($contents, true, flags: JSON_THROW_ON_ERROR);
         } catch (JsonException $jsonException) {
             throw new UnserializableResponseException($jsonException);
         }
 
+        // @phpstan-ignore-next-line: we'll assume the $data in the response model is a valid model
         return Response::from($data);
     }
 
@@ -81,7 +86,7 @@ final readonly class Transporter implements TransporterContract
             return;
         }
 
-        if (! str_contains($response->getHeaderLine('Content-Type'), ContentType::JSON->value)) {
+        if (!str_contains($response->getHeaderLine('Content-Type'), ContentType::JSON->value)) {
             return;
         }
 
@@ -90,11 +95,11 @@ final readonly class Transporter implements TransporterContract
         }
 
         try {
-            /** @var array{error?: array{message: string|array<int, string>, type: string, code: string}} $response */
+            /** @var array{message: ?string} $response */
             $response = json_decode($contents, true, flags: JSON_THROW_ON_ERROR);
 
-            if (isset($response['error'])) {
-                throw new ErrorException($response['error']);
+            if (isset($response['message'])) {
+                throw new ErrorException($response['message']);
             }
         } catch (JsonException $jsonException) {
             throw new UnserializableResponseException($jsonException);
@@ -107,7 +112,7 @@ final readonly class Transporter implements TransporterContract
     public function requestContent(Payload $payload): string
     {
         $request = $payload->toRequest($this->baseUri, $this->headers, $this->queryParams);
-        $response = $this->sendRequest(fn (): ResponseInterface => $this->client->sendRequest($request));
+        $response = $this->sendRequest(fn(): ResponseInterface => $this->client->sendRequest($request));
         $contents = $response->getBody()->getContents();
 
         $this->throwIfJsonError($response, $contents);

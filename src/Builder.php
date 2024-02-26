@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace OpenBreweryDb;
 
 use Http\Discovery\Psr18ClientDiscovery;
-use OpenBreweryDb\Http\BaseUri;
-use OpenBreweryDb\Http\Headers;
-use OpenBreweryDb\Http\QueryParams;
 use OpenBreweryDb\Http\Transporter;
+use OpenBreweryDb\ValueObjects\Transporter\BaseUri;
+use OpenBreweryDb\ValueObjects\Transporter\Headers;
+use OpenBreweryDb\ValueObjects\Transporter\QueryParams;
 use Psr\Http\Client\ClientInterface;
 
-final class Factory
+final class Builder
 {
     /**
      * The HTTP client for the requests.
@@ -81,7 +81,7 @@ final class Factory
     /**
      * Creates a new Open Brewery DB Client.
      */
-    public function make(): Client
+    public function build(): Client
     {
         $headers = Headers::create();
 
@@ -90,8 +90,8 @@ final class Factory
         }
 
         $baseUri = BaseUri::from($this->baseUri);
-
         $queryParams = QueryParams::create();
+
         foreach ($this->queryParams as $name => $value) {
             $queryParams = $queryParams->withParam($name, $value);
         }

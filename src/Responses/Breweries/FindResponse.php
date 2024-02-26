@@ -9,8 +9,8 @@ use OpenBreweryDb\Responses\Concerns\ArrayAccessible;
  * @implements ResponseContract<array{
  *      id: string,
  *      name: string,
- *      brewery_type: string,
- *      address_1: string,
+ *      brewery_type: ?string,
+ *      address_1: ?string,
  *      address_2: ?string,
  *      address_3: ?string,
  *      city: string,
@@ -19,10 +19,10 @@ use OpenBreweryDb\Responses\Concerns\ArrayAccessible;
  *      country: string,
  *      longitude: ?string,
  *      latitude: ?string,
- *      phone: string,
- *      website_url: string,
+ *      phone: ?string,
+ *      website_url: ?string,
  *      state: string,
- *      street: string
+ *      street: ?string
  *  }>
  */
 final readonly class FindResponse implements ResponseContract
@@ -31,8 +31,8 @@ final readonly class FindResponse implements ResponseContract
      * @use ArrayAccessible<array{
      *        id: string,
      *        name: string,
-     *        brewery_type: string,
-     *        address_1: string,
+     *        brewery_type: ?string,
+     *        address_1: ?string,
      *        address_2: ?string,
      *        address_3: ?string,
      *        city: string,
@@ -41,10 +41,10 @@ final readonly class FindResponse implements ResponseContract
      *        country: string,
      *        longitude: ?string,
      *        latitude: ?string,
-     *        phone: string,
+     *        phone: ?string,
      *        website_url: ?string,
      *        state: string,
-     *        street: string
+     *        street: ?string
      *  }>
      */
     use ArrayAccessible;
@@ -52,8 +52,8 @@ final readonly class FindResponse implements ResponseContract
     private function __construct(
         public string  $id,
         public string  $name,
-        public string  $brewery_type,
-        public string  $address_1,
+        public ?string $brewery_type,
+        public ?string $address_1,
         public ?string $address_2,
         public ?string $address_3,
         public string  $city,
@@ -62,10 +62,10 @@ final readonly class FindResponse implements ResponseContract
         public string  $country,
         public ?string $longitude,
         public ?string $latitude,
-        public string  $phone,
+        public ?string $phone,
         public ?string $website_url,
         public string  $state,
-        public string  $street,
+        public ?string $street,
     )
     {
     }
@@ -76,8 +76,8 @@ final readonly class FindResponse implements ResponseContract
      * @param array{
      *      id: string,
      *      name: string,
-     *      brewery_type: string,
-     *      address_1: string,
+     *      brewery_type: ?string,
+     *      address_1: ?string,
      *      address_2: ?string,
      *      address_3: ?string,
      *      city: string,
@@ -86,31 +86,31 @@ final readonly class FindResponse implements ResponseContract
      *      country: string,
      *      longitude: ?string,
      *      latitude: ?string,
-     *      phone: string,
+     *      phone: ?string,
      *      website_url: ?string,
      *      state: string,
-     *      street: string
-     *  } $data
+     *      street: ?string
+     *  } $attributes
      */
-    public static function from(array $data): self
+    public static function from(array $attributes): self
     {
         return new self(
-            $data['id'],
-            $data['name'],
-            $data['brewery_type'],
-            $data['address_1'],
-            $data['address_2'],
-            $data['address_3'],
-            $data['city'],
-            $data['state_province'],
-            $data['postal_code'],
-            $data['country'],
-            $data['longitude'],
-            $data['latitude'],
-            $data['phone'],
-            $data['website_url'],
-            $data['state'],
-            $data['street'],
+            $attributes['id'],
+            $attributes['name'],
+            $attributes['brewery_type'],
+            $attributes['address_1'],
+            $attributes['address_2'],
+            $attributes['address_3'],
+            $attributes['city'],
+            $attributes['state_province'],
+            $attributes['postal_code'],
+            $attributes['country'],
+            $attributes['longitude'],
+            $attributes['latitude'],
+            $attributes['phone'],
+            $attributes['website_url'],
+            $attributes['state'],
+            $attributes['street'],
         );
     }
 

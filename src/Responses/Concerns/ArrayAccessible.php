@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace OpenBreweryDb\Responses\Concerns;
 
 use BadMethodCallException;
-use OpenBreweryDb\Responses\Response;
+use OpenBreweryDb\ValueObjects\Transporter\Response;
 
 /**
  * @template TArray of array

@@ -9,10 +9,10 @@ use OpenBreweryDb\Contracts\TransporterContract;
 use OpenBreweryDb\Exceptions\ErrorException;
 use OpenBreweryDb\Exceptions\TransporterException;
 use OpenBreweryDb\Exceptions\UnserializableResponseException;
-use OpenBreweryDb\Http\Payload;
 use OpenBreweryDb\Responses\Breweries\FindResponse;
 use OpenBreweryDb\Responses\Breweries\ListResponse;
-use OpenBreweryDb\Responses\Response;
+use OpenBreweryDb\ValueObjects\Payload;
+use OpenBreweryDb\ValueObjects\Transporter\Response;
 use Override;
 
 final readonly class Breweries implements BreweriesContract
@@ -46,25 +46,29 @@ final readonly class Breweries implements BreweriesContract
          *        longitude: string,
          *        latitude: string,
          *        phone: string,
-         *        website_url: string,
+         *        website_url: ?string,
          *        state: string,
          *        street: string
          *  }> $response
          */
-        $response = $this->transporter->requestObject($payload);
+        $response = $this->transporter->requestData($payload);
 
         return FindResponse::from($response->data());
     }
 
     /**
+     * Builds a list request payload for the breweries resource.
+     *
+     * @param array<string, string|int|float> $parameters
+     *
+     * @throws ErrorException
      * @throws TransporterException
      * @throws UnserializableResponseException
-     * @throws ErrorException
      */
     #[Override]
-    public function list(): ListResponse
+    public function list(array $parameters = []): ListResponse
     {
-        $payload = Payload::list('breweries');
+        $payload = Payload::list('breweries', $parameters);
 
         /**
          * @var Response<array<int, array{
@@ -81,12 +85,12 @@ final readonly class Breweries implements BreweriesContract
          *            longitude: string,
          *            latitude: string,
          *            phone: string,
-         *            website_url: string,
+         *            website_url: ?string,
          *            state: string,
          *            street: string
          *     }>> $response
          */
-        $response = $this->transporter->requestObject($payload);
+        $response = $this->transporter->requestData($payload);
 
         return ListResponse::from($response->data());
     }

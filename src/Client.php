@@ -18,9 +18,9 @@ final class Client
     /**
      * The default pagination limit for paginated responses.
      */
-    public const int DEFAULT_PER_PAGE = 50;
+    public const int PER_PAGE = 50;
 
-    public const string DEFAULT_USER_AGENT = 'openbrewerydb-php-api-client/0.1';
+    public const string USER_AGENT = 'openbrewerydb-php-api-client/0.1';
 
     /**
      * Creates a Client instance with the given API token.

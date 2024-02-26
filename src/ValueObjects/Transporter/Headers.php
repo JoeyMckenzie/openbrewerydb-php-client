@@ -1,6 +1,8 @@
 <?php
 
-namespace OpenBreweryDb\Http;
+namespace OpenBreweryDb\ValueObjects\Transporter;
+
+use OpenBreweryDb\Http\ContentType;
 
 /**
  * @internal
@@ -10,7 +12,7 @@ final readonly class Headers
     /**
      * Creates a new Headers value object.
      *
-     * @param  array<string, string>  $headers
+     * @param array<string, string> $headers
      */
     private function __construct(private array $headers)
     {
@@ -31,18 +33,7 @@ final readonly class Headers
     {
         return new self([
             ...$this->headers,
-            'Content-Type' => $contentType->value.$suffix,
-        ]);
-    }
-
-    /**
-     * Creates a new Headers value object, with the given organization, and the existing headers.
-     */
-    public function withOrganization(string $organization): self
-    {
-        return new self([
-            ...$this->headers,
-            'OpenAI-Organization' => $organization,
+            'Content-Type' => $contentType->value . $suffix,
         ]);
     }
 

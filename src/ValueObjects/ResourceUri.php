@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OpenBreweryDb\Http;
+namespace OpenBreweryDb\ValueObjects;
 
 /**
  * @internal

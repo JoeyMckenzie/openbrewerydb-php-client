@@ -7,8 +7,8 @@ namespace OpenBreweryDb\Contracts;
 use OpenBreweryDb\Exceptions\ErrorException;
 use OpenBreweryDb\Exceptions\TransporterException;
 use OpenBreweryDb\Exceptions\UnserializableResponseException;
-use OpenBreweryDb\Http\Payload;
-use OpenBreweryDb\Responses\Response;
+use OpenBreweryDb\ValueObjects\Payload;
+use OpenBreweryDb\ValueObjects\Transporter\Response;
 
 /**
  * @internal
@@ -22,7 +22,7 @@ interface TransporterContract
      *
      * @throws ErrorException|UnserializableResponseException|TransporterException
      */
-    public function requestObject(Payload $payload): Response;
+    public function requestData(Payload $payload): Response;
 
     /**
      * Sends a content request to a server.
