@@ -2,7 +2,7 @@
 
 namespace OpenBreweryDb\ValueObjects\Transporter;
 
-use OpenBreweryDb\Http\ContentType;
+use OpenBreweryDb\Http\MediaType;
 
 /**
  * @internal
@@ -29,11 +29,11 @@ final readonly class Headers
     /**
      * Creates a new Headers value object, with the given content type, and the existing headers.
      */
-    public function withContentType(ContentType $contentType, string $suffix = ''): self
+    public function withAccept(MediaType $mediaType, string $suffix = ''): self
     {
         return new self([
             ...$this->headers,
-            'Content-Type' => $contentType->value . $suffix,
+            'Accept' => $mediaType->value . $suffix,
         ]);
     }
 

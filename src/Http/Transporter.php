@@ -86,7 +86,7 @@ final readonly class Transporter implements TransporterContract
             return;
         }
 
-        if (!str_contains($response->getHeaderLine('Content-Type'), ContentType::JSON->value)) {
+        if (!str_contains($response->getHeaderLine('Content-Type'), MediaType::JSON->value)) {
             return;
         }
 

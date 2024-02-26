@@ -7,6 +7,7 @@ namespace OpenBreweryDb\ValueObjects;
 use Http\Discovery\Psr17Factory;
 use OpenBreweryDb\Http\ContentType;
 use OpenBreweryDb\Http\HttpMethod;
+use OpenBreweryDb\Http\MediaType;
 use OpenBreweryDb\ValueObjects\Transporter\BaseUri;
 use OpenBreweryDb\ValueObjects\Transporter\Headers;
 use OpenBreweryDb\ValueObjects\Transporter\QueryParams;
@@ -23,7 +24,7 @@ final readonly class Payload
      * @param array<string, mixed> $parameters
      */
     private function __construct(
-        private ContentType $contentType,
+        private MediaType   $contentType,
         private HttpMethod  $method,
         private ResourceUri $uri,
         private array       $parameters = [],
@@ -38,7 +39,7 @@ final readonly class Payload
      */
     public static function list(string $resource, array $parameters = []): self
     {
-        $contentType = ContentType::JSON;
+        $contentType = MediaType::JSON;
         $method = HttpMethod::GET;
         $uri = ResourceUri::list($resource);
 
@@ -52,7 +53,7 @@ final readonly class Payload
      */
     public static function retrieve(string $resource, string $id, string $suffix = '', array $parameters = []): self
     {
-        $contentType = ContentType::JSON;
+        $contentType = MediaType::JSON;
         $method = HttpMethod::GET;
         $uri = ResourceUri::retrieve($resource, $id, $suffix);
 
@@ -72,7 +73,7 @@ final readonly class Payload
             $uri .= '?' . http_build_query($queryParams);
         }
 
-        $headers = $headers->withContentType($this->contentType);
+        $headers = $headers->withAccept($this->contentType);
         $request = $psr17Factory->createRequest($this->method->value, $uri);
 
         foreach ($headers->toArray() as $name => $value) {
