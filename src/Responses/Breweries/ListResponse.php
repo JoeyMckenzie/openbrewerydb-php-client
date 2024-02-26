@@ -27,7 +27,7 @@ use OpenBreweryDb\Responses\Concerns\ArrayAccessible;
  *         street: ?string
  * }>>
  */
-final class ListResponse implements ResponseContract
+final readonly class ListResponse implements ResponseContract
 {
     /**
      * @use ArrayAccessible<array<int, array{
@@ -54,7 +54,7 @@ final class ListResponse implements ResponseContract
     /**
      * @param FindResponse[] $data
      */
-    private function __construct(public readonly array $data)
+    private function __construct(public array $data)
     {
     }
 
@@ -92,6 +92,7 @@ final class ListResponse implements ResponseContract
     /**
      * {@inheritDoc}
      */
+    #[\Override]
     public function toArray(): array
     {
         return array_map(

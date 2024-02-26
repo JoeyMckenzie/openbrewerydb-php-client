@@ -41,6 +41,7 @@ final readonly class Transporter implements TransporterContract
      *
      * @throws ErrorException
      */
+    #[\Override]
     public function requestData(Payload $payload): Response
     {
         $request = $payload->toRequest($this->baseUri, $this->headers, $this->queryParams);

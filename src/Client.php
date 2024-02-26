@@ -11,7 +11,7 @@ use OpenBreweryDb\Resources\Breweries;
 /**
  * The primary client for connecting to Open Brewery DB's API containing all connections to the available resources.
  */
-final class Client
+final readonly class Client
 {
     /**
      * The base URL for Open Brewery DB API.
@@ -31,7 +31,7 @@ final class Client
     /**
      * Creates a client instance with the provided client transport abstraction.
      */
-    public function __construct(private readonly TransporterContract $transporter)
+    public function __construct(private TransporterContract $transporter)
     {
     }
 

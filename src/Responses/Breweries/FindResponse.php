@@ -118,6 +118,7 @@ final readonly class FindResponse implements ResponseContract
     /**
      * {@inheritDoc}
      */
+    #[\Override]
     public function toArray(): array
     {
         return [

@@ -7,7 +7,7 @@ namespace OpenBreweryDb\ValueObjects;
 /**
  * @internal
  */
-final readonly class ResourceUri
+final readonly class ResourceUri implements \Stringable
 {
     /**
      * Creates a new ResourceUri value object.
@@ -32,6 +32,7 @@ final readonly class ResourceUri
         return new self("$resource/$id");
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return $this->uri;

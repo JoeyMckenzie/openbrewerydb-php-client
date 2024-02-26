@@ -42,7 +42,8 @@
         "pestphp/pest-plugin-type-coverage": "^2.8",
         "pestphp/pest-plugin-watch": "^2.0",
         "phpstan/phpstan": "^1.10",
-        "phpstan/phpstan-strict-rules": "^1.5"
+        "phpstan/phpstan-strict-rules": "^1.5",
+        "rector/rector": "^1.0"
     },
     "scripts": {
         "test": "./vendor/bin/pest --parallel",
@@ -52,7 +53,9 @@
         "fmt": "./vendor/bin/pint -v",
         "check": "./vendor/bin/pint --test",
         "prepare": "git config core.hookspath .githooks",
-        "ci": "composer run check && composer run lint && composer run types && composer run test"
+        "ci": "composer run check && composer run lint && composer run types && composer run test",
+        "rector": "vendor/bin/rector process",
+        "rector:dry": "vendor/bin/rector process --dry-run"
     },
     "config": {
         "allow-plugins": {

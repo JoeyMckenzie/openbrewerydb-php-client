@@ -7,7 +7,7 @@ namespace OpenBreweryDb\ValueObjects\Transporter;
 /**
  * @internal
  */
-final readonly class BaseUri
+final readonly class BaseUri implements \Stringable
 {
     /**
      * Creates a new Base URI value object.
@@ -24,6 +24,7 @@ final readonly class BaseUri
         return new self($baseUri);
     }
 
+    #[\Override]
     public function __toString(): string
     {
         foreach (['http://', 'https://'] as $protocol) {
