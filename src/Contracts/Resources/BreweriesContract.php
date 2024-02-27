@@ -8,6 +8,7 @@ use OpenBreweryDb\Client;
 use OpenBreweryDb\Responses\Breweries\AutocompleteResponse;
 use OpenBreweryDb\Responses\Breweries\FindResponse;
 use OpenBreweryDb\Responses\Breweries\ListResponse;
+use OpenBreweryDb\Responses\Breweries\MetadataResponse;
 
 interface BreweriesContract
 {
@@ -47,4 +48,13 @@ interface BreweriesContract
      * @see https://openbrewerydb.org/documentation#autocomplete
      */
     public function autocomplete(string $query): AutocompleteResponse;
+
+    /**
+     * Lists metadata about breweries based on the optional query criteria.
+     *
+     * @param  array<string, string|int|float>  $parameters
+     *
+     * @see https://openbrewerydb.org/documentation#autocomplete
+     */
+    public function metadata(array $parameters = []): MetadataResponse;
 }

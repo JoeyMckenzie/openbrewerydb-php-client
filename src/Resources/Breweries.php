@@ -10,6 +10,7 @@ use OpenBreweryDb\Contracts\TransporterContract;
 use OpenBreweryDb\Responses\Breweries\AutocompleteResponse;
 use OpenBreweryDb\Responses\Breweries\FindResponse;
 use OpenBreweryDb\Responses\Breweries\ListResponse;
+use OpenBreweryDb\Responses\Breweries\MetadataResponse;
 use OpenBreweryDb\ValueObjects\Payload;
 use OpenBreweryDb\ValueObjects\Transporter\Response;
 use Override;
@@ -179,5 +180,21 @@ final readonly class Breweries implements BreweriesContract
         $response = $this->transporter->requestData($payload);
 
         return AutocompleteResponse::from($response->data());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    #[Override]
+    public function metadata(array $parameters = []): MetadataResponse
+    {
+        $payload = Payload::list('breweries', $parameters, 'meta');
+
+        /**
+         * @var Response<array<int, array{total: string, page: string, per_page: string}>> $response
+         */
+        $response = $this->transporter->requestData($payload);
+
+        return MetadataResponse::from($response->data());
     }
 }
