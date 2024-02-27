@@ -51,7 +51,7 @@
         "test:types": "./vendor/bin/pest --type-coverage --min=100",
         "test": [
             "@test:types",
-            "@test:unit"
+            "@test:integrations"
         ],
         "lint": "./vendor/bin/phpstan analyze",
         "fmt": "./vendor/bin/pint -v",
