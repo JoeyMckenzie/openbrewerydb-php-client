@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace OpenBreweryDb\ValueObjects;
 
 use Http\Discovery\Psr17Factory;
-use OpenBreweryDb\Http\HttpMethod;
-use OpenBreweryDb\Http\MediaType;
+use OpenBreweryDb\Enums\HttpMethod;
+use OpenBreweryDb\Enums\MediaType;
 use OpenBreweryDb\ValueObjects\Transporter\BaseUri;
 use OpenBreweryDb\ValueObjects\Transporter\Headers;
 use OpenBreweryDb\ValueObjects\Transporter\QueryParams;

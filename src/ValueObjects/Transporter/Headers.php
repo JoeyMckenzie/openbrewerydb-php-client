@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace OpenBreweryDb\ValueObjects\Transporter;
 
-use OpenBreweryDb\Http\MediaType;
+use OpenBreweryDb\Enums\MediaType;
 
 /**
  * @internal

@@ -8,6 +8,7 @@ use Closure;
 use GuzzleHttp\Exception\ClientException;
 use JsonException;
 use OpenBreweryDb\Contracts\TransporterContract;
+use OpenBreweryDb\Enums\MediaType;
 use OpenBreweryDb\Exceptions\ErrorException;
 use OpenBreweryDb\Exceptions\TransporterException;
 use OpenBreweryDb\Exceptions\UnserializableResponseException;
@@ -16,6 +17,7 @@ use OpenBreweryDb\ValueObjects\Transporter\BaseUri;
 use OpenBreweryDb\ValueObjects\Transporter\Headers;
 use OpenBreweryDb\ValueObjects\Transporter\QueryParams;
 use OpenBreweryDb\ValueObjects\Transporter\Response;
+use Override;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -41,7 +43,7 @@ final readonly class Transporter implements TransporterContract
      *
      * @throws ErrorException
      */
-    #[\Override]
+    #[Override]
     public function requestData(Payload $payload): Response
     {
         $request = $payload->toRequest($this->baseUri, $this->headers, $this->queryParams);

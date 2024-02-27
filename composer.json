@@ -58,8 +58,9 @@
         "check": "./vendor/bin/pint --test",
         "prepare": "git config core.hookspath .githooks",
         "ci": [
-            "@lint",
             "@check",
+            "@rector:dry",
+            "@lint",
             "@test"
         ],
         "rector": "vendor/bin/rector process",
