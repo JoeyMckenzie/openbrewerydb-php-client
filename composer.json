@@ -1,49 +1,74 @@
 {
     "name": "joeymckenzie/openbrewerydb-php-api",
-    "description": "An Open Brewery DB API for PHP.",
+    "description": "An Open Brewery DB API client for PHP.",
     "type": "library",
     "license": "MIT",
     "version": "0.5.0",
     "homepage": "https://github.com/joeymckenzie/openbrewerydb-php-api",
     "autoload": {
         "psr-4": {
-            "OpenBrewery\\OpenBrewery\\": "src/"
+            "OpenBreweryDb\\": "src/"
+        },
+        "files": [
+            "src/OpenBreweryDb.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
         }
     },
     "authors": [
         {
             "name": "Joey McKenzie",
-            "email": "joey.mckenzie27@gmail.com"
+            "email": "joey.mckenzie27@gmail.com",
+            "homepage": "https://github.com/joeymckenzie"
         }
     ],
     "minimum-stability": "stable",
     "require": {
         "php": ">=8.3",
-        "guzzlehttp/guzzle": "^7.8",
-        "symfony/serializer": "^6.3 || ^7.0",
-        "symfony/property-access": "^6.3 || ^7.0",
-        "illuminate/collections": "^10.37"
+        "php-http/discovery": "^1.19.2",
+        "php-http/multipart-stream-builder": "^1.3.0",
+        "psr/http-client": "^1.0.3",
+        "psr/http-client-implementation": "^1.0.1",
+        "psr/http-factory-implementation": "*",
+        "psr/http-message": "^1.1.0|^2.0.0"
     },
     "require-dev": {
-        "pestphp/pest": "^2.32",
+        "guzzlehttp/guzzle": "^7.8",
         "laravel/pint": "^1.13",
+        "pestphp/pest": "^2.32",
         "pestphp/pest-plugin-type-coverage": "^2.8",
         "pestphp/pest-plugin-watch": "^2.0",
-        "phpstan/phpstan": "^1.10"
+        "phpstan/phpstan": "^1.10",
+        "phpstan/phpstan-strict-rules": "^1.5",
+        "rector/rector": "^1.0"
     },
     "scripts": {
-        "test": "./vendor/bin/pest --parallel",
+        "test:unit": "./vendor/bin/pest --parallel --colors=always",
         "test:watch": "./vendor/bin/pest --watch --parallel",
-        "lint": "./vendor/bin/phpstan analyse src tests",
+        "test:types": "./vendor/bin/pest --type-coverage --min=100",
+        "test": [
+            "@test:types",
+            "@test:unit"
+        ],
+        "lint": "./vendor/bin/phpstan analyze",
         "fmt": "./vendor/bin/pint -v",
         "check": "./vendor/bin/pint --test",
         "prepare": "git config core.hookspath .githooks",
-        "types": "./vendor/bin/pest --type-coverage --min=100",
-        "ci": "composer run check && composer run lint && composer run types && composer run test"
+        "ci": [
+            "@lint",
+            "@check",
+            "@test"
+        ],
+        "rector": "vendor/bin/rector process",
+        "rector:dry": "vendor/bin/rector process --dry-run"
     },
     "config": {
         "allow-plugins": {
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
         }
     }
 }
