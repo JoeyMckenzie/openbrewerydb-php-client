@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OpenBreweryDb;
 
+use OpenBreweryDb\Contracts\ConnectorContract;
 use OpenBreweryDb\Contracts\Resources\BreweriesContract;
 use OpenBreweryDb\Contracts\TransporterContract;
 use OpenBreweryDb\Resources\Breweries;
@@ -31,7 +32,7 @@ final readonly class Client
     /**
      * Creates a client instance with the provided client transport abstraction.
      */
-    public function __construct(private TransporterContract $transporter)
+    public function __construct(private ConnectorContract $connector)
     {
     }
 
@@ -42,6 +43,6 @@ final readonly class Client
      */
     public function breweries(): BreweriesContract
     {
-        return new Breweries($this->transporter);
+        return new Breweries($this->connector);
     }
 }

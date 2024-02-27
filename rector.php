@@ -14,7 +14,7 @@ return RectorConfig::configure()
     ->withPhpSets(php83: true)
     ->withRules([
         AddVoidReturnTypeWhereNoReturnRector::class,
-        InlineConstructorDefaultToPropertyRector::class,
+        InlineConstructorDefaultToPropertyRector::class
     ])
     ->withSets([
         SetList::CODE_QUALITY,

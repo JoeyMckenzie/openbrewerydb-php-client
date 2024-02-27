@@ -13,10 +13,10 @@ use OpenBreweryDb\ValueObjects\Transporter\Response;
 /**
  * @internal
  */
-interface TransporterContract
+interface ConnectorContract
 {
     /**
-     * Sends a request to a server.
+     * Sends a request to the server.
      *
      * @return Response<array<array-key, mixed>>
      *

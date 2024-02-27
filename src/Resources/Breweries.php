@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace OpenBreweryDb\Resources;
 
 use OpenBreweryDb\Client;
+use OpenBreweryDb\Contracts\ConnectorContract;
 use OpenBreweryDb\Contracts\Resources\BreweriesContract;
-use OpenBreweryDb\Contracts\TransporterContract;
 use OpenBreweryDb\Responses\Breweries\AutocompleteResponse;
 use OpenBreweryDb\Responses\Breweries\FindResponse;
 use OpenBreweryDb\Responses\Breweries\ListResponse;
@@ -17,7 +17,7 @@ use Override;
 
 final readonly class Breweries implements BreweriesContract
 {
-    public function __construct(private TransporterContract $transporter)
+    public function __construct(private ConnectorContract $connector)
     {
     }
 
@@ -49,7 +49,7 @@ final readonly class Breweries implements BreweriesContract
          *        street: string
          *  }> $response
          */
-        $response = $this->transporter->requestData($payload);
+        $response = $this->connector->requestData($payload);
 
         return FindResponse::from($response->data());
     }
@@ -86,7 +86,7 @@ final readonly class Breweries implements BreweriesContract
          *            street: string
          *     }>> $response
          */
-        $response = $this->transporter->requestData($payload);
+        $response = $this->connector->requestData($payload);
 
         return ListResponse::from($response->data());
     }
@@ -119,7 +119,7 @@ final readonly class Breweries implements BreweriesContract
          *            street: string
          *     }>> $response
          */
-        $response = $this->transporter->requestData($payload);
+        $response = $this->connector->requestData($payload);
 
         return ListResponse::from($response->data());
     }
@@ -157,7 +157,7 @@ final readonly class Breweries implements BreweriesContract
          *            street: string
          *     }>> $response
          */
-        $response = $this->transporter->requestData($payload);
+        $response = $this->connector->requestData($payload);
 
         return ListResponse::from($response->data());
     }
@@ -177,7 +177,7 @@ final readonly class Breweries implements BreweriesContract
         /**
          * @var Response<array<int, array{id: string, name: string}>> $response
          */
-        $response = $this->transporter->requestData($payload);
+        $response = $this->connector->requestData($payload);
 
         return AutocompleteResponse::from($response->data());
     }
@@ -193,7 +193,7 @@ final readonly class Breweries implements BreweriesContract
         /**
          * @var Response<array<int, array{total: string, page: string, per_page: string}>> $response
          */
-        $response = $this->transporter->requestData($payload);
+        $response = $this->connector->requestData($payload);
 
         return MetadataResponse::from($response->data());
     }

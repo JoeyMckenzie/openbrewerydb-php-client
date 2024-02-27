@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace OpenBreweryDb;
 
 use Http\Discovery\Psr18ClientDiscovery;
-use OpenBreweryDb\Http\Transporter;
+use OpenBreweryDb\Http\Connector;
 use OpenBreweryDb\ValueObjects\Transporter\BaseUri;
 use OpenBreweryDb\ValueObjects\Transporter\Headers;
 use OpenBreweryDb\ValueObjects\Transporter\QueryParams;
@@ -97,7 +97,7 @@ final class Builder
         }
 
         $client = $this->httpClient ??= Psr18ClientDiscovery::find();
-        $transporter = new Transporter($client, $baseUri, $headers, $queryParams);
+        $transporter = new Connector($client, $baseUri, $headers, $queryParams);
 
         return new Client($transporter);
     }

@@ -7,7 +7,7 @@ namespace OpenBreweryDb\Http;
 use Closure;
 use GuzzleHttp\Exception\ClientException;
 use JsonException;
-use OpenBreweryDb\Contracts\TransporterContract;
+use OpenBreweryDb\Contracts\ConnectorContract;
 use OpenBreweryDb\Enums\MediaType;
 use OpenBreweryDb\Exceptions\ErrorException;
 use OpenBreweryDb\Exceptions\TransporterException;
@@ -25,7 +25,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * @internal
  */
-final readonly class Transporter implements TransporterContract
+final readonly class Connector implements ConnectorContract
 {
     /**
      * Creates a new Http Transporter instance.
