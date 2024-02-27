@@ -25,7 +25,7 @@ describe('Metadata breweries', function () {
 
         // Act
         $meta = $client->breweries()->metadata([
-            'by_type' => 'micro'
+            'by_type' => 'micro',
         ]);
 
         // Assert

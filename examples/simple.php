@@ -10,7 +10,7 @@ $client = OpenBreweryDb::client();
 
 // Get a list of breweries, based on all types of different search criteria
 $breweries = $client->breweries()->list([
-    'by_city' => 'Sacramento'
+    'by_city' => 'Sacramento',
 ]);
 var_dump($breweries);
 

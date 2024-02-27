@@ -18,7 +18,7 @@ final readonly class MetadataResponse implements ResponseContract
     use ArrayAccessible;
 
     /**
-     * @param  array<int, array{total: string, page: string, per_page: string}> $data
+     * @param  array<int, array{total: string, page: string, per_page: string}>  $data
      */
     private function __construct(public array $data)
     {
