@@ -12,7 +12,7 @@ jobs:
         php: [ 8.3 ]
         dependency-version: [ prefer-lowest, prefer-stable ]
 
-    name: Formats P${{ matrix.php }} | ${{ matrix.os }} | ${{ matrix.dependency-version }}
+    name: PHP ${{ matrix.php }} | OS ${{ matrix.os }} | Dependency Resolution ${{ matrix.dependency-version }}
 
     steps:
 
