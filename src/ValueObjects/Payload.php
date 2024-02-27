@@ -18,7 +18,7 @@ use Psr\Http\Message\RequestInterface;
 final readonly class Payload
 {
     /**
-     * Creates a new Request value object.
+     * Creates a new request payload value object.
      *
      * @param  array<string, mixed>  $parameters
      */
@@ -31,7 +31,7 @@ final readonly class Payload
     }
 
     /**
-     * Creates a new Payload value object from the given parameters.
+     * Creates a new request payload value object from the given parameters.
      *
      * @param  array<string, mixed>  $parameters
      */
@@ -45,7 +45,7 @@ final readonly class Payload
     }
 
     /**
-     * Creates a new Payload value object from the given parameters.
+     * Creates a new request payload value object from the given parameters.
      *
      * @param  array<string, mixed>  $parameters
      */

@@ -10,14 +10,14 @@ namespace OpenBreweryDb\ValueObjects;
 final readonly class ResourceUri implements \Stringable
 {
     /**
-     * Creates a new ResourceUri value object.
+     * Creates a new resource URI value object.
      */
     private function __construct(private string $uri)
     {
     }
 
     /**
-     * Creates a new ResourceUri value object that lists the given resource.
+     * Creates a new resource URI value object that lists the given resource.
      */
     public static function list(string $resource, ?string $suffix = null): self
     {
@@ -25,7 +25,7 @@ final readonly class ResourceUri implements \Stringable
     }
 
     /**
-     * Creates a new ResourceUri value object that retrieves the given resource.
+     * Creates a new resource URI value object that retrieves the given resource.
      */
     public static function retrieve(string $resource, string $id): self
     {
