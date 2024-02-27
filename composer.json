@@ -46,7 +46,7 @@
         "rector/rector": "^1.0"
     },
     "scripts": {
-        "test:unit": "./vendor/bin/pest --parallel --colors=always",
+        "test:integration": "./vendor/bin/pest --parallel --colors=always",
         "test:watch": "./vendor/bin/pest --watch --parallel",
         "test:types": "./vendor/bin/pest --type-coverage --min=100",
         "test": [

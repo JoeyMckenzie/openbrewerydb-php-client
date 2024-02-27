@@ -37,15 +37,18 @@ jobs:
       - name: Install Composer dependencies
         run: composer update --${{ matrix.dependency-version }} --no-interaction --prefer-dist
 
-      - name: Coding Style Checks
-        run: composer check
+      - name: Run formatting checks
+        run: composer run check
 
-      - name: Refactor Checks
-        run: composer run rector:dry-run
+      - name: Run linting checks
+        run: composer run lint
 
-      - name: Type Checks
-        run: composer test:types
+      - name: Run refactor checks
+        run: composer run run rector:dry
 
-      - name: Type Coverage
-        run: composer test:type-coverage min=100
+      - name: Run integration tests
+        run: composer run test:integration
+
+      - name: Run type coverage checks
+        run: composer run test:types
 
