@@ -44,7 +44,7 @@ jobs:
         run: composer run lint
 
       - name: Run refactor checks
-        run: composer run run rector:dry
+        run: composer run rector:dry
 
       - name: Run integration tests
         run: composer run test:integration
