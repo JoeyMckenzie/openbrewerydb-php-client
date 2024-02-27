@@ -6,11 +6,10 @@ namespace OpenBreweryDb;
 
 use OpenBreweryDb\Contracts\ConnectorContract;
 use OpenBreweryDb\Contracts\Resources\BreweriesContract;
-use OpenBreweryDb\Contracts\TransporterContract;
 use OpenBreweryDb\Resources\Breweries;
 
 /**
- * The primary client for connecting to Open Brewery DB's API containing all connections to the available resources.
+ * The primary client gateway for connecting to Open Brewery DB's API containing all connections to the available resources.
  */
 final readonly class Client
 {

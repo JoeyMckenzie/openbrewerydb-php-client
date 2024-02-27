@@ -8,46 +8,12 @@ use OpenBreweryDb\Contracts\ResponseContract;
 use OpenBreweryDb\Responses\Concerns\ArrayAccessible;
 
 /**
- * @implements ResponseContract<array{
- *      id: string,
- *      name: string,
- *      brewery_type: ?string,
- *      address_1: ?string,
- *      address_2: ?string,
- *      address_3: ?string,
- *      city: string,
- *      state_province: string,
- *      postal_code: string,
- *      country: string,
- *      longitude: ?string,
- *      latitude: ?string,
- *      phone: ?string,
- *      website_url: ?string,
- *      state: string,
- *      street: ?string
- *  }>
+ * @implements ResponseContract<array{id: string, name: string, brewery_type: ?string, address_1: ?string, address_2: ?string, address_3: ?string, city: string, state_province: string, postal_code: string, country: string, longitude: ?string, latitude: ?string, phone: ?string, website_url: ?string, state: string, street: ?string}>
  */
 final readonly class FindResponse implements ResponseContract
 {
     /**
-     * @use ArrayAccessible<array{
-     *        id: string,
-     *        name: string,
-     *        brewery_type: ?string,
-     *        address_1: ?string,
-     *        address_2: ?string,
-     *        address_3: ?string,
-     *        city: string,
-     *        state_province: string,
-     *        postal_code: string,
-     *        country: string,
-     *        longitude: ?string,
-     *        latitude: ?string,
-     *        phone: ?string,
-     *        website_url: ?string,
-     *        state: string,
-     *        street: ?string
-     *  }>
+     * @use ArrayAccessible<array{id: string, name: string, brewery_type: ?string, address_1: ?string, address_2: ?string, address_3: ?string, city: string, state_province: string, postal_code: string, country: string, longitude: ?string, latitude: ?string, phone: ?string, website_url: ?string, state: string, street: ?string}>
      */
     use ArrayAccessible;
 
@@ -74,24 +40,7 @@ final readonly class FindResponse implements ResponseContract
     /**
      * Acts as static factory, and returns a new Response instance.
      *
-     * @param array{
-     *      id: string,
-     *      name: string,
-     *      brewery_type: ?string,
-     *      address_1: ?string,
-     *      address_2: ?string,
-     *      address_3: ?string,
-     *      city: string,
-     *      state_province: string,
-     *      postal_code: string,
-     *      country: string,
-     *      longitude: ?string,
-     *      latitude: ?string,
-     *      phone: ?string,
-     *      website_url: ?string,
-     *      state: string,
-     *      street: ?string
-     *  } $attributes
+     * @param  array{id: string, name: string, brewery_type: ?string, address_1: ?string, address_2: ?string, address_3: ?string, city: string, state_province: string, postal_code: string, country: string, longitude: ?string, latitude: ?string, phone: ?string, website_url: ?string, state: string, street: ?string}  $attributes
      */
     public static function from(array $attributes): self
     {

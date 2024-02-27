@@ -8,46 +8,12 @@ use OpenBreweryDb\Contracts\ResponseContract;
 use OpenBreweryDb\Responses\Concerns\ArrayAccessible;
 
 /**
- * @implements ResponseContract<array<int, array{
- *         id: string,
- *         name: string,
- *         brewery_type: ?string,
- *         address_1: ?string,
- *         address_2: ?string,
- *         address_3: ?string,
- *         city: string,
- *         state_province: string,
- *         postal_code: string,
- *         country: string,
- *         longitude: ?string,
- *         latitude: ?string,
- *         phone: ?string,
- *         website_url: ?string,
- *         state: string,
- *         street: ?string
- * }>>
+ * @implements ResponseContract<array<int, array{id: string, name: string, brewery_type: ?string, address_1: ?string, address_2: ?string, address_3: ?string, city: string, state_province: string, postal_code: string, country: string, longitude: ?string, latitude: ?string, phone: ?string, website_url: ?string, state: string, street: ?string}>>
  */
 final readonly class ListResponse implements ResponseContract
 {
     /**
-     * @use ArrayAccessible<array<int, array{
-     *          id: string,
-     *          name: string,
-     *          brewery_type: ?string,
-     *          address_1: ?string,
-     *          address_2: ?string,
-     *          address_3: ?string,
-     *          city: string,
-     *          state_province: string,
-     *          postal_code: string,
-     *          country: string,
-     *          longitude: ?string,
-     *          latitude: ?string,
-     *          phone: ?string,
-     *          website_url: ?string,
-     *          state: string,
-     *          street: ?string
-     *      }>>
+     * @use ArrayAccessible<array<int, array{id: string, name: string, brewery_type: ?string, address_1: ?string, address_2: ?string, address_3: ?string, city: string, state_province: string, postal_code: string, country: string, longitude: ?string, latitude: ?string, phone: ?string, website_url: ?string, state: string, street: ?string}>>
      */
     use ArrayAccessible;
 
@@ -61,24 +27,7 @@ final readonly class ListResponse implements ResponseContract
     /**
      * Acts as static factory, and returns a new Response instance.
      *
-     * @param array<int, array{
-     *          id: string,
-     *          name: string,
-     *          brewery_type: ?string,
-     *          address_1: ?string,
-     *          address_2: ?string,
-     *          address_3: ?string,
-     *          city: string,
-     *          state_province: string,
-     *          postal_code: string,
-     *          country: string,
-     *          longitude: ?string,
-     *          latitude: ?string,
-     *          phone: ?string,
-     *          website_url: ?string,
-     *          state: string,
-     *          street: ?string
-     *    }> $attributes
+     * @param  array<int, array{id: string, name: string, brewery_type: ?string, address_1: ?string, address_2: ?string, address_3: ?string, city: string, state_province: string, postal_code: string, country: string, longitude: ?string, latitude: ?string, phone: ?string, website_url: ?string, state: string, street: ?string}>  $attributes
      */
     public static function from(array $attributes): self
     {

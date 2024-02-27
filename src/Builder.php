@@ -6,11 +6,14 @@ namespace OpenBreweryDb;
 
 use Http\Discovery\Psr18ClientDiscovery;
 use OpenBreweryDb\Http\Connector;
-use OpenBreweryDb\ValueObjects\Transporter\BaseUri;
-use OpenBreweryDb\ValueObjects\Transporter\Headers;
-use OpenBreweryDb\ValueObjects\Transporter\QueryParams;
+use OpenBreweryDb\ValueObjects\Connector\BaseUri;
+use OpenBreweryDb\ValueObjects\Connector\Headers;
+use OpenBreweryDb\ValueObjects\Connector\QueryParams;
 use Psr\Http\Client\ClientInterface;
 
+/**
+ * A client builder for configuring the API connector to Open Brewery DB.
+ */
 final class Builder
 {
     /**
@@ -97,8 +100,8 @@ final class Builder
         }
 
         $client = $this->httpClient ??= Psr18ClientDiscovery::find();
-        $transporter = new Connector($client, $baseUri, $headers, $queryParams);
+        $connector = new Connector($client, $baseUri, $headers, $queryParams);
 
-        return new Client($transporter);
+        return new Client($connector);
     }
 }

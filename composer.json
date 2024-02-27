@@ -64,7 +64,11 @@
             "@test"
         ],
         "rector": "vendor/bin/rector process",
-        "rector:dry": "vendor/bin/rector process --dry-run"
+        "rector:dry": "vendor/bin/rector process --dry-run",
+        "refactor": [
+            "@rector",
+            "@fmt"
+        ]
     },
     "config": {
         "allow-plugins": {

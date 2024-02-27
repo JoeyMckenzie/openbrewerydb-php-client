@@ -7,9 +7,9 @@ namespace OpenBreweryDb\ValueObjects;
 use Http\Discovery\Psr17Factory;
 use OpenBreweryDb\Enums\HttpMethod;
 use OpenBreweryDb\Enums\MediaType;
-use OpenBreweryDb\ValueObjects\Transporter\BaseUri;
-use OpenBreweryDb\ValueObjects\Transporter\Headers;
-use OpenBreweryDb\ValueObjects\Transporter\QueryParams;
+use OpenBreweryDb\ValueObjects\Connector\BaseUri;
+use OpenBreweryDb\ValueObjects\Connector\Headers;
+use OpenBreweryDb\ValueObjects\Connector\QueryParams;
 use Psr\Http\Message\RequestInterface;
 
 /**

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace OpenBreweryDb\Contracts;
 
+use OpenBreweryDb\Exceptions\ConnectorException;
 use OpenBreweryDb\Exceptions\ErrorException;
-use OpenBreweryDb\Exceptions\TransporterException;
 use OpenBreweryDb\Exceptions\UnserializableResponseException;
+use OpenBreweryDb\ValueObjects\Connector\Response;
 use OpenBreweryDb\ValueObjects\Payload;
-use OpenBreweryDb\ValueObjects\Transporter\Response;
 
 /**
  * @internal
@@ -20,7 +20,7 @@ interface ConnectorContract
      *
      * @return Response<array<array-key, mixed>>
      *
-     * @throws ErrorException|UnserializableResponseException|TransporterException
+     * @throws ErrorException|UnserializableResponseException|ConnectorException
      */
     public function requestData(Payload $payload): Response;
 }

@@ -11,8 +11,8 @@ use OpenBreweryDb\Responses\Breweries\AutocompleteResponse;
 use OpenBreweryDb\Responses\Breweries\FindResponse;
 use OpenBreweryDb\Responses\Breweries\ListResponse;
 use OpenBreweryDb\Responses\Breweries\MetadataResponse;
+use OpenBreweryDb\ValueObjects\Connector\Response;
 use OpenBreweryDb\ValueObjects\Payload;
-use OpenBreweryDb\ValueObjects\Transporter\Response;
 use Override;
 
 final readonly class Breweries implements BreweriesContract
@@ -30,24 +30,7 @@ final readonly class Breweries implements BreweriesContract
         $payload = Payload::retrieve('breweries', $id);
 
         /**
-         * @var Response<array{
-         *        id: string,
-         *        name: string,
-         *        brewery_type: string,
-         *        address_1: string,
-         *        address_2: ?string,
-         *        address_3: ?string,
-         *        city: string,
-         *        state_province: string,
-         *        postal_code: string,
-         *        country: string,
-         *        longitude: string,
-         *        latitude: string,
-         *        phone: string,
-         *        website_url: ?string,
-         *        state: string,
-         *        street: string
-         *  }> $response
+         * @var Response<array{id: string, name: string, brewery_type: ?string, address_1: ?string, address_2: ?string, address_3: ?string, city: string, state_province: string, postal_code: string, country: string, longitude: ?string, latitude: ?string, phone: ?string, website_url: ?string, state: string, street: ?string}> $response
          */
         $response = $this->connector->requestData($payload);
 
@@ -67,24 +50,7 @@ final readonly class Breweries implements BreweriesContract
         $payload = Payload::list('breweries', $parameters, 'random');
 
         /**
-         * @var Response<array<int, array{
-         *            id: string,
-         *            name: string,
-         *            brewery_type: string,
-         *            address_1: string,
-         *            address_2: ?string,
-         *            address_3: ?string,
-         *            city: string,
-         *            state_province: string,
-         *            postal_code: string,
-         *            country: string,
-         *            longitude: string,
-         *            latitude: string,
-         *            phone: string,
-         *            website_url: ?string,
-         *            state: string,
-         *            street: string
-         *     }>> $response
+         * @var Response<array<int, array{id: string, name: string, brewery_type: ?string, address_1: ?string, address_2: ?string, address_3: ?string, city: string, state_province: string, postal_code: string, country: string, longitude: ?string, latitude: ?string, phone: ?string, website_url: ?string, state: string, street: ?string}>> $response
          */
         $response = $this->connector->requestData($payload);
 
@@ -100,24 +66,7 @@ final readonly class Breweries implements BreweriesContract
         $payload = Payload::list('breweries', $parameters);
 
         /**
-         * @var Response<array<int, array{
-         *            id: string,
-         *            name: string,
-         *            brewery_type: string,
-         *            address_1: string,
-         *            address_2: ?string,
-         *            address_3: ?string,
-         *            city: string,
-         *            state_province: string,
-         *            postal_code: string,
-         *            country: string,
-         *            longitude: string,
-         *            latitude: string,
-         *            phone: string,
-         *            website_url: ?string,
-         *            state: string,
-         *            street: string
-         *     }>> $response
+         * @var Response<array<int, array{id: string, name: string, brewery_type: ?string, address_1: ?string, address_2: ?string, address_3: ?string, city: string, state_province: string, postal_code: string, country: string, longitude: ?string, latitude: ?string, phone: ?string, website_url: ?string, state: string, street: ?string}>> $response
          */
         $response = $this->connector->requestData($payload);
 
@@ -138,24 +87,7 @@ final readonly class Breweries implements BreweriesContract
         $payload = Payload::list('breweries', $parameters, 'search');
 
         /**
-         * @var Response<array<int, array{
-         *            id: string,
-         *            name: string,
-         *            brewery_type: string,
-         *            address_1: string,
-         *            address_2: ?string,
-         *            address_3: ?string,
-         *            city: string,
-         *            state_province: string,
-         *            postal_code: string,
-         *            country: string,
-         *            longitude: string,
-         *            latitude: string,
-         *            phone: string,
-         *            website_url: ?string,
-         *            state: string,
-         *            street: string
-         *     }>> $response
+         * @var Response<array<int, array{id: string, name: string, brewery_type: ?string, address_1: ?string, address_2: ?string, address_3: ?string, city: string, state_province: string, postal_code: string, country: string, longitude: ?string, latitude: ?string, phone: ?string, website_url: ?string, state: string, street: ?string}>> $response
          */
         $response = $this->connector->requestData($payload);
 

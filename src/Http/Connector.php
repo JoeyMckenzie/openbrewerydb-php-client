@@ -9,14 +9,14 @@ use GuzzleHttp\Exception\ClientException;
 use JsonException;
 use OpenBreweryDb\Contracts\ConnectorContract;
 use OpenBreweryDb\Enums\MediaType;
+use OpenBreweryDb\Exceptions\ConnectorException;
 use OpenBreweryDb\Exceptions\ErrorException;
-use OpenBreweryDb\Exceptions\TransporterException;
 use OpenBreweryDb\Exceptions\UnserializableResponseException;
+use OpenBreweryDb\ValueObjects\Connector\BaseUri;
+use OpenBreweryDb\ValueObjects\Connector\Headers;
+use OpenBreweryDb\ValueObjects\Connector\QueryParams;
+use OpenBreweryDb\ValueObjects\Connector\Response;
 use OpenBreweryDb\ValueObjects\Payload;
-use OpenBreweryDb\ValueObjects\Transporter\BaseUri;
-use OpenBreweryDb\ValueObjects\Transporter\Headers;
-use OpenBreweryDb\ValueObjects\Transporter\QueryParams;
-use OpenBreweryDb\ValueObjects\Transporter\Response;
 use Override;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
@@ -28,7 +28,7 @@ use Psr\Http\Message\ResponseInterface;
 final readonly class Connector implements ConnectorContract
 {
     /**
-     * Creates a new Http Transporter instance.
+     * Creates a new Http connector instance.
      */
     public function __construct(
         private ClientInterface $client,
@@ -63,7 +63,7 @@ final readonly class Connector implements ConnectorContract
     }
 
     /**
-     * @throws TransporterException|ErrorException|UnserializableResponseException
+     * @throws ConnectorException|ErrorException|UnserializableResponseException
      */
     private function sendRequest(Closure $callable): ResponseInterface
     {
@@ -74,7 +74,7 @@ final readonly class Connector implements ConnectorContract
                 $this->throwIfJsonError($clientException->getResponse(), $clientException->getResponse()->getBody()->getContents());
             }
 
-            throw new TransporterException($clientException);
+            throw new ConnectorException($clientException);
         }
     }
 

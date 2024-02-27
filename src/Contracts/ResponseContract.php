@@ -5,23 +5,18 @@ declare(strict_types=1);
 namespace OpenBreweryDb\Contracts;
 
 use ArrayAccess;
+use OpenBreweryDb\Contracts\Concerns\Arrayable;
 
 /**
  * @template TArray of array
  *
  * @extends ArrayAccess<key-of<TArray>, value-of<TArray>>
+ * @extends Arrayable<TArray>
  *
  * @internal
  */
-interface ResponseContract extends ArrayAccess
+interface ResponseContract extends Arrayable, ArrayAccess
 {
-    /**
-     * Returns the array representation of the Response.
-     *
-     * @return TArray
-     */
-    public function toArray(): array;
-
     /**
      * @param  key-of<TArray>  $offset
      */
