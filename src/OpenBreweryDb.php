@@ -16,7 +16,7 @@ final class OpenBreweryDb
     public static function client(): Client
     {
         return self::builder()
-            ->withHttpHeader('User-Agent', Client::USER_AGENT)
+            ->withHeader('User-Agent', Client::USER_AGENT)
             ->build();
     }
 

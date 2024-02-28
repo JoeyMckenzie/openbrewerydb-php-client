@@ -47,9 +47,9 @@ final class Builder
     }
 
     /**
-     * Adds a custom HTTP header to the requests.
+     * Adds a custom header to the requests.
      */
-    public function withHttpHeader(string $name, string $value): self
+    public function withHeader(string $name, string $value): self
     {
         $this->headers[$name] = $value;
 

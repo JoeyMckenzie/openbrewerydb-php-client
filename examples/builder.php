@@ -20,6 +20,7 @@ $guzzleClient = new GuzzleHttp\Client([
 
 $openBreweryDbClient = OpenBreweryDb::builder()
     ->withHttpClient($guzzleClient)
+    ->withHeader('foo', 'bar')
     ->build();
 
 // Get a list of breweries, based on all types of different search criteria
