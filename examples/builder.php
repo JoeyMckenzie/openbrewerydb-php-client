@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use OpenBreweryDb\OpenBreweryDb;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
 /**
  * Using the client builder with PSR HTTP client autodiscovery,
@@ -14,9 +14,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
  * the following example, Guzzle's HTTP client is used, though
  * this could easily be swapped out for Symfony's client as well.
  */
-
 $guzzleClient = new GuzzleHttp\Client([
-    'timeout' => 5
+    'timeout' => 5,
 ]);
 
 $openBreweryDbClient = OpenBreweryDb::builder()

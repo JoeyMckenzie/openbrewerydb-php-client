@@ -20,21 +20,20 @@ final readonly class Payload
     /**
      * Creates a new Request value object.
      *
-     * @param array<string, mixed> $parameters
+     * @param  array<string, mixed>  $parameters
      */
     private function __construct(
-        private MediaType   $accept,
-        private HttpMethod  $method,
+        private MediaType $accept,
+        private HttpMethod $method,
         private ResourceUri $uri,
-        private array       $parameters = [],
-    )
-    {
+        private array $parameters = [],
+    ) {
     }
 
     /**
      * Creates a new Payload value object from the given parameters.
      *
-     * @param array<string, mixed> $parameters
+     * @param  array<string, mixed>  $parameters
      */
     public static function list(string $resource, array $parameters = [], ?string $suffix = null): self
     {
@@ -48,7 +47,7 @@ final readonly class Payload
     /**
      * Creates a new Payload value object from the given parameters.
      *
-     * @param array<string, mixed> $parameters
+     * @param  array<string, mixed>  $parameters
      */
     public static function retrieve(string $resource, string $id, array $parameters = []): self
     {
@@ -71,7 +70,7 @@ final readonly class Payload
         $queryParams = [...$queryParams->toArray(), ...$this->parameters];
 
         if ($queryParams !== []) {
-            $uri .= '?' . http_build_query($queryParams);
+            $uri .= '?'.http_build_query($queryParams);
         }
 
         $headers = $headers->withAccept($this->accept);
