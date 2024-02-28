@@ -16,7 +16,6 @@ final class OpenBreweryDb
     public static function client(): Client
     {
         return self::builder()
-            ->withBaseUrl(Client::API_BASE_URL)
             ->withHttpHeader('User-Agent', Client::USER_AGENT)
             ->build();
     }

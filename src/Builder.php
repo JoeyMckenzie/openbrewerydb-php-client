@@ -22,11 +22,6 @@ final class Builder
     private ?ClientInterface $httpClient = null;
 
     /**
-     * The base URI for the requests.
-     */
-    private string $baseUri;
-
-    /**
      * The HTTP headers for the requests.
      *
      * @var array<string, string>
@@ -47,16 +42,6 @@ final class Builder
     public function withHttpClient(ClientInterface $client): self
     {
         $this->httpClient = $client;
-
-        return $this;
-    }
-
-    /**
-     * Sets the base URI for the requests.
-     */
-    public function withBaseUrl(string $baseUrl): self
-    {
-        $this->baseUri = $baseUrl;
 
         return $this;
     }
@@ -92,7 +77,7 @@ final class Builder
             $headers = $headers->withCustomHeader($name, $value);
         }
 
-        $baseUri = BaseUri::from($this->baseUri);
+        $baseUri = BaseUri::from(Client::API_BASE_URL);
         $queryParams = QueryParams::create();
 
         foreach ($this->queryParams as $name => $value) {
