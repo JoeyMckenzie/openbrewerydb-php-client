@@ -10,7 +10,7 @@ jobs:
       matrix:
         os: [ ubuntu-latest ]
         php: [ 8.3 ]
-        dependency-version: [ prefer-lowest, prefer-stable ]
+        dependency-version: [ prefer-stable ]
 
     name: PHP ${{ matrix.php }} | OS ${{ matrix.os }} | Dependency Resolution ${{ matrix.dependency-version }}
 
