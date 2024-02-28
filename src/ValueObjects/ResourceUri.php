@@ -19,9 +19,13 @@ final readonly class ResourceUri implements \Stringable
     /**
      * Creates a new resource URI value object that lists the given resource.
      */
-    public static function list(string $resource, ?string $suffix = null): self
+    public static function list(string $resource, string $suffix = ''): self
     {
-        return new self("$resource/$suffix");
+        $uri = $suffix === '' || $suffix === '0'
+            ? $resource
+            : "$resource/$suffix";
+
+        return new self($uri);
     }
 
     /**

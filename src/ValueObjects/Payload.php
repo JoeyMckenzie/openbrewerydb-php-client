@@ -35,7 +35,7 @@ final readonly class Payload
      *
      * @param  array<string, mixed>  $parameters
      */
-    public static function list(string $resource, array $parameters = [], ?string $suffix = null): self
+    public static function list(string $resource, array $parameters = [], string $suffix = ''): self
     {
         $accept = MediaType::JSON;
         $method = HttpMethod::GET;
