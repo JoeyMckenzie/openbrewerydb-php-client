@@ -1,4 +1,4 @@
-# Open Brewery DB PHP API
+![OBDB logo](./assets/obdb.png)
 
 [![CI](https://github.com/JoeyMckenzie/openbrewerydb-php-api/actions/workflows/ci.yml/badge.svg)](https://github.com/JoeyMckenzie/openbrewerydb-php-api/actions/workflows/ci.yml)
 
@@ -9,7 +9,7 @@ provides a straight and easy-to-use PHP bindings for querying the API
 To get started, first install the package with composer:
 
 ```shell
-$ composer require joeymckenzie/openbrewerydb-php-api
+$ composer require joeymckenzie/openbrewerydb-php-client
 ```
 
 Next, instantiate the client from you code. Note, you should aim to only instantiate the client once as it uses Guzzle
