@@ -37,7 +37,6 @@ var_dump($metadata);
 $randomBrewery = $openBreweryDbClient->breweries()->random(5);
 var_dump($randomBrewery);
 
-
 /**
  * Since we're not limited to a specific HTTP client, we can mix and match
  * depending on what client you have installed or want to use.
