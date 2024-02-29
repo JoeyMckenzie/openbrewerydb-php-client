@@ -12,38 +12,36 @@ To get started, first install the package with composer:
 $ composer require joeymckenzie/openbrewerydb-php-client
 ```
 
-Next, instantiate the client from you code. Note, you should aim to only instantiate the client once as it uses Guzzle
-under the hood:
+Next, spin up a new client within your code and fire away!
 
 ```php
-use GuzzleHttp\Exception\ConnectException;
-use OpenBrewery\OpenBrewery\Breweries\BreweryType;
-use OpenBrewery\OpenBrewery\ClientConnector;
+<?php
 
-$client = new ClientConnector();
+declare(strict_types=1);
+
+require_once __DIR__.'/../vendor/autoload.php';
+
+use OpenBreweryDb\OpenBreweryDb;
+
+$client = OpenBreweryDb::client();
 
 // Get a list of breweries, based on all types of different search criteria
-$breweries = $client->breweries()->list(type: BreweryType::BREWPUB);
+$breweries = $client->breweries()->list([
+    'by_city' => 'Sacramento',
+]);
 var_dump($breweries);
 
 // Retrieve various metadata about breweries from the API
-$metadata = $client->breweries()->meta();
+$metadata = $client->breweries()->metadata();
 var_dump($metadata);
 
 // Get a random brewery with a specified page size
 $randomBrewery = $client->breweries()->random(5);
 var_dump($randomBrewery);
-
-// Optionally, provide a default timeout for all requests
-$anotherClient = new ClientConnector(1.0);
-
-try {
-    $breweries = $anotherClient->breweries()->autocomplete('dog');
-} catch (ConnectException $e) {
-    // Handle retries, logging, events, etc.
-    echo 'Request timed out';
-}
 ```
+
+The library relies on autodiscovery and will use whichever package that implements PSR-17 within your composer dependencies.
+You are free to use the HTTP client of you choice, though a popular package is [Guzzle](https://docs.guzzlephp.org/en/stable/).
 
 For the entire set of APIs offered by Open Brewery DB, check out the docs on
 their [website](https://openbrewerydb.org/documentation).

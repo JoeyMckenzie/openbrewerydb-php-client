@@ -36,3 +36,31 @@ var_dump($metadata);
 // Get a random brewery with a specified page size
 $randomBrewery = $openBreweryDbClient->breweries()->random(5);
 var_dump($randomBrewery);
+
+
+/**
+ * Since we're not limited to a specific HTTP client, we can mix and match
+ * depending on what client you have installed or want to use.
+ */
+$symfonyClient = (new Symfony\Component\HttpClient\Psr18Client())->withOptions([
+    'headers' => ['symfony' => 'is-awesome'],
+]);
+
+$openBreweryDbClientWithSymfony = OpenBreweryDb::builder()
+    ->withHttpClient($symfonyClient)
+    ->withHeader('foo', 'bar')
+    ->build();
+
+// Get a list of breweries, based on all types of different search criteria
+$breweries = $openBreweryDbClientWithSymfony->breweries()->list([
+    'by_city' => 'Sacramento',
+]);
+var_dump($breweries);
+
+// Retrieve various metadata about breweries from the API
+$metadata = $openBreweryDbClientWithSymfony->breweries()->metadata();
+var_dump($metadata);
+
+// Get a random brewery with a specified page size
+$randomBrewery = $openBreweryDbClientWithSymfony->breweries()->random(5);
+var_dump($randomBrewery);
