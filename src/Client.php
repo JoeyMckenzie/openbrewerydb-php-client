@@ -36,7 +36,7 @@ final readonly class Client
     }
 
     /**
-     * A resource gateway to the various brewery retrieval options available on the API.
+     * Resource gateway to the various brewery retrieval options available on the API.
      *
      * @see https://openbrewerydb.org/documentation
      */

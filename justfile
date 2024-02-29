@@ -7,3 +7,7 @@ lint:
 # run tests in parallel
 test:
     find src/ tests/ | entr -s 'composer run test'
+
+# run tests in parallel
+fmt:
+    find src/ tests/ | entr -s 'composer run refactor'

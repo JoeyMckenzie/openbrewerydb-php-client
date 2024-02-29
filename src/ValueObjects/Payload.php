@@ -13,6 +13,9 @@ use OpenBreweryDb\ValueObjects\Connector\QueryParams;
 use Psr\Http\Message\RequestInterface;
 
 /**
+ * Payloads are sent to the server as an encapsulating HTTP request,
+ * with configurable headers, method, and parameters.
+ *
  * @internal
  */
 final readonly class Payload

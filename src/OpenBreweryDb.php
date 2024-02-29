@@ -4,12 +4,19 @@ declare(strict_types=1);
 
 namespace OpenBreweryDb;
 
+use OpenBreweryDb\ValueObjects\Version;
+
 /**
  * A generic client connector to Open Brewery DB that uses a pre-configured HTTP client.
  * If no client is provided, we'll run auto-discovery to detect the client installed.
  */
 final class OpenBreweryDb
 {
+    /**
+     * Current version of the library.
+     */
+    private ?Version $version = null;
+
     /**
      * Creates a new default client instance.
      */
@@ -26,5 +33,12 @@ final class OpenBreweryDb
     public static function builder(): Builder
     {
         return new Builder();
+    }
+
+    public function getVersion(): Version
+    {
+        $this->version ??= new Version();
+
+        return $this->version;
     }
 }

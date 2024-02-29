@@ -12,7 +12,7 @@ use OpenBreweryDb\ValueObjects\Connector\QueryParams;
 use Psr\Http\Client\ClientInterface;
 
 /**
- * A client builder for configuring the API connector to Open Brewery DB.
+ * Client builder/factory for configuring the API connector to Open Brewery DB.
  */
 final class Builder
 {
@@ -29,7 +29,7 @@ final class Builder
     private array $headers = [];
 
     /**
-     * The query parameters for the requests.
+     * The query parameters to be included on each outgoing request.
      *
      * @var array<string, string|int>
      */
@@ -47,7 +47,7 @@ final class Builder
     }
 
     /**
-     * Adds a custom header to the requests.
+     * Adds a custom header to each outgoing request.
      */
     public function withHeader(string $name, string $value): self
     {
@@ -57,7 +57,7 @@ final class Builder
     }
 
     /**
-     * Adds a custom query parameter to the request url.
+     * Adds a custom query parameter to the request url for each outgoing request.
      */
     public function withQueryParam(string $name, string $value): self
     {
@@ -67,7 +67,7 @@ final class Builder
     }
 
     /**
-     * Creates a new Open Brewery DB Client.
+     * Creates a new Open Brewery DB client based on the provided builder options.
      */
     public function build(): Client
     {
