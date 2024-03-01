@@ -1,8 +1,8 @@
-![OBDB logo](./assets/obdb.png)
+![Logo](./assets/obdb.png)
 
-<div align="center">
+<img align="center">
     <img src="https://github.com/JoeyMckenzie/openbrewerydb-php-api/actions/workflows/ci.yml/badge.svg" />
-    <img src="https://github.styleci.io/repos/747020718/shield?style=flat" />
+    <img src="https://github.styleci.io/repos/747020718/shield?style=flat"/>
 </div>
 
 (Un)official PHP bindings for the [Open Brewery DB API](https://openbrewerydb.org/). Open Brewery DB provides a public
