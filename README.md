@@ -50,5 +50,5 @@ dependencies.
 You are free to use the HTTP client of you choice, though a popular package
 is [Guzzle](https://docs.guzzlephp.org/en/stable/).
 
-For the entire set of APIs offered by Open Brewery DB, check out the docs on
-their [website](https://openbrewerydb.org/documentation).
+Though I am not affiliated with organization itself, check out the entire set of APIs offered by Open Brewery DB, check
+out the docs on their [website](https://openbrewerydb.org/documentation).
