@@ -27,7 +27,7 @@ final readonly class Headers implements Arrayable
     }
 
     /**
-     * Creates a new Headers value object
+     * Creates a new Headers value object.
      */
     public static function create(): self
     {

@@ -26,7 +26,7 @@ final readonly class QueryParams implements Arrayable
     }
 
     /**
-     * Creates a new Query Params value object
+     * Creates a new Query Params value object.
      */
     public static function create(): self
     {
