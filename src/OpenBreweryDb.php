@@ -35,7 +35,7 @@ final class OpenBreweryDb
     /**
      * Gets the current version information for the library.
      */
-    public function getVersion(): Version
+    public function getVersion(): string
     {
         return Version::current();
     }

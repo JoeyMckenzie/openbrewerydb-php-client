@@ -32,12 +32,12 @@ final readonly class Version implements Stringable
      */
     public static function current(): string
     {
-        return strval(new self);
+        return (string) new self;
     }
 
     #[Override]
     public function __toString(): string
     {
-        return self::MAJOR . '.' . self::MINOR . '.' . self::PATCH;
+        return self::MAJOR.'.'.self::MINOR.'.'.self::PATCH;
     }
 }
