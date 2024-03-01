@@ -1,6 +1,9 @@
 ![OBDB logo](./assets/obdb.png)
 
-[![CI](https://github.com/JoeyMckenzie/openbrewerydb-php-api/actions/workflows/ci.yml/badge.svg)](https://github.com/JoeyMckenzie/openbrewerydb-php-api/actions/workflows/ci.yml)
+<div align="center">
+    <img src="https://github.com/JoeyMckenzie/openbrewerydb-php-api/actions/workflows/ci.yml/badge.svg" />
+    <img src="https://github.styleci.io/repos/747020718/shield?style=flat" />
+</div>
 
 (Un)official PHP bindings for the [Open Brewery DB API](https://openbrewerydb.org/). Open Brewery DB provides a public
 dataset for breweries around the world, as well as offering an API to retrieve data in various forms. This library
@@ -40,8 +43,10 @@ $randomBrewery = $client->breweries()->random(5);
 var_dump($randomBrewery);
 ```
 
-The library relies on autodiscovery and will use whichever package that implements PSR-17 within your composer dependencies.
-You are free to use the HTTP client of you choice, though a popular package is [Guzzle](https://docs.guzzlephp.org/en/stable/).
+The library relies on autodiscovery and will use whichever package that implements PSR-17 within your composer
+dependencies.
+You are free to use the HTTP client of you choice, though a popular package
+is [Guzzle](https://docs.guzzlephp.org/en/stable/).
 
 For the entire set of APIs offered by Open Brewery DB, check out the docs on
 their [website](https://openbrewerydb.org/documentation).
