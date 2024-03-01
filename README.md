@@ -1,6 +1,6 @@
 ![Logo](./assets/obdb.png)
 
-<img align="center">
+<div align="center">
     <img src="https://github.com/JoeyMckenzie/openbrewerydb-php-api/actions/workflows/ci.yml/badge.svg" />
     <img src="https://github.styleci.io/repos/747020718/shield?style=flat"/>
 </div>
