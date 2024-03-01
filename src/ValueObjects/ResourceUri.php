@@ -4,10 +4,15 @@ declare(strict_types=1);
 
 namespace OpenBreweryDb\ValueObjects;
 
+use Override;
+use Stringable;
+
 /**
+ * A value object for representing the resource endpoint for a request.
+ *
  * @internal
  */
-final readonly class ResourceUri implements \Stringable
+final readonly class ResourceUri implements Stringable
 {
     /**
      * Creates a new resource URI value object.
@@ -36,7 +41,7 @@ final readonly class ResourceUri implements \Stringable
         return new self("$resource/$id");
     }
 
-    #[\Override]
+    #[Override]
     public function __toString(): string
     {
         return $this->uri;

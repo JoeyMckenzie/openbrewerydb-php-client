@@ -14,10 +14,19 @@ use Stringable;
  */
 final readonly class Version implements Stringable
 {
+    /**
+     * Major version number, incremented on language upgrades, refactors, or backwards compatibility breaking changes.
+     */
     private int $major;
 
+    /**
+     * Minor version number, incremented for minor API changes and non-backwards compatibility changes.
+     */
     private int $minor;
 
+    /**
+     * Patch version number, incremented for bug fixes and documentation updates.
+     */
     private int $patch;
 
     /**

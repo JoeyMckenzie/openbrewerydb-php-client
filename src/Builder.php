@@ -73,6 +73,7 @@ final class Builder
     {
         $headers = Headers::create();
 
+        // For any default headers configured for the client, we'll add those to each outbound request
         foreach ($this->headers as $name => $value) {
             $headers = $headers->withCustomHeader($name, $value);
         }
@@ -80,6 +81,7 @@ final class Builder
         $baseUri = BaseUri::from(Client::API_BASE_URL);
         $queryParams = QueryParams::create();
 
+        // As with the headers, we'll also include any query params configured on each request
         foreach ($this->queryParams as $name => $value) {
             $queryParams = $queryParams->withParam($name, $value);
         }

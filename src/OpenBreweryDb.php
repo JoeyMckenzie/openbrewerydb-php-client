@@ -35,6 +35,9 @@ final class OpenBreweryDb
         return new Builder();
     }
 
+    /**
+     * Gets the current version information for the library.
+     */
     public function getVersion(): Version
     {
         $this->version ??= new Version();

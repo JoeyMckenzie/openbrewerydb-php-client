@@ -4,10 +4,15 @@ declare(strict_types=1);
 
 namespace OpenBreweryDb\ValueObjects\Connector;
 
+use Override;
+use Stringable;
+
 /**
+ * A value object for representing the base URI on all requests.
+ *
  * @internal
  */
-final readonly class BaseUri implements \Stringable
+final readonly class BaseUri implements Stringable
 {
     /**
      * Creates a new Base URI value object.
@@ -24,7 +29,7 @@ final readonly class BaseUri implements \Stringable
         return new self($baseUri);
     }
 
-    #[\Override]
+    #[Override]
     public function __toString(): string
     {
         foreach (['http://', 'https://'] as $protocol) {

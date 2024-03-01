@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace OpenBreweryDb\ValueObjects\Connector;
 
 use OpenBreweryDb\Contracts\Concerns\Arrayable;
+use Override;
 
 /**
+ * A value object for encapsulating one or many query parameters included on the request.
+ *
  * @implements Arrayable<array<string, string|int|float>>
  *
  * @internal
@@ -16,7 +19,7 @@ final readonly class QueryParams implements Arrayable
     /**
      * Creates a new Query Params value object.
      *
-     * @param  array<string, string|int|float>  $params
+     * @param array<string, string|int|float> $params
      */
     private function __construct(private array $params)
     {
@@ -41,7 +44,7 @@ final readonly class QueryParams implements Arrayable
         ]);
     }
 
-    #[\Override]
+    #[Override]
     public function toArray(): array
     {
         return $this->params;
