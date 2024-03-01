@@ -4,14 +4,24 @@ declare(strict_types=1);
 
 namespace Tests;
 
-test('All source files are strictly typed')->expect('OpenBreweryDb\\')->toUseStrictTypes();
+test('All source files are strictly typed')
+    ->expect('OpenBreweryDb\\')
+    ->toUseStrictTypes();
 
-test('All tests files are strictly typed')->expect('Tests\\')->toUseStrictTypes();
+test('All tests files are strictly typed')
+    ->expect('Tests\\')
+    ->toUseStrictTypes();
 
 test('Value objects should be immutable')
     ->expect('OpenBreweryDb\\ValueObjects\\')
     ->toBeFinal()
     ->and('OpenBreweryDb\\ValueObjects\\')
+    ->toBeReadonly();
+
+test('Responses should be immutable')
+    ->expect('OpenBreweryDb\\Responses\\Breweries\\')
+    ->toBeFinal()
+    ->and('OpenBreweryDb\\Responses\\Breweries\\')
     ->toBeReadonly();
 
 test('Contracts should be abstract')
