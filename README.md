@@ -3,12 +3,7 @@
 <div align="center">
   <div style="display: inline-block;">
     <img src="https://github.com/JoeyMckenzie/openbrewerydb-php-api/actions/workflows/ci.yml/badge.svg" />
-  </div>
-  <div style="display: inline-block;">
     <img src="https://github.styleci.io/repos/747020718/shield?style=flat"/>
-  </div>
-  <div style="display: inline-block;">
-    [![Badge 3](https://example.com/badge3.svg)](https://example.com/link3)
   </div>
 </div>
 
