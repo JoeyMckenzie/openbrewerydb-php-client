@@ -9,36 +9,35 @@ use Stringable;
 
 /**
  * A version value object containing version information based on the current Packagist released version.
- *
- * @internal
  */
 final readonly class Version implements Stringable
 {
     /**
-     * Constructs a new version based on the major, minor, and patch of the current release.
-     *
-     * @param  int  $major  Major version number, incremented on language upgrades, refactors, or backwards compatibility breaking changes.
-     * @param  int  $minor  Minor version number, incremented for minor API changes and non-backwards compatibility changes.
-     * @param  int  $patch  Patch version number, incremented for bug fixes and documentation updates.
+     * Major version number, incremented on language upgrades, refactors, or backwards compatibility breaking changes.
      */
-    public function __construct(
-        public int $major,
-        public int $minor,
-        public int $patch
-    ) {
-    }
+    private const int MAJOR = 0;
 
     /**
-     * Constructs a current version object.
+     * Minor version number, incremented for minor API changes and non-backwards compatibility changes.
      */
-    public static function current(): self
+    private const int MINOR = 7;
+
+    /**
+     * Patch version number, incremented for bug fixes and documentation updates.
+     */
+    private const int PATCH = 0;
+
+    /**
+     * Constructs a new version based on the major, minor, and patch of the current release.
+     */
+    public static function current(): string
     {
-        return new self(0, 6, 0);
+        return strval(new self);
     }
 
     #[Override]
     public function __toString(): string
     {
-        return "$this->major.$this->minor.$this->patch";
+        return self::MAJOR . '.' . self::MINOR . '.' . self::PATCH;
     }
 }
