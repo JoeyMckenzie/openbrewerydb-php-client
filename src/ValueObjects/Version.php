@@ -15,28 +15,17 @@ use Stringable;
 final readonly class Version implements Stringable
 {
     /**
-     * Major version number, incremented on language upgrades, refactors, or backwards compatibility breaking changes.
-     */
-    public int $major;
-
-    /**
-     * Minor version number, incremented for minor API changes and non-backwards compatibility changes.
-     */
-    public int $minor;
-
-    /**
-     * Patch version number, incremented for bug fixes and documentation updates.
-     */
-    public int $patch;
-
-    /**
      * Constructs a new version based on the major, minor, and patch of the current release.
+     *
+     * @param  int  $major  Major version number, incremented on language upgrades, refactors, or backwards compatibility breaking changes.
+     * @param  int  $minor  Minor version number, incremented for minor API changes and non-backwards compatibility changes.
+     * @param  int  $patch  Patch version number, incremented for bug fixes and documentation updates.
      */
-    public function __construct(int $major, int $minor, int $patch)
-    {
-        $this->major = $major;
-        $this->minor = $minor;
-        $this->patch = $patch;
+    public function __construct(
+        public int $major,
+        public int $minor,
+        public int $patch
+    ) {
     }
 
     /**

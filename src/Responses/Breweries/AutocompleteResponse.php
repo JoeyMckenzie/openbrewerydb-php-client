@@ -24,7 +24,7 @@ final readonly class AutocompleteResponse implements ResponseContract
     use ArrayAccessible;
 
     /**
-     * @param array<int, array{id: string, name: string}> $data
+     * @param  array<int, array{id: string, name: string}>  $data
      */
     private function __construct(public array $data)
     {
@@ -33,7 +33,7 @@ final readonly class AutocompleteResponse implements ResponseContract
     /**
      * Acts as static factory, and returns a new Response instance.
      *
-     * @param array<int, array{id: string, name: string}> $attributes
+     * @param  array<int, array{id: string, name: string}>  $attributes
      */
     public static function from(array $attributes): self
     {

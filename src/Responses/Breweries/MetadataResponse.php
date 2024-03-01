@@ -23,7 +23,7 @@ final readonly class MetadataResponse implements ResponseContract
     use ArrayAccessible;
 
     /**
-     * @param array<int, array{total: string, page: string, per_page: string}> $data
+     * @param  array<int, array{total: string, page: string, per_page: string}>  $data
      */
     private function __construct(public array $data)
     {
@@ -32,7 +32,7 @@ final readonly class MetadataResponse implements ResponseContract
     /**
      * Acts as static factory, and returns a new Response instance.
      *
-     * @param array<int, array{total: string, page: string, per_page: string}> $attributes
+     * @param  array<int, array{total: string, page: string, per_page: string}>  $attributes
      */
     public static function from(array $attributes): self
     {

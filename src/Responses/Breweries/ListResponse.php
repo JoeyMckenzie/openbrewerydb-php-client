@@ -24,7 +24,7 @@ final readonly class ListResponse implements ResponseContract
     use ArrayAccessible;
 
     /**
-     * @param FindResponse[] $data
+     * @param  FindResponse[]  $data
      */
     private function __construct(public array $data)
     {
@@ -33,11 +33,11 @@ final readonly class ListResponse implements ResponseContract
     /**
      * Acts as static factory, and returns a new Response instance.
      *
-     * @param array<int, array{id: string, name: string, brewery_type: ?string, address_1: ?string, address_2: ?string, address_3: ?string, city: string, state_province: string, postal_code: string, country: string, longitude: ?string, latitude: ?string, phone: ?string, website_url: ?string, state: string, street: ?string}> $attributes
+     * @param  array<int, array{id: string, name: string, brewery_type: ?string, address_1: ?string, address_2: ?string, address_3: ?string, city: string, state_province: string, postal_code: string, country: string, longitude: ?string, latitude: ?string, phone: ?string, website_url: ?string, state: string, street: ?string}>  $attributes
      */
     public static function from(array $attributes): self
     {
-        $mappedData = array_map(fn(array $result): FindResponse => FindResponse::from(
+        $mappedData = array_map(fn (array $result): FindResponse => FindResponse::from(
             $result,
         ), $attributes);
 
@@ -51,7 +51,7 @@ final readonly class ListResponse implements ResponseContract
     public function toArray(): array
     {
         return array_map(
-            static fn(FindResponse $response): array => $response->toArray(),
+            static fn (FindResponse $response): array => $response->toArray(),
             $this->data,
         );
     }
