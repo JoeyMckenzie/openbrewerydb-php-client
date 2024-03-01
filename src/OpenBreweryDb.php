@@ -13,11 +13,6 @@ use OpenBreweryDb\ValueObjects\Version;
 final class OpenBreweryDb
 {
     /**
-     * Current version of the library.
-     */
-    private ?Version $version = null;
-
-    /**
      * Creates a new default client instance.
      */
     public static function client(): Client
@@ -42,8 +37,6 @@ final class OpenBreweryDb
      */
     public function getVersion(): Version
     {
-        $this->version ??= new Version();
-
-        return $this->version;
+        return Version::current();
     }
 }
