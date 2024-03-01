@@ -6,8 +6,14 @@ namespace OpenBreweryDb\Responses\Breweries;
 
 use OpenBreweryDb\Contracts\ResponseContract;
 use OpenBreweryDb\Responses\Concerns\ArrayAccessible;
+use Override;
 
 /**
+ * Autocomplete responses represent paginated data returned from the autocomplete endpoint, containing only top level
+ * information about breweries provided by the query. Useful for  form field look aheads, fuzzy searching, etc.
+ *
+ * @see https://openbrewerydb.org/documentation#autocomplete
+ *
  * @implements ResponseContract<array<int, array{id: string, name: string}>>
  */
 final readonly class AutocompleteResponse implements ResponseContract
@@ -18,7 +24,7 @@ final readonly class AutocompleteResponse implements ResponseContract
     use ArrayAccessible;
 
     /**
-     * @param  array<int, array{id: string, name: string}>  $data
+     * @param array<int, array{id: string, name: string}> $data
      */
     private function __construct(public array $data)
     {
@@ -27,7 +33,7 @@ final readonly class AutocompleteResponse implements ResponseContract
     /**
      * Acts as static factory, and returns a new Response instance.
      *
-     * @param  array<int, array{id: string, name: string}>  $attributes
+     * @param array<int, array{id: string, name: string}> $attributes
      */
     public static function from(array $attributes): self
     {
@@ -37,7 +43,7 @@ final readonly class AutocompleteResponse implements ResponseContract
     /**
      * {@inheritDoc}
      */
-    #[\Override]
+    #[Override]
     public function toArray(): array
     {
         return $this->data;

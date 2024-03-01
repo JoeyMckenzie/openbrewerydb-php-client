@@ -22,8 +22,10 @@ final class OpenBreweryDb
      */
     public static function client(): Client
     {
+        $version = Version::current();
+        
         return self::builder()
-            ->withHeader('User-Agent', Client::USER_AGENT)
+            ->withHeader('User-Agent', "openbrewerydb-php-client/$version")
             ->build();
     }
 

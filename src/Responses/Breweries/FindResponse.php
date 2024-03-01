@@ -6,8 +6,13 @@ namespace OpenBreweryDb\Responses\Breweries;
 
 use OpenBreweryDb\Contracts\ResponseContract;
 use OpenBreweryDb\Responses\Concerns\ArrayAccessible;
+use Override;
 
 /**
+ * Find responses represent data returned for breweries based on the provided UUID for the brewery.
+ *
+ * @see https://openbrewerydb.org/documentation#single-brewery
+ *
  * @implements ResponseContract<array{id: string, name: string, brewery_type: ?string, address_1: ?string, address_2: ?string, address_3: ?string, city: string, state_province: string, postal_code: string, country: string, longitude: ?string, latitude: ?string, phone: ?string, website_url: ?string, state: string, street: ?string}>
  */
 final readonly class FindResponse implements ResponseContract
@@ -18,29 +23,30 @@ final readonly class FindResponse implements ResponseContract
     use ArrayAccessible;
 
     private function __construct(
-        public string $id,
-        public string $name,
+        public string  $id,
+        public string  $name,
         public ?string $brewery_type,
         public ?string $address_1,
         public ?string $address_2,
         public ?string $address_3,
-        public string $city,
-        public string $state_province,
-        public string $postal_code,
-        public string $country,
+        public string  $city,
+        public string  $state_province,
+        public string  $postal_code,
+        public string  $country,
         public ?string $longitude,
         public ?string $latitude,
         public ?string $phone,
         public ?string $website_url,
-        public string $state,
+        public string  $state,
         public ?string $street,
-    ) {
+    )
+    {
     }
 
     /**
      * Acts as static factory, and returns a new Response instance.
      *
-     * @param  array{id: string, name: string, brewery_type: ?string, address_1: ?string, address_2: ?string, address_3: ?string, city: string, state_province: string, postal_code: string, country: string, longitude: ?string, latitude: ?string, phone: ?string, website_url: ?string, state: string, street: ?string}  $attributes
+     * @param array{id: string, name: string, brewery_type: ?string, address_1: ?string, address_2: ?string, address_3: ?string, city: string, state_province: string, postal_code: string, country: string, longitude: ?string, latitude: ?string, phone: ?string, website_url: ?string, state: string, street: ?string} $attributes
      */
     public static function from(array $attributes): self
     {
@@ -67,7 +73,7 @@ final readonly class FindResponse implements ResponseContract
     /**
      * {@inheritDoc}
      */
-    #[\Override]
+    #[Override]
     public function toArray(): array
     {
         return [

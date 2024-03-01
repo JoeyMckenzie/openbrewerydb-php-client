@@ -19,7 +19,7 @@ final readonly class QueryParams implements Arrayable
     /**
      * Creates a new Query Params value object.
      *
-     * @param array<string, string|int|float> $params
+     * @param  array<string, string|int|float>  $params
      */
     private function __construct(private array $params)
     {

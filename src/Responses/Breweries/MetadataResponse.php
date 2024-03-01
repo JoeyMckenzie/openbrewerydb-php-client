@@ -6,8 +6,13 @@ namespace OpenBreweryDb\Responses\Breweries;
 
 use OpenBreweryDb\Contracts\ResponseContract;
 use OpenBreweryDb\Responses\Concerns\ArrayAccessible;
+use Override;
 
 /**
+ * Metadata response representing only aggregate data about breweries based on the provided query.
+ *
+ * @see https://openbrewerydb.org/documentation#metadata
+ *
  * @implements ResponseContract<array<int, array{total: string, page: string, per_page: string}>>
  */
 final readonly class MetadataResponse implements ResponseContract
@@ -18,7 +23,7 @@ final readonly class MetadataResponse implements ResponseContract
     use ArrayAccessible;
 
     /**
-     * @param  array<int, array{total: string, page: string, per_page: string}>  $data
+     * @param array<int, array{total: string, page: string, per_page: string}> $data
      */
     private function __construct(public array $data)
     {
@@ -27,7 +32,7 @@ final readonly class MetadataResponse implements ResponseContract
     /**
      * Acts as static factory, and returns a new Response instance.
      *
-     * @param  array<int, array{total: string, page: string, per_page: string}>  $attributes
+     * @param array<int, array{total: string, page: string, per_page: string}> $attributes
      */
     public static function from(array $attributes): self
     {
@@ -37,7 +42,7 @@ final readonly class MetadataResponse implements ResponseContract
     /**
      * {@inheritDoc}
      */
-    #[\Override]
+    #[Override]
     public function toArray(): array
     {
         return $this->data;

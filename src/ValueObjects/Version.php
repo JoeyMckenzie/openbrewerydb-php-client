@@ -17,26 +17,34 @@ final readonly class Version implements Stringable
     /**
      * Major version number, incremented on language upgrades, refactors, or backwards compatibility breaking changes.
      */
-    private int $major;
+    public int $major;
 
     /**
      * Minor version number, incremented for minor API changes and non-backwards compatibility changes.
      */
-    private int $minor;
+    public int $minor;
 
     /**
      * Patch version number, incremented for bug fixes and documentation updates.
      */
-    private int $patch;
+    public int $patch;
 
     /**
      * Constructs a new version based on the major, minor, and patch of the current release.
      */
-    public function __construct()
+    public function __construct(int $major, int $minor, int $patch)
     {
-        $this->major = 0;
-        $this->minor = 1;
-        $this->patch = 0;
+        $this->major = $major;
+        $this->minor = $minor;
+        $this->patch = $patch;
+    }
+
+    /**
+     * Constructs a current version object.
+     */
+    public static function current(): self
+    {
+        return new self(0, 6, 0);
     }
 
     #[Override]
