@@ -6,4 +6,4 @@ namespace Tests;
 
 use OpenBreweryDb\ValueObjects\Version;
 
-test('Version should be correct', fn () => expect(Version::current())->toBe('0.7.0'));
+test('Version should be correct', fn () => expect(Version::current())->toBe('0.8.0'));

@@ -3,7 +3,7 @@
     "description": "An Open Brewery DB API client for PHP.",
     "type": "library",
     "license": "MIT",
-    "version": "0.7.0",
+    "version": "0.8.0",
     "homepage": "https://github.com/joeymckenzie/openbrewerydb-php-client",
     "autoload": {
         "psr-4": {

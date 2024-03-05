@@ -20,7 +20,7 @@ final readonly class Version implements Stringable
     /**
      * Minor version number, incremented for minor API changes and non-backwards compatibility changes.
      */
-    private const int MINOR = 7;
+    private const int MINOR = 8;
 
     /**
      * Patch version number, incremented for bug fixes and documentation updates.
@@ -32,7 +32,7 @@ final readonly class Version implements Stringable
      */
     public static function current(): string
     {
-        return (string) new self;
+        return (string) new self();
     }
 
     #[Override]
