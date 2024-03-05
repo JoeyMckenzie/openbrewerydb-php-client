@@ -21,6 +21,12 @@ final readonly class ResourceUri implements Stringable
     {
     }
 
+    #[Override]
+    public function __toString(): string
+    {
+        return $this->uri;
+    }
+
     /**
      * Creates a new resource URI value object that lists the given resource.
      */
@@ -39,11 +45,5 @@ final readonly class ResourceUri implements Stringable
     public static function retrieve(string $resource, string $id): self
     {
         return new self("$resource/$id");
-    }
-
-    #[Override]
-    public function __toString(): string
-    {
-        return $this->uri;
     }
 }

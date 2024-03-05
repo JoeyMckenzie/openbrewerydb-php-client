@@ -27,17 +27,17 @@ final readonly class Version implements Stringable
      */
     private const int PATCH = 0;
 
+    #[Override]
+    public function __toString(): string
+    {
+        return self::MAJOR.'.'.self::MINOR.'.'.self::PATCH;
+    }
+
     /**
      * Constructs a new version based on the major, minor, and patch of the current release.
      */
     public static function current(): string
     {
         return (string) new self();
-    }
-
-    #[Override]
-    public function __toString(): string
-    {
-        return self::MAJOR.'.'.self::MINOR.'.'.self::PATCH;
     }
 }

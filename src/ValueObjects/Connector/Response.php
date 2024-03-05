@@ -18,7 +18,7 @@ final readonly class Response
     /**
      * Creates a new Response value object.
      *
-     * @param TData $data
+     * @param  TData  $data
      */
     private function __construct(private mixed $data)
     {
@@ -27,7 +27,7 @@ final readonly class Response
     /**
      * Creates a new Response value object from the given data and meta information.
      *
-     * @param TData $attributes
+     * @param  TData  $attributes
      * @return Response<TData>
      */
     public static function from(array $attributes): self

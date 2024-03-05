@@ -21,14 +21,6 @@ final readonly class BaseUri implements Stringable
     {
     }
 
-    /**
-     * Creates a new Base URI value object.
-     */
-    public static function from(string $baseUri): self
-    {
-        return new self($baseUri);
-    }
-
     #[Override]
     public function __toString(): string
     {
@@ -39,5 +31,13 @@ final readonly class BaseUri implements Stringable
         }
 
         return "https://$this->baseUri/";
+    }
+
+    /**
+     * Creates a new Base URI value object.
+     */
+    public static function from(string $baseUri): self
+    {
+        return new self($baseUri);
     }
 }
