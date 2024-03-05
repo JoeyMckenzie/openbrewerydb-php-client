@@ -11,6 +11,8 @@ use OpenBreweryDb\ValueObjects\Connector\Response;
 use OpenBreweryDb\ValueObjects\Payload;
 
 /**
+ * A top-level client connector that represents communication methods with the API.
+ *
  * @internal
  */
 interface ConnectorContract

@@ -4,3 +4,4 @@ phpunit.xml
 .DS_STORE
 composer.lock
 .phpdoc
+.vscode

@@ -8,10 +8,10 @@
 </div>
 
 (Un)official PHP bindings for the [Open Brewery DB API](https://openbrewerydb.org/). Open Brewery DB provides a public
-dataset for breweries around the world, as well as offering an API to retrieve data in various forms. This library
-provides a straight and easy-to-use PHP bindings for querying the API
+dataset for breweries around the world, as well as offering an API to retrieve data in various forms. This library aims to
+provide straight and easy-to-use PHP bindings for querying the API. The library is inspired by the [Open AI client for PHP](https://github.com/openai-php/client) - please give it star as well!
 
-To get started, first install the package with composer:
+ To get started, first install the package with composer:
 
 ```shell
 $ composer require joeymckenzie/openbrewerydb-php-client
@@ -46,8 +46,7 @@ var_dump($randomBrewery);
 ```
 
 The library relies on autodiscovery and will use whichever package that implements PSR-17 within your composer
-dependencies.
-You are free to use the HTTP client of you choice, though a popular package
+dependencies. You are free to use the HTTP client of you choice, though a popular package
 is [Guzzle](https://docs.guzzlephp.org/en/stable/).
 
 Though I am not affiliated with organization itself, check out the entire set of APIs offered by Open Brewery DB, check

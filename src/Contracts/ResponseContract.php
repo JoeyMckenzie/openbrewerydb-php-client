@@ -8,6 +8,8 @@ use ArrayAccess;
 use OpenBreweryDb\Contracts\Concerns\Arrayable;
 
 /**
+ * Response contracts provide a set of methods allowing responses to be interacted with in a PHP array-like manner.
+ *
  * @template TArray of array
  *
  * @extends ArrayAccess<key-of<TArray>, value-of<TArray>>

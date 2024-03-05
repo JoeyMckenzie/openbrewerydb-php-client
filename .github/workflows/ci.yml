@@ -29,10 +29,6 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          # TODO: Pretty sure I don't need these... but I need a PHP grey beard to tell me otherwise
-          # extensions: dom, mbstring, zip
-          # tools: prestissimo
-          # coverage: pcov
 
       - name: Install Composer dependencies
         run: composer update --${{ matrix.dependency-version }} --no-interaction --prefer-dist

@@ -10,6 +10,9 @@ use OpenBreweryDb\Responses\Breweries\FindResponse;
 use OpenBreweryDb\Responses\Breweries\ListResponse;
 use OpenBreweryDb\Responses\Breweries\MetadataResponse;
 
+/**
+ * A top-level contract for interacting with Open Brewery DB's breweries as an HTTP resource.
+ */
 interface BreweriesContract
 {
     /**

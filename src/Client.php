@@ -24,11 +24,6 @@ final readonly class Client
     public const int PER_PAGE = 50;
 
     /**
-     * The default user agent, will include the current library version.
-     */
-    public const string USER_AGENT = 'openbrewerydb-php-api-client/0.6.0';
-
-    /**
      * Creates a client instance with the provided client transport abstraction.
      */
     public function __construct(private ConnectorContract $connector)

@@ -15,6 +15,9 @@ use OpenBreweryDb\ValueObjects\Connector\Response;
 use OpenBreweryDb\ValueObjects\Payload;
 use Override;
 
+/**
+ * {@inheritDoc}
+ */
 final readonly class Breweries implements BreweriesContract
 {
     public function __construct(private ConnectorContract $connector)
