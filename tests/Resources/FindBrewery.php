@@ -30,6 +30,6 @@ describe('Finding breweries', function () {
         $client = OpenBreweryDb::client();
 
         // Act/Assert
-        expect(fn() => $client->breweries()->find('not-a-brewery'))->toThrow(ErrorException::class, 'Couldn\'t find Brewery');
+        expect(fn () => $client->breweries()->find('not-a-brewery'))->toThrow(ErrorException::class, 'Couldn\'t find Brewery');
     });
 });
