@@ -16,7 +16,7 @@ final readonly class Client
     /**
      * The base URL for Open Brewery DB API.
      */
-    public const string API_BASE_URL = 'https://api.openbrewerydb.org';
+    public const string API_BASE_URL = 'https://api.openbrewerydb.org/v1';
 
     /**
      * The default pagination limit for paginated responses.

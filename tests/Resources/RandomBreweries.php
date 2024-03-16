@@ -17,8 +17,8 @@ describe('Random breweries', function () {
         $brewery = $breweries[0];
 
         // Assert
-        expect(count($breweries->toArray()))->toBe(1);
-        expect($brewery)->not()->toBeNull()
+        expect(count($breweries->toArray()))->toBe(1)
+            ->and($brewery)->not()->toBeNull()
             ->and($brewery['id'])->not()->toBeNull()
             ->and($brewery['brewery_type'])->not()->toBeNull()
             ->and($brewery['state'])->not()->toBeNull()
