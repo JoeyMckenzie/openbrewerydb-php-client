@@ -20,24 +20,24 @@ final readonly class Version implements Stringable
     /**
      * Minor version number, incremented for minor API changes and non-backwards compatibility changes.
      */
-    private const int MINOR = 8;
+    private const int MINOR = 9;
 
     /**
      * Patch version number, incremented for bug fixes and documentation updates.
      */
     private const int PATCH = 0;
 
-    #[Override]
-    public function __toString(): string
-    {
-        return self::MAJOR.'.'.self::MINOR.'.'.self::PATCH;
-    }
-
     /**
      * Constructs a new version based on the major, minor, and patch of the current release.
      */
     public static function current(): string
     {
-        return (string) new self();
+        return (string)new self();
+    }
+
+    #[Override]
+    public function __toString(): string
+    {
+        return self::MAJOR . '.' . self::MINOR . '.' . self::PATCH;
     }
 }
